@@ -1,0 +1,176 @@
+<!doctype html>
+<!--[if lt IE 9]>  <html class="ie lte9"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9 lte9"> <![endif]-->
+<!--[if !IE]><!--> <html class="no-ie"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Spiceworks Developers - Creating Language Packs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../../../images/favicon.gif" rel="icon" type="image/gif" />
+
+    <link href="../../../stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-314222-31', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+
+  <body data-page-name="documentation_plugins_language-packs_index" class="documentation documentation_plugins documentation_plugins_language-packs documentation_plugins_language-packs_index">
+
+    <header class="site-navigation sui-opt-in">
+  <nav class="global-nav " data-navbar="global">
+    <div class="nav-fluid-container">
+      <a class="global-nav_brand" href="../../../">Home</a>
+      <img src="//static.spiceworks.com/assets/masthead/print_logo.png" class="global-nav_print-logo">
+    </div>
+  </nav>
+  <nav class="domestic-nav" data-sticky="true" data-navbar="domestic">
+    <div class="nav-fluid-container">
+<a class="domestic-nav_brand" href="../../../">        <div class="swoosh-logo"></div><span class="domestic-nav_title">Developers</span>
+</a>      <ul class="domestic-menus">
+        <li class=" domestic-menus_entry"><a href="../../../what-is-spiceworks/">What is Spiceworks?</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../getting-started/">Getting Started</a></li>
+        <li class=" domestic-menus_entry"><a href="../../">Documentation</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../downloads/">Downloads</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../support/">Support</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="content-wrapper sui-fluid-container">
+        <div class="with-sidebar with-breadcrumbs">
+    <ul class="breadcrumbs">
+      <li>
+        <a href="../../">Documentation</a>
+      </li>
+      <li>
+        <a href="../">Modify Spiceworks</a>
+      </li>
+      <li>
+        Creating Language Packs
+      </li>
+    </ul>
+
+    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Modify Spiceworks</h4><ul class='nav' role='tablist'><li class=''><a href="../">Creating Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-plugins">Creating Plugins</a></li><li class=''><a href="#what-are-plugins">What Are Plugins?</a></li><li class=''><a href="#getting-started">Getting Started</a></li><li class=''><a href="#using-multiple-files-for-a-plugin">Using Multiple Files For A Plugin</a></li><li class=''><a href="#code-templates">Code Templates</a></li><li class=''><a href="#spiceworks-apis">Spiceworks APIs</a></li><li class=''><a href="#tools-to-make-plugins-easier">Tools To Make Plugins Easier</a></li><li class=''><a href="#cloning-a-plugin">Cloning A Plugin</a></li><li class=''><a href="#firebug">Firebug</a></li><li class=''><a href="#sharing-your-plugins">Sharing Your Plugins</a></li><li class=''><a href="#helpful-plugin-pages">Helpful Plugin Pages</a></li></ul></nav></li><li class=''><a href="../your-first-plugin/">Creating Your First Plugin</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-new-plugin">Creating A New Plugin</a></li><li class=''><a href="#adding-content">Adding Content</a></li><li class=''><a href="#what-s-happening">What's Happening?</a></li><li class=''><a href="#using-javascript">Using Javascript</a></li></ul></nav></li><li class=''><a href="../themes/">Themes for Spiceworks</a><nav class='submenu'><ul class='nav'><li class=''><a href="#updating-the-look-of-spiceworks-with-plugins">Updating The Look Of Spiceworks With Plugins</a></li><li class=''><a href="#changing-the-background-to-an-image">Changing The Background To An Image</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../building-widgets/">Building Widgets</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-new-dashboard-widgets">Creating New Dashboard Widgets</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../adding-navigation/">Adding Navigation</a><nav class='submenu'><ul class='nav'><li class=''><a href="#adding-navigational-elements">Adding Navigational Elements</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../reporting/">Reporting with Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#using-plugins-to-run-reports">Using Plugins To Run Reports</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../messaging/">Messaging with Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#adding-a-message-to-spiceworks-with-plugins">Adding A Message To Spiceworks With Plugins</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../responding-to-events/">Responding to Events</a><nav class='submenu'><ul class='nav'><li class=''><a href="#have-plugins-cause-spiceworks-to-respond-to-events-within-the-application">Have Plugins Cause Spiceworks To Respond To Events Within The Application</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../settings/">Using Plugin Settings</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-configurable-plugins">Creating Configurable Plugins</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../multi-file-plugins/">Multi File Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#using-multiple-files-within-a-plugin">Using Multiple files within a plugin</a></li><li class=''><a href="#adding-an-image">Adding an image</a></li><li class=''><a href="#adding-and-editing-css-file">Adding and editing CSS file</a></li><li class=''><a href="#editing-the-js-file">Editing the JS file</a></li><li class=''><a href="#view-your-masterpiece">View your masterpiece</a></li></ul></nav></li><li class=''><a href="../html-plugins/">Creating HTML Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#create-&amp;-edit-the-plugin">Create & Edit the Plugin</a></li><li class=''><a href="#add-&amp;-edit-the-html-file">Add & Edit the HTML</a></li><li class=''><a href="#edit-the-js-file">Edit the JS file</a></li><li class=''><a href="#view-your-masterpiece">View Your Masterpiece</a></li></ul></nav></li><li class=''><a href="../helpdesk-v2/">Updating Help Desk Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#updating-plugins-for-helpdesk-v2">Updating Plugins for Helpdesk v2</a></li><li class=''><a href="#example-modifying-the-helpdesk-once-it-s-ready">Example: Modifying the Helpdesk once it's ready</a></li><li class=''><a href="#example-modifying-the-helpdesk-in-response-to-events">Example: Modifying the Helpdesk in response to events</a></li><li class=''><a href="#example-modifying-helpdesk-comments">Example: Modifying helpdesk comments</a></li></ul></nav></li><li class='active'><a href="./">Creating Language Packs</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-language-pack">Creating A Language Pack</a></li><li class=''><a href="#sharing-a-language-pack">Sharing A Language Pack</a></li><li class=''><a href="#installing-a-language-pack">Installing A Language Pack</a></li><li class=''><a href="#enabling-a-language-pack">Enabling A Language Pack</a></li><li class=''><a href="#editing-a-language-pack">Editing A Language Pack</a></li></ul></nav></li><hr /><li class=''><a href="../examples/">Examples</a></li><li class=''><a href="../reference/">API Reference</a><nav class='submenu'><ul class='nav'><li class=''><a href="../reference/">Plugin API Overview</a></li><li class=''><a href="../reference/data-api/">Data API</a></li></ul></nav></li></ul></nav></aside></div>
+
+    <main class="with-left-sidebar">
+      <section class="documentation-hero-header">
+        <img alt="Spiceworks Swoosh" src="../../../images/spiceworks-o.png" />
+        <h1>Modify Spiceworks</h1>
+        <hr class="divider-shadow">
+      </section>
+      <section class="doc-content">
+        <p>With a user base spanning almost every country on Earth, it would take all our time to create separate language versions of Spiceworks. Plus, as smart as some of us are, I&#39;m pretty sure we&#39;re not going to be able to speak every language out there. That&#39;s where you come in. Language packs are our method of translating Spiceworks. With a language pack, you can find or create your own translation to cover any type of regional dialect you want.</p>
+
+<h3 id="creating-a-language-pack">Creating A Language Pack</h3>
+
+<p>For those go-getters out there who can speak multiple languages, creating a new language pack is easy:</p>
+
+<ul>
+<li>Navigate to <strong>Settings &rarr; Advanced &amp; International Options</strong>.</li>
+<li>Scroll down and click <strong>Create a new Language Pack</strong> in the Language Pack Extensions section.</li>
+<li>Choose a name (the name of the language will suffice here), a description, and select the locale. Notice that the languages under locale are listed by a prefix of how that language would be written natively; i.e. Spanish is listed as &quot;es - Spanish&quot;. Then click <strong>Save</strong>.</li>
+<li>Click <strong>edit</strong> next to the newly created language pack.</li>
+<li>Now the fun part. Click on a section to begin translating the phrases in that area. Notice the Key in the top right corner of the page to alert you of sections that are complete, incomplete, and not started.</li>
+<li>Be sure to save often. (We don&#39;t have to tell IT pros this, I&#39;m sure, but better safe than sorry.)</li>
+<li>When you&#39;re finished, or need a break, click <strong>Save</strong>.</li>
+</ul>
+
+<h3 id="sharing-a-language-pack">Sharing A Language Pack</h3>
+
+<p>Now that you&#39;ve done the hard part, share your hard work and spare someone else the trouble.</p>
+
+<ul>
+<li>Navigate to <strong>Settings &rarr; Advanced &amp; International Options</strong>.</li>
+<li>Scroll down to the Language Pack Extensions section.</li>
+<li>Find the Language Pack you created and click <strong>share</strong> next to it.</li>
+<li>In the window that pops up, read the Extension Upload Terms and Conditions, click the box to accept them and click <strong>Share</strong>.</li>
+</ul>
+
+<h3 id="installing-a-language-pack">Installing A Language Pack</h3>
+
+<p>If someone else has already created a language pack, there&#39;s no need to do it again, right?</p>
+
+<ul>
+<li>Navigate to <strong>Settings &rarr; Advanced &amp; International Options</strong>.</li>
+<li>Scroll down to International Settings and find the &quot;Locale:&quot; field.</li>
+<li>Click <strong>Browse Language Packs</strong> next to the drop-down menu.</li>
+<li>Find the language pack you want to install and click it to go to its details page.</li>
+<li>Click on the <strong>Install</strong> button to install that language pack into your Spiceworks Desktop.
+
+<ul>
+<li><strong>NOTE:</strong> If the <strong>Install</strong> button is grayed out and won&#39;t let you click it, make sure you entered the Extension Center through your Spiceworks Desktop. If you just navigate to the Community without coming from your Spiceworks application, you will not be able to install extensions.</li>
+</ul></li>
+</ul>
+
+<h3 id="enabling-a-language-pack">Enabling A Language Pack</h3>
+
+<p>Now that you&#39;ve got your language pack installed, it&#39;s time to change the language Spiceworks speaks.</p>
+
+<ul>
+<li>Navigate to <strong>Settings &rarr; Advanced &amp; International Options</strong>.</li>
+<li>Scroll down to International Settings, click the drop-down arrow next to &quot;Locale&quot; and select the name of your language pack from the drop-down menu. Then click <strong>Save</strong>.</li>
+</ul>
+
+<h3 id="editing-a-language-pack">Editing A Language Pack</h3>
+
+<p>There are many different dialects of languages out there, so if the one you downloaded isn&#39;t quite right, or if you&#39;ve even just found a spelling error, it&#39;s much easier to fix the language pack you have than to make a new one from scratch.</p>
+
+<ul>
+<li>Navigate to <strong>Settings &rarr; Advanced &amp; International Options</strong>.</li>
+<li>Scroll down to Language Pack Extensions and find the language pack you need to edit.</li>
+<li>Click <strong>source</strong> next to the language pack in question.</li>
+<li>From here, you just need to find the text fields you want to edit, make your changes, then click <strong>Save</strong>.</li>
+</ul>
+
+      </section>
+    </main>
+  </div>
+
+    </div>
+
+    <footer>
+  <div class="sui-fluid-container">
+    <a href="http://spiceworks.com" class="spiceworks-brand">
+      <img alt="Spiceworks Logo" src="../../../images/spiceworks_reversed.png" />
+    </a>
+    <div class="mid-section">
+      <div class="copy-wrapper">
+        <p>An IT application, community, and marketplace all rolled into one. Spiceworks is the network more than 6 million IT professionals use to connect with one another and over 3,000 technology brands.</p>
+        <p><a href="http://spiceworks.com">Learn More <span class="arrows">»</span></a></p>
+      </div>
+      <div class="button-wrapper">
+        <a class="btn btn-orange is-outlined" href="../../../support/">Contact Us</a>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <span class="copyright">© Copyright 2006-14 Spiceworks, Inc.</span>
+      <ul class="footer-links">
+        <li><a href="//www.spiceworks.com/about">About</a></li>
+        <li><a href="//www.spiceworks.com/app">App</a></li>
+        <li><a href="//www.spiceworks.com/downloads">Downloads</a></li>
+        <li><a href="//community.spiceworks.com">Community</a></li>
+        <li><a href="//www.spiceworks.com/marketing">Advertising</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script src="../../../javascripts/application.js" type="text/javascript"></script>
+  </body>
+</html>

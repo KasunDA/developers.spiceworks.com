@@ -1,0 +1,339 @@
+<!doctype html>
+<!--[if lt IE 9]>  <html class="ie lte9"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9 lte9"> <![endif]-->
+<!--[if !IE]><!--> <html class="no-ie"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Spiceworks Developers - API Reference</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../../../images/favicon.gif" rel="icon" type="image/gif" />
+
+    <link href="../../../stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-314222-31', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+
+  <body data-page-name="documentation_plugins_reference_index" class="documentation documentation_plugins documentation_plugins_reference documentation_plugins_reference_index">
+
+    <header class="site-navigation sui-opt-in">
+  <nav class="global-nav " data-navbar="global">
+    <div class="nav-fluid-container">
+      <a class="global-nav_brand" href="../../../">Home</a>
+      <img src="//static.spiceworks.com/assets/masthead/print_logo.png" class="global-nav_print-logo">
+    </div>
+  </nav>
+  <nav class="domestic-nav" data-sticky="true" data-navbar="domestic">
+    <div class="nav-fluid-container">
+<a class="domestic-nav_brand" href="../../../">        <div class="swoosh-logo"></div><span class="domestic-nav_title">Developers</span>
+</a>      <ul class="domestic-menus">
+        <li class=" domestic-menus_entry"><a href="../../../what-is-spiceworks/">What is Spiceworks?</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../getting-started/">Getting Started</a></li>
+        <li class=" domestic-menus_entry"><a href="../../">Documentation</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../downloads/">Downloads</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../support/">Support</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="content-wrapper sui-fluid-container">
+        <div class="with-sidebar with-breadcrumbs">
+    <ul class="breadcrumbs">
+      <li>
+        <a href="../../">Documentation</a>
+      </li>
+      <li>
+        <a href="../">Modify Spiceworks</a>
+      </li>
+      <li>
+        API Reference
+      </li>
+    </ul>
+
+    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Modify Spiceworks</h4><ul class='nav' role='tablist'><li class=''><a href="../">Creating Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-plugins">Creating Plugins</a></li><li class=''><a href="#what-are-plugins">What Are Plugins?</a></li><li class=''><a href="#getting-started">Getting Started</a></li><li class=''><a href="#using-multiple-files-for-a-plugin">Using Multiple Files For A Plugin</a></li><li class=''><a href="#code-templates">Code Templates</a></li><li class=''><a href="#spiceworks-apis">Spiceworks APIs</a></li><li class=''><a href="#tools-to-make-plugins-easier">Tools To Make Plugins Easier</a></li><li class=''><a href="#cloning-a-plugin">Cloning A Plugin</a></li><li class=''><a href="#firebug">Firebug</a></li><li class=''><a href="#sharing-your-plugins">Sharing Your Plugins</a></li><li class=''><a href="#helpful-plugin-pages">Helpful Plugin Pages</a></li></ul></nav></li><li class=''><a href="../your-first-plugin/">Creating Your First Plugin</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-new-plugin">Creating A New Plugin</a></li><li class=''><a href="#adding-content">Adding Content</a></li><li class=''><a href="#what-s-happening">What's Happening?</a></li><li class=''><a href="#using-javascript">Using Javascript</a></li></ul></nav></li><li class=''><a href="../themes/">Themes for Spiceworks</a><nav class='submenu'><ul class='nav'><li class=''><a href="#updating-the-look-of-spiceworks-with-plugins">Updating The Look Of Spiceworks With Plugins</a></li><li class=''><a href="#changing-the-background-to-an-image">Changing The Background To An Image</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../building-widgets/">Building Widgets</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-new-dashboard-widgets">Creating New Dashboard Widgets</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../adding-navigation/">Adding Navigation</a><nav class='submenu'><ul class='nav'><li class=''><a href="#adding-navigational-elements">Adding Navigational Elements</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../reporting/">Reporting with Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#using-plugins-to-run-reports">Using Plugins To Run Reports</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../messaging/">Messaging with Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#adding-a-message-to-spiceworks-with-plugins">Adding A Message To Spiceworks With Plugins</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../responding-to-events/">Responding to Events</a><nav class='submenu'><ul class='nav'><li class=''><a href="#have-plugins-cause-spiceworks-to-respond-to-events-within-the-application">Have Plugins Cause Spiceworks To Respond To Events Within The Application</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../settings/">Using Plugin Settings</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-configurable-plugins">Creating Configurable Plugins</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../multi-file-plugins/">Multi File Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#using-multiple-files-within-a-plugin">Using Multiple files within a plugin</a></li><li class=''><a href="#adding-an-image">Adding an image</a></li><li class=''><a href="#adding-and-editing-css-file">Adding and editing CSS file</a></li><li class=''><a href="#editing-the-js-file">Editing the JS file</a></li><li class=''><a href="#view-your-masterpiece">View your masterpiece</a></li></ul></nav></li><li class=''><a href="../html-plugins/">Creating HTML Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#create-&amp;-edit-the-plugin">Create & Edit the Plugin</a></li><li class=''><a href="#add-&amp;-edit-the-html-file">Add & Edit the HTML</a></li><li class=''><a href="#edit-the-js-file">Edit the JS file</a></li><li class=''><a href="#view-your-masterpiece">View Your Masterpiece</a></li></ul></nav></li><li class=''><a href="../helpdesk-v2/">Updating Help Desk Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#updating-plugins-for-helpdesk-v2">Updating Plugins for Helpdesk v2</a></li><li class=''><a href="#example-modifying-the-helpdesk-once-it-s-ready">Example: Modifying the Helpdesk once it's ready</a></li><li class=''><a href="#example-modifying-the-helpdesk-in-response-to-events">Example: Modifying the Helpdesk in response to events</a></li><li class=''><a href="#example-modifying-helpdesk-comments">Example: Modifying helpdesk comments</a></li></ul></nav></li><li class=''><a href="../language-packs/">Creating Language Packs</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-language-pack">Creating A Language Pack</a></li><li class=''><a href="#sharing-a-language-pack">Sharing A Language Pack</a></li><li class=''><a href="#installing-a-language-pack">Installing A Language Pack</a></li><li class=''><a href="#enabling-a-language-pack">Enabling A Language Pack</a></li><li class=''><a href="#editing-a-language-pack">Editing A Language Pack</a></li></ul></nav></li><hr /><li class=''><a href="../examples/">Examples</a></li><li class='active'><a href="./">API Reference</a><nav class='submenu'><ul class='nav'><li class='active'><a href="./">Plugin API Overview</a></li><li class=''><a href="data-api/">Data API</a></li></ul></nav></li></ul></nav></aside></div>
+
+    <main class="with-left-sidebar">
+      <section class="documentation-hero-header">
+        <img alt="Spiceworks Swoosh" src="../../../images/spiceworks-o.png" />
+        <h1>Modify Spiceworks</h1>
+        <hr class="divider-shadow">
+      </section>
+      <section class="doc-content">
+        <p>Plugins are a great way to customize Spiceworks for your needs.  To help you get more out of plugins, we have created our own set of Spiceworks Plugin API&#39;s.  You can use these to customize specific areas of Spiceworks.   All the return types are JSON objects and the best way to introspect the data is Firebug. It makes it really easy to try out. Just open firebug on a page with Spiceworks loaded and type in the javascript fragment.</p>
+
+<h3 id="spiceworks-global-namespace">Spiceworks Global Namespace</h3>
+
+<p>The global namespace for all Spiceworks APIs are under the <strong>SPICEWORKS</strong> (all caps) namespace.  There are a number of sub-namespaces that will are mentioned below.</p>
+
+<p><strong>Methods:</strong></p>
+
+<ul>
+<li><strong>observe(event, callback)</strong> - Register to execute the callback when the given event occurs.  Event is just a string name.</li>
+<li><strong>fire(event)</strong> - Cause registered callbacks to be executed</li>
+<li><strong>ready(callback)</strong> - Function &quot;callback&quot; will be executed once Spiceworks has finished loading.</li>
+<li><strong>clone(object)</strong> - Create a sort of instance of the passed object.  Returns a new object that inherits all properties and behaviours off of the passed object.</li>
+</ul>
+
+<h3 id="spiceworks-application">Spiceworks Application</h3>
+
+<p>The <strong>SPICEWORKS.app</strong> namespace is used for all UI elements that are part of the &quot;application&quot; (as opposed to the &quot;portal&quot;, for example).</p>
+
+<p><strong>Methods:</strong></p>
+
+<ul>
+<li><p><strong>ready(callback)</strong> - Function &quot;callback&quot; will be executed once Spiceworks has finished loading.  This is where you would define code that might modify some global aspect of the application.</p></li>
+<li><p><strong>isShowing()</strong> - Returns true if the Spiceworks application is showing (and false if the portal is showing).</p></li>
+</ul>
+
+<h3 id="dashboard-widgets">Dashboard Widgets</h3>
+
+<p><strong>SPICEWORKS.app.dashboard</strong> is what you&#39;ll use to create new widget types. The specification of a new widget type looks like this.</p>
+<pre class="highlight javascript"><code>  <span class="nx">SPICEWORKS</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">dashboard</span><span class="p">.</span><span class="nx">addWidgetType</span><span class="p">({</span>
+    <span class="na">name</span><span class="p">:</span><span class="s1">'hello_world_widget'</span><span class="p">,</span>
+    <span class="na">label</span><span class="p">:</span><span class="s1">'Hello'</span><span class="p">,</span>
+    <span class="na">icon</span><span class="p">:</span><span class="s1">'/images/icons/small/gear.png'</span><span class="p">,</span>
+    <span class="na">settingDefinitions</span><span class="p">:[</span>
+      <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s1">'greeting'</span><span class="p">,</span>
+       <span class="na">type</span><span class="p">:</span><span class="s1">'string'</span><span class="p">,</span>
+       <span class="na">label</span><span class="p">:</span><span class="s1">'Greeting'</span><span class="p">,</span>
+       <span class="na">defaultValue</span><span class="p">:</span><span class="s1">'hello'</span><span class="p">},</span>
+      <span class="p">{</span><span class="na">name</span><span class="p">:</span><span class="s1">'area'</span><span class="p">,</span>
+       <span class="na">type</span><span class="p">:</span><span class="s1">'string'</span><span class="p">,</span>
+       <span class="na">label</span><span class="p">:</span><span class="s1">'Area'</span><span class="p">,</span>
+       <span class="na">defaultValue</span><span class="p">:</span><span class="s1">'world'</span><span class="p">}</span>
+    <span class="p">],</span>
+    <span class="na">update</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">settings</span><span class="p">){</span>
+      <span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">greeting</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">area</span> <span class="o">+</span> <span class="s1">'!!'</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+</code></pre>
+
+<p>A widget type spec must include name, label, icon, prefs and an update function.  The update function takes two parameters, the dom element to render into and the options object.  The options object will contain all of the configuration information that the user will specify.</p>
+
+<p>The prefs array will hold field descriptors.  Each field requires a name, type, label and defaultValue (actually, &#39;string&#39; is assumed).  Currently, string is the only type of setting supported, but we can add more over time very easily (number, url, text, email, etc).  Fields will likely be allowed to have some level of validation as well.</p>
+
+<p><strong>Methods:</strong></p>
+
+<ul>
+<li><strong>addWidgetType(widgetTypeSpec)</strong> - Creates a new &quot;type&quot; of widget.  This new type will appear in the &quot;Add Content&quot; popup as an option for widgets to add.</li>
+<li><strong>getWidgetTypes()</strong> - Returns an array of all the widgetTypes defined by plugins.</li>
+<li><strong>getWidgetType(name)</strong> -  Returns the object representation of the widget named in the parameter.</li>
+<li><strong>isShowing()</strong> - Returns true if the dashboard is currently &quot;showing&quot;.  This is determined by looking at the elements on the page to be sure.</li>
+</ul>
+
+<h3 id="navigation">Navigation</h3>
+
+<p><strong>SPICEWORKS.app.navigation</strong> will add to the section of options in the My Tools portion of the navigation menu.  In the future these may move around a bit, but the idea is a simple one: Create a link which causes an entire page to be rendered with content.  Here&#39;s an example of how one might use this to create a super simple &quot;tool&quot;.  (Note: this is very similar to how you create widgets, only without &quot;preferences&quot;.</p>
+<pre class="highlight javascript"><code>  <span class="nx">SPICEWORKS</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">navigation</span><span class="p">.</span><span class="nx">addItem</span><span class="p">({</span>
+    <span class="na">name</span><span class="p">:</span><span class="s1">'hello_world'</span><span class="p">,</span>
+    <span class="na">label</span><span class="p">:</span> <span class="s1">'Hello'</span><span class="p">,</span>
+    <span class="c1">// Update the page</span>
+    <span class="na">update</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span>
+      <span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'Hello World'</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+</code></pre>
+
+<p>A tool specification must include a name, label and update method.  The update method takes a single argument which is the element where content should be rendered.</p>
+
+<p><strong>Methods:</strong></p>
+
+<ul>
+<li><strong>addItem(itemSpec)</strong> - Create a new navigation item and add it to the sidebar.  The tool specification should look like the one in the example above.</li>
+<li><strong>getItems()</strong> - Returns an array of all the tool objects that have been defined using the &quot;addTool&quot; method.  This will not include tools created through the existing tool mechanism.</li>
+</ul>
+
+<h3 id="messaging">Messaging</h3>
+
+<p>Often times it&#39;s nice to be able to tell the user about something or alert them to new information.  You can use an <strong>alert()</strong> box, but this is kind of ugly.  Spiceworks tries to make this cleaner by giving you the ability to add messages to top of the Spiceworks application by using the <strong>SPICEWORKS.app.messaging</strong> call.</p>
+
+<p><strong>Methods:</strong></p>
+
+<ul>
+<li><strong>push(message, options)</strong> - Add a message to the top of the screen and return the <strong>messageId</strong>.  <strong>options</strong> are optional and accepts a hash formatted like this: <strong>{selfRemoving: true, timeoutSeconds: 5, id:&#39;myMessage&#39;}</strong></li>
+<li><strong>pop(messageID)</strong> - Remove the specified message from the area at the top of the screen.</li>
+</ul>
+
+<h3 id="help-desk">Help Desk</h3>
+
+<p>The Help Desk is one of the most used aspects of Spiceworks, so of course you probably have ideas to make it better meet your needs.  The helpdesk API gives you the ability to make these changes in a plugin.</p>
+
+<p><strong>Catalog of Events for Helpdesk v2</strong>
+Here is a complete list of events for Helpdesk v2, with arguments. You would start each event with $UI.app.pluginEventBus.on(&#39;app:helpdesk...)</p>
+
+<ul>
+<li><strong>“app:helpdesk:ticket:show”</strong> (ticket object) — when a ticket is loaded or displayed</li>
+<li><strong>“app:helpdesk:purchase:add”</strong> (purchase object) — when a purchase is added to a ticket</li>
+<li><strong>“app:helpdesk:ticket:change:status”</strong> (ticket object) — when a ticket’s status is changed to open or closed</li>
+<li><strong>“app:helpdesk:ticket:add”</strong> (ticket object) — when a new ticket is created</li>
+<li><strong>“app:helpdesk:ticket:new:show”</strong> — when the new ticket form is added to the DOM</li>
+<li><strong>“app:helpdesk:ticket:dup_search:show”</strong> — when the duplicate search modal is added to the DOM</li>
+<li><strong>&quot;app:helpdesk:ticket:header:render&quot;</strong> — when the ticket header pane is rendered</li>
+<li><strong>“app:helpdesk:ticket:comment:show”</strong> — when a comment is added to the DOM</li>
+<li><strong>“app:primary:show”</strong> — when the ticket table is added to the DOM</li>
+<li><strong>“app:secondary:show”</strong> — when the ticket pane is added to the DOM (useful for detecting when a ticket is clicked from the table)</li>
+<li><strong>&quot;app:helpdesk:ticket:change:due&quot;</strong> - when the due date is changed</li>
+<li><strong>&quot;app:helpdesk:ticket:change:priority&quot;</strong> - when the priority is changed</li>
+<li><strong>&quot;app:helpdesk:ticket:change:assignee&quot;</strong> - when the assignee is changed</li>
+<li><strong>&quot;app:helpdesk:ticket:change:category&quot;</strong> - when the category is changed</li>
+<li><strong>&quot;app:helpdesk:ticket:change:time_spent&quot;</strong> - when time is added or removed from the ticket</li>
+</ul>
+
+<h3 id="inventory">Inventory</h3>
+
+<p>One of the primary areas of Spiceworks, the inventory is a place where you could use the <strong>SPICEWORKS.app.inventory</strong> call to really help you out.</p>
+
+<p><strong>Methods:</strong></p>
+
+<ul>
+<li><strong>ready(callback)</strong> - Function &quot;callback&quot; will be executed when the inventory is finished loading.</li>
+</ul>
+
+<p><strong>Catalog of Events for Inventory</strong></p>
+
+<ul>
+<li><strong>SPICEWORKS.app.inventory.environment</strong> - This is the top level of the Inventory</li>
+<li><strong>SPICEWORKS.app.inventory.group</strong> - This refers to the group level view of the Inventory.</li>
+<li><strong>SPICEWORKS.app.inventory.group.device</strong> - This refers to viewing an individual device in the Inventory.</li>
+<li><strong>SPICEWORKS.app.inventory.group.environment</strong> - This refers to the environment summary of a group in the Inventory.</li>
+<li><strong>SPICEWORKS.app.inventory.softwareGroup</strong> - This refers to the software group of your Inventory.</li>
+<li><strong>SPICEWORKS.app.inventory.softwareGroup.environment</strong> - This refers to the environment summary of the software group.</li>
+<li><strong>SPICEWORKS.app.inventory.softwareGroup.software</strong> - This refers to the individual pieces of software in the software group.</li>
+<li><strong>SPICEWORKS.app.inventory.softwareGroup.service</strong> - This refers to the services that are listed in the software group.</li>
+<li><strong>SPICEWORKS.app.inventory.softwareGroup.hotfix</strong> - This refers to the hotfixes that are listed in the software group.</li>
+</ul>
+
+<h3 id="user-portal">User Portal</h3>
+
+<p>The <strong>SPICEWORKS.portalv2</strong> namespace is used for all UI elements that are part of the &quot;portal&quot; (as opposed to the &quot;application&quot;).</p>
+
+<p><strong>Methods:</strong></p>
+
+<ul>
+<li><p><strong>ready(callback)</strong> - Function&quot;callback&quot; will be executed when the Spiceworks portal is finished loading.  This is where you would define code that might modify some global aspect of the user portal.</p></li>
+<li><p><strong>isShowing()</strong> - Returns true if the Spiceworks portal is showing (and false if the application is showing).</p></li>
+</ul>
+
+<p><strong>Add Widgets to the User Portal:</strong></p>
+
+<ul>
+<li><strong>SPICEWORKS.portalv2.addPortalType()</strong></li>
+</ul>
+
+<h3 id="persistence">Persistence</h3>
+
+<p>Data can easily be stored on the server using the <strong>SPICEWORKS.persistence</strong> call.</p>
+
+<ul>
+<li><strong>SPICEWORKS.persistence.store( &#39;some<em>key</em>or_id&#39;, { foo: &#39;bar&#39; } );</strong> - User changes something or takes some action.</li>
+<li><strong>SPICEWORKS.persistence.load( &#39;some<em>key</em>or_id&#39;, function (result) {
+console.log(result.foo);  //=&gt; &#39;bar&#39;});</strong> - At some later time, perhaps the next page load, or even later.</li>
+</ul>
+
+<p><strong>Methods:</strong></p>
+
+<ul>
+<li><strong>store(key, value, callback)</strong> - Store a value for future use.  Value can be most any type of object (but a normal &quot;hash&quot; sort of object is prefered).  Methods will not be persisted, only data.  Callback is optional.</li>
+<li><strong>load(key, callback)</strong> - Fetch the specified value and pass it to the callback.  The value will NOT be returned from the function.  The callback is NOT guarenteed to be executed immediately.  Depending on the server, it may take a few seconds to execute, so do not create code that expects this to run immediately.</li>
+<li><strong>remove(key, callback)</strong> - Delete a value from the data store.  Callback is optional and is run once the value is deleted.</li>
+</ul>
+
+<h3 id="utilities">Utilities</h3>
+
+<p>A number of helpful methods can be found under <strong>SPICEWORKS.utils</strong>.</p>
+
+<p><strong>Methods:</strong></p>
+
+<ul>
+<li><p><strong>addStyle(styleText)</strong> - Add a chunk of style information to the <strong>HEAD</strong> of the current document.  Example: Set background color to red
+SPICEWORKS.utils.addStyle(&#39;body{background-color:red}&#39;);</p></li>
+<li><p><strong>include(url, callback)</strong> - Include a script from a remote location.  This is used internally but is available for plugin writers as well.  If you find you need to include some remote javascript, this is the way to do it.</p></li>
+</ul>
+<pre class="highlight javascript"><code>  <span class="nx">SPICEWORKS</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">include</span><span class="p">(</span><span class="s1">'http://myserver.com/somefile.js'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="cm">/* External JS has been loaded, now do something with it. */</span>
+  <span class="p">});</span>
+</code></pre>
+
+<h3 id="settings">Settings</h3>
+
+<p>The <strong>SPICEWORKS.settings</strong> call refers to the main settings page.</p>
+
+<p><strong>Methods:</strong></p>
+
+<ul>
+<li><strong>ready (callback)</strong> - Function&quot;callback&quot; will be executed when the main settings page is finished loading.</li>
+</ul>
+
+<p><strong>Catalog of Events for Settings</strong></p>
+
+<ul>
+<li><strong>SPICEWORKS.settings.help_desk</strong></li>
+<li><strong>SPICEWORKS.settings.monitors</strong></li>
+<li><strong>SPICEWORKS.settings.network</strong></li>
+<li><strong>SPICEWORKS.settings.email</strong></li>
+<li><strong>SPICEWORKS.settings.accounts</strong></li>
+<li><strong>SPICEWORKS.settings.spicemeter</strong></li>
+<li><strong>SPICEWORKS.settings.events</strong></li>
+<li><strong>SPICEWORKS.settings.categories</strong></li>
+<li><strong>SPICEWORKS.settings.backup</strong></li>
+<li><strong>SPICEWORKS.settings.advanced</strong></li>
+</ul>
+
+<h3 id="other-resources">Other Resources</h3>
+
+<ul>
+<li><a href="/docs/in-spiceworks/plugin-data-api-reference">Data API Info</a> - Detailed information about the info you can pull from the Spiceworks database to include in plugins.</li>
+</ul>
+
+      </section>
+    </main>
+  </div>
+
+    </div>
+
+    <footer>
+  <div class="sui-fluid-container">
+    <a href="http://spiceworks.com" class="spiceworks-brand">
+      <img alt="Spiceworks Logo" src="../../../images/spiceworks_reversed.png" />
+    </a>
+    <div class="mid-section">
+      <div class="copy-wrapper">
+        <p>An IT application, community, and marketplace all rolled into one. Spiceworks is the network more than 6 million IT professionals use to connect with one another and over 3,000 technology brands.</p>
+        <p><a href="http://spiceworks.com">Learn More <span class="arrows">»</span></a></p>
+      </div>
+      <div class="button-wrapper">
+        <a class="btn btn-orange is-outlined" href="../../../support/">Contact Us</a>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <span class="copyright">© Copyright 2006-14 Spiceworks, Inc.</span>
+      <ul class="footer-links">
+        <li><a href="//www.spiceworks.com/about">About</a></li>
+        <li><a href="//www.spiceworks.com/app">App</a></li>
+        <li><a href="//www.spiceworks.com/downloads">Downloads</a></li>
+        <li><a href="//community.spiceworks.com">Community</a></li>
+        <li><a href="//www.spiceworks.com/marketing">Advertising</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script src="../../../javascripts/application.js" type="text/javascript"></script>
+  </body>
+</html>

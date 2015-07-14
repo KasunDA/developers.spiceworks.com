@@ -1,0 +1,333 @@
+<!doctype html>
+<!--[if lt IE 9]>  <html class="ie lte9"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9 lte9"> <![endif]-->
+<!--[if !IE]><!--> <html class="no-ie"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Spiceworks Developers</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../images/images/favicon.gif" rel="icon" type="image/gif" />
+
+    <link href="../stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-314222-31', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+
+  <body data-page-name="getting-started_index" class="getting-started getting-started_index">
+
+    <header class="site-navigation sui-opt-in">
+  <nav class="global-nav " data-navbar="global">
+    <div class="nav-fluid-container">
+      <a class="global-nav_brand" href="../">Home</a>
+      <img src="//static.spiceworks.com/assets/masthead/print_logo.png" class="global-nav_print-logo">
+    </div>
+  </nav>
+  <nav class="domestic-nav" data-sticky="true" data-navbar="domestic">
+    <div class="nav-fluid-container">
+<a class="domestic-nav_brand" href="../">        <div class="swoosh-logo"></div><span class="domestic-nav_title">Developers</span>
+</a>      <ul class="domestic-menus">
+        <li class=" domestic-menus_entry"><a href="../what-is-spiceworks/">What is Spiceworks?</a></li>
+        <li class=" domestic-menus_entry"><a href="./">Getting Started</a></li>
+        <li class=" domestic-menus_entry"><a href="../documentation/">Documentation</a></li>
+        <li class=" domestic-menus_entry"><a href="../downloads/">Downloads</a></li>
+        <li class=" domestic-menus_entry"><a href="../support/">Support</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="content-wrapper sui-fluid-container">
+      <div class="with-sidebar">
+  <div class="aside-wrapper">
+    <aside class="affix-top">
+      <nav class="sidebar">
+        <h4>Getting Started</h4>
+        <ul class="nav" role="tablist">
+            <li><a href="#whats-an-app">What's an App?</a></li>
+            <li><a href="#what-can-you-make">What Can You Make?</a></li>
+            <li><a href="#integrating-with-spiceworks">Integrating with Spiceworks</a></li>
+            <li><a href="#spiceworks-dev-edition">Spiceworks Developer Edition</a></li>
+            <li><a href="#spiceworks-app-center">Spiceworks App Center</a></li>
+            <li><a href="#our-audience">Our Audience</a></li>
+            <li><a href="#get-started-links">Ready to Start?</a></li>
+            <li><a href="#why-spiceworks">Why Spiceworks?</a></li>
+            <li><a href="#market-your-app">Marketing Your App</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <main class="with-left-sidebar">
+    <section class="documentation-hero-header">
+      <img alt="Spiceworks Swoosh" src="../images/spiceworks-o.png" />
+      <h1>Build Your App Where IT Goes to Work</h1>
+      <hr class="divider-shadow">
+    </section>
+    <section class="doc-content">
+      <p>Get started extending Spiceworks with a breakthrough plugin, report or cloud integration.</p>
+
+      <h2 id="whats-an-app">What exactly is an app in Spiceworks?</h2>
+      <p>
+        Apps are made up of a collection of web pages called cards. A card is a
+        blank canvas that appears in a specific location inside of the
+        Spiceworks application, where your app can display content. Every app
+        created for Spiceworks must have a full-page card, but can also have
+        smaller cards that display in certain parts of the app, or live in the
+        footer. Spiceworks’ primary navigation contains links to the full-page
+        card of each installed app.
+      </p>
+
+      <h2 id="what-can-you-make">What kinds of apps can you make?</h2>
+      <p>
+        There are two types of apps in Spiceworks: <strong>plugins</strong>
+        &amp; <strong>platform apps</strong>.
+
+        <ul>
+          <li>
+            <strong>Plugins</strong> have been part of Spiceworks for a long
+            time now.  SpiceHeads (what Spiceworks users have come to call
+            themselves) have been using plugins to modify the look and feel of
+            Spiceworks to meet their needs.  Plugins are external snippets of
+            JavaScript code that plug in to Spiceworks and can utilize jQuery to
+            help make things even easier for you. A plugin pretty much lives
+            within the context of the user’s browser and there is very little
+            code that executes on the backend servers, outside of a few of the
+            provided Spiceworks APIs. Spiceworks has events that will load the
+            plugins on top of the page, after the page loads.
+          </li>
+          <li>
+            <strong>Platform Apps</strong> are externally hosted web pages that
+            are embedded into the Spiceworks Application using an
+            iframe.
+          </li>
+        </ul>
+      </p>
+
+      <p>
+        With Platform Apps you can create almost any type of app you can dream
+        up.  You can build:
+
+        <ul>
+          <li>
+            On our <em>inventory services</em>, which provide access to the
+            network devices and asset inventory managed within Spiceworks.
+            Inventory includes devices and software.
+          </li>
+          <li>
+            On our <em>help desk services</em>, which allow you to list existing
+            help desk tickets, show a specific ticket, and create new tickets.
+          </li>
+          <li>
+            On our <em>environmental services</em>, which provide information
+            about the host environment and the current user.
+          </li>
+          <li> Something <em>new</em> that adds value to an IT pro’s day.
+          </li>
+        </ul>
+      </p>
+
+      <h2 id="integrating-with-spiceworks">How will I integrate my platform app with Spiceworks?</h2>
+      <p>
+        Your platform application (app) will be an externally-hosted web page
+        that’s embedded into the desktop of the Spiceworks application using an
+        iframe. Apps can exist as a full page, but can also appear in multiple
+        other positions throughout the Spiceworks desktop, such as in the body
+        of a ticket. If your app needs to share data with the Spiceworks Desktop
+        or respond to Spiceworks Desktop events, you can communicate with it
+        using our new set of APIs. The apps you create will be available for
+        user download from the Spiceworks App Center. <a
+        href="http://developers.spiceworks.com/downloads"
+        target="_blank">Download the SDE</a>.
+      </p>
+
+      <h2 id="spiceworks-dev-edition">Meet the Spiceworks Developer Edition (SDE).</h2>
+      <p>
+        The SDE is a version of the Spiceworks desktop application that includes
+        a sample database and other features to help you build and test
+        applications inside of an almost real, working version of Spiceworks.
+        It’s meant as a way for you to be able to test your app against
+        real-world data without having to create a network full of devices on
+        your own. It’s also customized to make it easier for you to be able to
+        list your app in the Spiceworks App Center.
+      </p>
+
+      <h2 id="spiceworks-app-center">More on the Spiceworks App Center</h2>
+      <p>
+        How did the App Center come about? Even before SDE became available,
+        developers were creating plugins, language packs, scripts, and reports
+        to help IT pros get the most out of Spiceworks. These resources got
+        vetted and voted on by SpiceHeads (what Spiceworks users have come to
+        call themselves) and then became available for other SpiceHeads to
+        download from the App Center. Any apps you create using the SDE will
+        also find their home in the App Center, which currently contains:
+
+        <ul>
+          <li>Over 3,000 reports</li>
+          <li>
+            Over 300 plugins (including vendor integrations that bring
+            third-party functionality directly into the Spiceworks dashboard)
+          </li>
+          <li>
+            Nearly 500 language packs created by native speakers around the
+            world
+          </li>
+        </ul>
+      </p>
+
+      <h2 id="our-audience">Tap directly into your audience’s app wish lists</h2>
+      <p>
+        Much like developers in the past tapped into the Spiceworks Community to
+        find out what IT pros need, you can also use the Spiceworks Community to
+        give you an idea of what sort of applications SpiceHeads love and use,
+        as well as to gauge their reaction to your app and get feedback on
+        specific feature requests or your app ideas. Just join the community,
+        set up your profile, and start checking out everything from feature
+        requests to popular discussions. You can even meet face-to-face to get
+        feedback from your app audience: SpiceCorps are Spiceworks user groups
+        that meet in person around the world and give you a chance to mingle in
+        person with the IT pros who use Spiceworks every day.
+      </p>
+
+      <h2 id="get-started-links">Ready to get cracking?</h2>
+      <p>All pumped up and ready to get to developing? Great!</p>
+
+      <ol>
+        <li>
+          Install the <a href="http://developers.spiceworks.com/downloads.html"
+          target="_blank">Spiceworks Developer Edition</a>. (The developer
+          edition must be installed in a Windows environment.)
+        </li>
+        <li>
+          Check out the <a
+          href="http://developers.spiceworks.com/documentation/cloud-apps/"
+          target="_blank">Documentation</a>.
+        </li>
+      </ol>
+
+      <h2 id="why-spiceworks">Why develop apps for Spiceworks?</h2>
+      <p>What makes Spiceworks different than other platforms?
+
+        <ul>
+          <li>
+            <strong>REACH:</strong> Building an app on the Spiceworks platform
+            gives you a chance to integrate into the daily workflow of the
+            world’s largest community of IT pros.
+          </li>
+          <li>
+            <strong>TRUST:</strong> You’re not unknown to the IT pro when build
+            an app for Spiceworks – you’re part of a community that they already
+            know and trust to deliver value in their IT day.
+          </li>
+          <li>
+            <strong>INSTANT DATA:</strong> By incorporating our inventory data,
+            you can reduce one of the biggest hurdles to trying new apps – the
+            configuration step.  The Spiceworks application already knows about
+            the IT pro’s environment.
+          </li>
+          <li>
+            <strong>AUTOMATIC UPDATES:</strong> Updates to your app get to all
+            users instantaneously.  Since your app is in the cloud, when you
+            make changes or add functionality, all the users of your app get the
+            new functionality right away.
+          </li>
+          <li>
+            <strong>$$$ POTENTIAL:</strong>  Unlike other app marketplaces where
+            you’re competing with a marketplace jam-packed full of apps, the
+            Spiceworks App Center is new and filled with IT pros looking for
+            solutions to make their day easier.  This makes the possibility to
+            make real money, well, real. Let’s just say, for example, your app
+            costs $5 a month or $500 for a year, you would only need to sell 200
+            to have an app that generates $100,000 per year. When your app is in
+            front of an audience eagerly looking for apps that help them manage
+            IT, 200 downloads seems pretty doable.
+          </li>
+        </ul>
+      </p>
+
+      <h2 id="market-your-app">How to market your app?</h2>
+      <p>Looking for Here are some general marketing tips for your app?
+
+        <ul>
+          <li>
+            Choose a clear and descriptive informative name – Naming an app in a
+            way that clearly defines the problem it solves for an IT pro will
+            make them more likely to install it. Helps users that are quickly
+            scanning for apps to solve their problems.
+          </li>
+          <li>
+            Use high quality images for your icon and screenshots.
+          </li>
+          <li>
+            Use the description to spell out the problem you’re solving for the
+            IT pro. This is your chance to elaborate on why they need your app.
+            Don’t just list features, make sure to tell them the benefits.
+          </li>
+          <li>
+            Include a free trial.  IT pros want to try out apps before they buy.
+            They are more likely to consider your app if they can try it out for
+            free beforehand.
+          </li>
+          <li>
+            Encourage feedback and reviews on your app.  SpiceHeads trust each
+            other.  Gathering feedback from SpiceHeads will help you to not only
+            improve your app but also build your and your app’s credibility in
+            Spiceworks (which means more downloads).
+          </li>
+        </ul>
+      </p>
+      <p>
+        Interested in advertising your app in Spiceworks?  Contact <a
+        href="mailto:sales@spiceworks.com">sales@spiceworks.com</a>
+      </p>
+    </section>
+  </main>
+</div>
+
+    </div>
+
+    <footer>
+  <div class="sui-fluid-container">
+    <a href="http://spiceworks.com" class="spiceworks-brand">
+      <img alt="Spiceworks Logo" src="../images/spiceworks_reversed.png" />
+    </a>
+    <div class="mid-section">
+      <div class="copy-wrapper">
+        <p>An IT application, community, and marketplace all rolled into one. Spiceworks is the network more than 6 million IT professionals use to connect with one another and over 3,000 technology brands.</p>
+        <p><a href="http://spiceworks.com">Learn More <span class="arrows">»</span></a></p>
+      </div>
+      <div class="button-wrapper">
+        <a class="btn btn-orange is-outlined" href="../support/">Contact Us</a>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <span class="copyright">© Copyright 2006-14 Spiceworks, Inc.</span>
+      <ul class="footer-links">
+        <li><a href="//www.spiceworks.com/about">About</a></li>
+        <li><a href="//www.spiceworks.com/app">App</a></li>
+        <li><a href="//www.spiceworks.com/downloads">Downloads</a></li>
+        <li><a href="//community.spiceworks.com">Community</a></li>
+        <li><a href="//www.spiceworks.com/marketing">Advertising</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script src="../javascripts/application.js" type="text/javascript"></script>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<!--[if lt IE 9]>  <html class="ie lte9"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9 lte9"> <![endif]-->
+<!--[if !IE]><!--> <html class="no-ie"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Spiceworks Developers - Themes for Spiceworks</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../../../images/favicon.gif" rel="icon" type="image/gif" />
+
+    <link href="../../../stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-314222-31', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+
+  <body data-page-name="documentation_plugins_themes_index" class="documentation documentation_plugins documentation_plugins_themes documentation_plugins_themes_index">
+
+    <header class="site-navigation sui-opt-in">
+  <nav class="global-nav " data-navbar="global">
+    <div class="nav-fluid-container">
+      <a class="global-nav_brand" href="../../../">Home</a>
+      <img src="//static.spiceworks.com/assets/masthead/print_logo.png" class="global-nav_print-logo">
+    </div>
+  </nav>
+  <nav class="domestic-nav" data-sticky="true" data-navbar="domestic">
+    <div class="nav-fluid-container">
+<a class="domestic-nav_brand" href="../../../">        <div class="swoosh-logo"></div><span class="domestic-nav_title">Developers</span>
+</a>      <ul class="domestic-menus">
+        <li class=" domestic-menus_entry"><a href="../../../what-is-spiceworks/">What is Spiceworks?</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../getting-started/">Getting Started</a></li>
+        <li class=" domestic-menus_entry"><a href="../../">Documentation</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../downloads/">Downloads</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../support/">Support</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="content-wrapper sui-fluid-container">
+        <div class="with-sidebar with-breadcrumbs">
+    <ul class="breadcrumbs">
+      <li>
+        <a href="../../">Documentation</a>
+      </li>
+      <li>
+        <a href="../">Modify Spiceworks</a>
+      </li>
+      <li>
+        Themes for Spiceworks
+      </li>
+    </ul>
+
+    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Modify Spiceworks</h4><ul class='nav' role='tablist'><li class=''><a href="../">Creating Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-plugins">Creating Plugins</a></li><li class=''><a href="#what-are-plugins">What Are Plugins?</a></li><li class=''><a href="#getting-started">Getting Started</a></li><li class=''><a href="#using-multiple-files-for-a-plugin">Using Multiple Files For A Plugin</a></li><li class=''><a href="#code-templates">Code Templates</a></li><li class=''><a href="#spiceworks-apis">Spiceworks APIs</a></li><li class=''><a href="#tools-to-make-plugins-easier">Tools To Make Plugins Easier</a></li><li class=''><a href="#cloning-a-plugin">Cloning A Plugin</a></li><li class=''><a href="#firebug">Firebug</a></li><li class=''><a href="#sharing-your-plugins">Sharing Your Plugins</a></li><li class=''><a href="#helpful-plugin-pages">Helpful Plugin Pages</a></li></ul></nav></li><li class=''><a href="../your-first-plugin/">Creating Your First Plugin</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-new-plugin">Creating A New Plugin</a></li><li class=''><a href="#adding-content">Adding Content</a></li><li class=''><a href="#what-s-happening">What's Happening?</a></li><li class=''><a href="#using-javascript">Using Javascript</a></li></ul></nav></li><li class='active'><a href="./">Themes for Spiceworks</a><nav class='submenu'><ul class='nav'><li class=''><a href="#updating-the-look-of-spiceworks-with-plugins">Updating The Look Of Spiceworks With Plugins</a></li><li class=''><a href="#changing-the-background-to-an-image">Changing The Background To An Image</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../building-widgets/">Building Widgets</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-new-dashboard-widgets">Creating New Dashboard Widgets</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../adding-navigation/">Adding Navigation</a><nav class='submenu'><ul class='nav'><li class=''><a href="#adding-navigational-elements">Adding Navigational Elements</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../reporting/">Reporting with Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#using-plugins-to-run-reports">Using Plugins To Run Reports</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../messaging/">Messaging with Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#adding-a-message-to-spiceworks-with-plugins">Adding A Message To Spiceworks With Plugins</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../responding-to-events/">Responding to Events</a><nav class='submenu'><ul class='nav'><li class=''><a href="#have-plugins-cause-spiceworks-to-respond-to-events-within-the-application">Have Plugins Cause Spiceworks To Respond To Events Within The Application</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../settings/">Using Plugin Settings</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-configurable-plugins">Creating Configurable Plugins</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../multi-file-plugins/">Multi File Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#using-multiple-files-within-a-plugin">Using Multiple files within a plugin</a></li><li class=''><a href="#adding-an-image">Adding an image</a></li><li class=''><a href="#adding-and-editing-css-file">Adding and editing CSS file</a></li><li class=''><a href="#editing-the-js-file">Editing the JS file</a></li><li class=''><a href="#view-your-masterpiece">View your masterpiece</a></li></ul></nav></li><li class=''><a href="../html-plugins/">Creating HTML Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#create-&amp;-edit-the-plugin">Create & Edit the Plugin</a></li><li class=''><a href="#add-&amp;-edit-the-html-file">Add & Edit the HTML</a></li><li class=''><a href="#edit-the-js-file">Edit the JS file</a></li><li class=''><a href="#view-your-masterpiece">View Your Masterpiece</a></li></ul></nav></li><li class=''><a href="../helpdesk-v2/">Updating Help Desk Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#updating-plugins-for-helpdesk-v2">Updating Plugins for Helpdesk v2</a></li><li class=''><a href="#example-modifying-the-helpdesk-once-it-s-ready">Example: Modifying the Helpdesk once it's ready</a></li><li class=''><a href="#example-modifying-the-helpdesk-in-response-to-events">Example: Modifying the Helpdesk in response to events</a></li><li class=''><a href="#example-modifying-helpdesk-comments">Example: Modifying helpdesk comments</a></li></ul></nav></li><li class=''><a href="../language-packs/">Creating Language Packs</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-language-pack">Creating A Language Pack</a></li><li class=''><a href="#sharing-a-language-pack">Sharing A Language Pack</a></li><li class=''><a href="#installing-a-language-pack">Installing A Language Pack</a></li><li class=''><a href="#enabling-a-language-pack">Enabling A Language Pack</a></li><li class=''><a href="#editing-a-language-pack">Editing A Language Pack</a></li></ul></nav></li><hr /><li class=''><a href="../examples/">Examples</a></li><li class=''><a href="../reference/">API Reference</a><nav class='submenu'><ul class='nav'><li class=''><a href="../reference/">Plugin API Overview</a></li><li class=''><a href="../reference/data-api/">Data API</a></li></ul></nav></li></ul></nav></aside></div>
+
+    <main class="with-left-sidebar">
+      <section class="documentation-hero-header">
+        <img alt="Spiceworks Swoosh" src="../../../images/spiceworks-o.png" />
+        <h1>Modify Spiceworks</h1>
+        <hr class="divider-shadow">
+      </section>
+      <section class="doc-content">
+        <h3 id="updating-the-look-of-spiceworks-with-plugins">Updating The Look Of Spiceworks With Plugins</h3>
+
+<p>You can also use plugins to change the aesthetic appeal of Spiceworks. We just won&#39;t tell the UI designers here what you&#39;re doing. Don&#39;t want to hurt their feelings or anything.</p>
+
+<h3 id="changing-the-background-to-an-image">Changing The Background To An Image</h3>
+
+<ul>
+<li>Create a new plugin as before (see <a href="../your-first-plugin/">Hello World Alert Plugin</a>).</li>
+<li>Enter the following text in the box and click &quot;Save&quot; in the toolbar:</li>
+</ul>
+<pre class="highlight javascript"><code>  <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">({</span><span class="na">backgroundImage</span><span class="p">:</span> <span class="s1">'url(http:////static.spiceworks.com/assets/community/icons/medium/support-ac7d94e4ea599425f3a82389a22c9126.png)'</span><span class="p">});</span>
+</code></pre>
+
+<ul>
+<li>Open another browser window pointing at any Spiceworks page.</li>
+<li>Check out that background... (feel free to replace the above url with a link to whatever you like)</li>
+</ul>
+
+<h3 id="what&#39;s-going-on-here?">What&#39;s going on here?</h3>
+
+<p>This code is setting the style of the document body to be a Spiceworks logo.  Any element on the page can be updated in this way.  With styles, you can affect things like background colors, fonts and borders.  That&#39;s really just the start, and this is a technique that will come in quite handy over time.</p>
+
+<p>Next: <a href="../building-widgets/">Hello World Widget Tutorial</a></p>
+
+      </section>
+    </main>
+  </div>
+
+    </div>
+
+    <footer>
+  <div class="sui-fluid-container">
+    <a href="http://spiceworks.com" class="spiceworks-brand">
+      <img alt="Spiceworks Logo" src="../../../images/spiceworks_reversed.png" />
+    </a>
+    <div class="mid-section">
+      <div class="copy-wrapper">
+        <p>An IT application, community, and marketplace all rolled into one. Spiceworks is the network more than 6 million IT professionals use to connect with one another and over 3,000 technology brands.</p>
+        <p><a href="http://spiceworks.com">Learn More <span class="arrows">»</span></a></p>
+      </div>
+      <div class="button-wrapper">
+        <a class="btn btn-orange is-outlined" href="../../../support/">Contact Us</a>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <span class="copyright">© Copyright 2006-14 Spiceworks, Inc.</span>
+      <ul class="footer-links">
+        <li><a href="//www.spiceworks.com/about">About</a></li>
+        <li><a href="//www.spiceworks.com/app">App</a></li>
+        <li><a href="//www.spiceworks.com/downloads">Downloads</a></li>
+        <li><a href="//community.spiceworks.com">Community</a></li>
+        <li><a href="//www.spiceworks.com/marketing">Advertising</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script src="../../../javascripts/application.js" type="text/javascript"></script>
+  </body>
+</html>

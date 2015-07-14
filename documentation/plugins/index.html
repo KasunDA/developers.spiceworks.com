@@ -1,0 +1,292 @@
+<!doctype html>
+<!--[if lt IE 9]>  <html class="ie lte9"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9 lte9"> <![endif]-->
+<!--[if !IE]><!--> <html class="no-ie"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Spiceworks Developers - Creating Plugins</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../../images/favicon.gif" rel="icon" type="image/gif" />
+
+    <link href="../../stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-314222-31', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+
+  <body data-page-name="documentation_plugins_index" class="documentation documentation_plugins documentation_plugins_index">
+
+    <header class="site-navigation sui-opt-in">
+  <nav class="global-nav " data-navbar="global">
+    <div class="nav-fluid-container">
+      <a class="global-nav_brand" href="../../">Home</a>
+      <img src="//static.spiceworks.com/assets/masthead/print_logo.png" class="global-nav_print-logo">
+    </div>
+  </nav>
+  <nav class="domestic-nav" data-sticky="true" data-navbar="domestic">
+    <div class="nav-fluid-container">
+<a class="domestic-nav_brand" href="../../">        <div class="swoosh-logo"></div><span class="domestic-nav_title">Developers</span>
+</a>      <ul class="domestic-menus">
+        <li class=" domestic-menus_entry"><a href="../../what-is-spiceworks/">What is Spiceworks?</a></li>
+        <li class=" domestic-menus_entry"><a href="../../getting-started/">Getting Started</a></li>
+        <li class=" domestic-menus_entry"><a href="../">Documentation</a></li>
+        <li class=" domestic-menus_entry"><a href="../../downloads/">Downloads</a></li>
+        <li class=" domestic-menus_entry"><a href="../../support/">Support</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="content-wrapper sui-fluid-container">
+        <div class="with-sidebar with-breadcrumbs">
+    <ul class="breadcrumbs">
+      <li>
+        <a href="../">Documentation</a>
+      </li>
+      <li>
+        <a href="./">Modify Spiceworks</a>
+      </li>
+      <li>
+        Creating Plugins
+      </li>
+    </ul>
+
+    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Modify Spiceworks</h4><ul class='nav' role='tablist'><li class='active'><a href="./">Creating Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-plugins">Creating Plugins</a></li><li class=''><a href="#what-are-plugins">What Are Plugins?</a></li><li class=''><a href="#getting-started">Getting Started</a></li><li class=''><a href="#using-multiple-files-for-a-plugin">Using Multiple Files For A Plugin</a></li><li class=''><a href="#code-templates">Code Templates</a></li><li class=''><a href="#spiceworks-apis">Spiceworks APIs</a></li><li class=''><a href="#tools-to-make-plugins-easier">Tools To Make Plugins Easier</a></li><li class=''><a href="#cloning-a-plugin">Cloning A Plugin</a></li><li class=''><a href="#firebug">Firebug</a></li><li class=''><a href="#sharing-your-plugins">Sharing Your Plugins</a></li><li class=''><a href="#helpful-plugin-pages">Helpful Plugin Pages</a></li></ul></nav></li><li class=''><a href="your-first-plugin/">Creating Your First Plugin</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-new-plugin">Creating A New Plugin</a></li><li class=''><a href="#adding-content">Adding Content</a></li><li class=''><a href="#what-s-happening">What's Happening?</a></li><li class=''><a href="#using-javascript">Using Javascript</a></li></ul></nav></li><li class=''><a href="themes/">Themes for Spiceworks</a><nav class='submenu'><ul class='nav'><li class=''><a href="#updating-the-look-of-spiceworks-with-plugins">Updating The Look Of Spiceworks With Plugins</a></li><li class=''><a href="#changing-the-background-to-an-image">Changing The Background To An Image</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="building-widgets/">Building Widgets</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-new-dashboard-widgets">Creating New Dashboard Widgets</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="adding-navigation/">Adding Navigation</a><nav class='submenu'><ul class='nav'><li class=''><a href="#adding-navigational-elements">Adding Navigational Elements</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="reporting/">Reporting with Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#using-plugins-to-run-reports">Using Plugins To Run Reports</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="messaging/">Messaging with Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#adding-a-message-to-spiceworks-with-plugins">Adding A Message To Spiceworks With Plugins</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="responding-to-events/">Responding to Events</a><nav class='submenu'><ul class='nav'><li class=''><a href="#have-plugins-cause-spiceworks-to-respond-to-events-within-the-application">Have Plugins Cause Spiceworks To Respond To Events Within The Application</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="settings/">Using Plugin Settings</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-configurable-plugins">Creating Configurable Plugins</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="multi-file-plugins/">Multi File Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#using-multiple-files-within-a-plugin">Using Multiple files within a plugin</a></li><li class=''><a href="#adding-an-image">Adding an image</a></li><li class=''><a href="#adding-and-editing-css-file">Adding and editing CSS file</a></li><li class=''><a href="#editing-the-js-file">Editing the JS file</a></li><li class=''><a href="#view-your-masterpiece">View your masterpiece</a></li></ul></nav></li><li class=''><a href="html-plugins/">Creating HTML Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#create-&amp;-edit-the-plugin">Create & Edit the Plugin</a></li><li class=''><a href="#add-&amp;-edit-the-html-file">Add & Edit the HTML</a></li><li class=''><a href="#edit-the-js-file">Edit the JS file</a></li><li class=''><a href="#view-your-masterpiece">View Your Masterpiece</a></li></ul></nav></li><li class=''><a href="helpdesk-v2/">Updating Help Desk Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#updating-plugins-for-helpdesk-v2">Updating Plugins for Helpdesk v2</a></li><li class=''><a href="#example-modifying-the-helpdesk-once-it-s-ready">Example: Modifying the Helpdesk once it's ready</a></li><li class=''><a href="#example-modifying-the-helpdesk-in-response-to-events">Example: Modifying the Helpdesk in response to events</a></li><li class=''><a href="#example-modifying-helpdesk-comments">Example: Modifying helpdesk comments</a></li></ul></nav></li><li class=''><a href="language-packs/">Creating Language Packs</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-language-pack">Creating A Language Pack</a></li><li class=''><a href="#sharing-a-language-pack">Sharing A Language Pack</a></li><li class=''><a href="#installing-a-language-pack">Installing A Language Pack</a></li><li class=''><a href="#enabling-a-language-pack">Enabling A Language Pack</a></li><li class=''><a href="#editing-a-language-pack">Editing A Language Pack</a></li></ul></nav></li><hr /><li class=''><a href="examples/">Examples</a></li><li class=''><a href="reference/">API Reference</a><nav class='submenu'><ul class='nav'><li class=''><a href="reference/">Plugin API Overview</a></li><li class=''><a href="reference/data-api/">Data API</a></li></ul></nav></li></ul></nav></aside></div>
+
+    <main class="with-left-sidebar">
+      <section class="documentation-hero-header">
+        <img alt="Spiceworks Swoosh" src="../../images/spiceworks-o.png" />
+        <h1>Modify Spiceworks</h1>
+        <hr class="divider-shadow">
+      </section>
+      <section class="doc-content">
+        <h3 id="creating-plugins">Creating Plugins</h3>
+
+<p>Have ideas for making Spiceworks better?  Create your very own plugins for Spiceworks and share them with the community. All it takes is some Javascript knowledge and a little bit of ingenuity.</p>
+
+<h3 id="what-are-plugins?">What Are Plugins?</h3>
+
+<p>While Spiceworks has a lot of functionality we think you’ll need, there still may be some tweaks or additions you want to make.  Plugins were designed as a way to allow you to make these changes or even allow us to ship functionality that we may not want to put into the product directly but still want to make available to you as an option.
+Plugins are external snippets of JavaScript code that <strong>plug in</strong> to Spiceworks and can utilize <a href="http://jquery.com/">jQuery</a> to help make things even easier for you. Spiceworks also provides you with <a href="reference/">our own API&#39;s</a> that are useful for performing common tasks within Spiceworks.</p>
+
+<p>A plugin pretty much lives within the context of the user’s browser and there is very little code that executes on the backend servers,  outside of a few of the provided Spiceworks APIs.   Spiceworks has events that will load the plugins on top of the page, after the page loads.  This gives them a lot of flexibility as to what they can do.  Some examples would be:</p>
+
+<ul>
+<li>Change the UI elements of Spiceworks to match your needs.</li>
+<li>Add new widgets and pages to Spiceworks.</li>
+<li>View the data in Spiceworks the way you want to.</li>
+</ul>
+
+<p>Some examples of how you can use the plugins:</p>
+
+<ul>
+<li>Add a new widget to perform <a href="http://community.spiceworks.com/plugin/544">subnet calculations</a> on your dashboard.</li>
+<li>Configure and add your own <a href="http://community.spiceworks.com/plugin/312">troubleshooting actions</a> to the device inventory view to support external or custom applications on your network.</li>
+<li><a href="http://community.spiceworks.com/plugin/47">Customize the user portal</a> to meet your needs.</li>
+<li><a href="http://community.spiceworks.com/plugin/9">Define common responses</a> to help desk tickets.</li>
+</ul>
+
+<h3 id="getting-started">Getting Started</h3>
+
+<p>When you have thought of an idea for a plugin and you&#39;re ready to put your programming skills to the test, navigate to <strong>Settings &rarr; Manage Extensions</strong>.  Towards the top of the page, you&#39;ll find a <strong>New Extension</strong> button. Hover your mouse over this button and select <strong>New Plugin</strong> from the list.  This will bring up a text area where you can enter the name and a description of your plugin.  When you click <strong>Save</strong> your plugin will be created and added to the list of Extensions. To enter code for the plugin, click <strong>edit</strong> and the plugin editing window will open.</p>
+
+<p><img alt="Add a plugin" src="http://community.spiceworks.com/wiki_attachments/addplugin.png" /></p>
+
+<p>There are a few things you need to take into account when you start your plugin:</p>
+
+<ul>
+<li><strong>Can Spiceworks admins configure your plugin?</strong> The first thing to consider when writing a plugin is whether or not Spiceworks admins can configure your plugin.  If they are going to be able to do this, the first step is to insert the code to bring up the configuration options.  Spiceworks has made this easy for you by having the necessary code inserted for you with just one click of your mouse.
+
+<ul>
+<li>Mouse over <strong>Insert Code</strong> and select <strong>Plugin Configuration</strong>. Then change the values to what you need them to be.</li>
+<li>For more information on how to add additional fields, including drop-down (list) menus, check out the <a href="settings/">Plugin Configuration Tutorial</a>.</li>
+</ul></li>
+</ul>
+
+<p><img alt="Plugin actions" src="http://community.spiceworks.com/wiki_attachments/pluginactions.png" /></p>
+
+<ul>
+<li><strong>What are you changing?</strong> Are you making a new dashboard widget, a change to the user portal, or just changing the application in general?<br>
+
+<ul>
+<li><strong>Widget:</strong> If you are making a new widget, the best place to start is with the Widget Type preexisting code in Spiceworks.  To access this code, hover your mouse over <strong>Insert Code</strong> and select <strong>Widget Type</strong>.  This will insert the base code to create a new widget.  For more information on widget type plugins, check out the <a href="your-first-plugin/">Widget Plugin Tutorial</a>.</li>
+<li><strong>Other prewritten codes:</strong> You can also use preexisting code from the <strong>Insert Code</strong> drop-down menu to run reports, add navigation links, and add messages to Spiceworks.</li>
+<li><strong>User Portal:</strong> If you want to make a change to the user portal, you&#39;re going to need to use the <code>SPICEWORKS.portalv2</code> API.</li>
+<li><strong>Inventory:</strong> If you want to make a change to the Spiceworks Inventory, you&#39;ll use the <code>SPICEWORKS.app.Inventory</code> API.<br></li>
+<li><strong>Help Desk:</strong> You can change the Help Desk by using the <code>SPICEWORKS.app.helpdesk</code></li>
+<li><strong>Settings:</strong> If you want to make changes to the settings, use <code>SPICEWORKS.app.settings</code></li>
+</ul></li>
+</ul>
+
+<h3 id="using-multiple-files-for-a-plugin">Using Multiple Files For A Plugin</h3>
+
+<p>If you store code in separate files and use those files to make a single plugin, you&#39;ll get cleaner-looking code that is easier to reuse and debug.  For example, it’s very common to have your styles in a separate CSS file, and even separate HTML and JavaScript files when you have a lot of code. In order to support this programming practice, Spiceworks allows you to define and include various types of files when creating a plugin.  We also allow you to upload images that you are using within the plugin so that you are not required to host the image somewhere else.
+See <a href="multi-file-plugins/">this tutorial</a> for an example of adding CSS files and images.  See <a href="html-plugins/">this tutorial</a> for an example of how to use separate HTML files.</p>
+
+<h3 id="code-templates">Code Templates</h3>
+
+<p>There are a few code templates built in to the plugin page.  You should take advantage of these if you are writing a plugin that uses any of these.  You can select these by hovering the mouse over the <strong>Insert Code</strong> button and clicking the code you want.</p>
+
+<ul>
+<li><strong>Widget Type:</strong> This will insert the base code for a dashboard widget.  This baseline model is set up to simply display the text <strong>Hello World</strong> in a window on the Dashboard, but you can change it to build up to as complex a widget as you care to make.</li>
+<li><strong>Portal Widget Type:</strong> This will insert the base code for a User Portal widget. This baseline model is set up to simply display the text <strong>Hello World</strong> in a window in the User Portal, but you can change it to build up to as complex a widget as you care to make.</li>
+<li><strong>Navigation Item:</strong> This will insert the base code to have a new item on the navigation panel under <strong>My Tools</strong>.  By default, the code is configured to add a link titled <strong>My Page</strong> to link to a page that simply says <strong>Hello World</strong> but this can be changed to accomplish many things.  Check out the <a href="reporting/">Run Report Tutorial</a> for an example of using this tool to display a report.</li>
+</ul>
+
+<p><img alt="Insert code" src="http://community.spiceworks.com/wiki_attachments/insertcode.png" /></p>
+
+<ul>
+<li><strong>Run Report:</strong> This will insert the code that runs a report of your choosing.  This code is not useful by itself, but you could add it to a widget or navigation item to put it somewhere useful.  You will need to add information to tell Spiceworks what kind of information to display.  You can learn more about how to put a report in a plugin by checking out the <a href="reporting/">Run Report Plugin Tutorial</a>.</li>
+<li><strong>Add Message:</strong> This will insert a snippet of code that displays a message at the top of Spiceworks.  You can learn more about this type of plugin at the <a href="messaging/">Message Plugin Tutorial</a>.</li>
+<li><strong>Plugin Configuration:</strong> This will insert the code that adds a configuration option to the plugin.  This part of code will generally be at the beginning of the plugin.</li>
+</ul>
+
+<h3 id="spiceworks-apis">Spiceworks APIs</h3>
+
+<p>All basic Javascript Application Programming Interfaces (APIs) will work with the plugins feature. We&#39;ve also provided you with several APIs that are useful for common tasks in Spiceworks.  These APIs always start with <code>SPICEWORKS.</code> What follows dictates what is going to happen. After <code>SPICEWORKS.</code> you can further specify the API or there are a few methods that you can attach to specify when the function is going to occur. Check out the <a href="reference/">Spiceworks plugin API page</a> for more detailed information on these APIs, including what methods are available for each namespace.</p>
+
+<ul>
+<li><code>SPICEWORKS.app</code>: You can use this API for all elements that are part of the application (as opposed to the user portal).
+
+<ul>
+<li><code>SPICEWORKS.app.dashboard</code>: This API is used for creating widgets. Widgets only appear on the Dashboard.</li>
+<li><code>SPICEWORKS.app.navigation</code>: This API is used to add things to the navigation panel (left sidebar).</li>
+<li><code>SPICEWORKS.app.messaging</code>: This API is used to deliver messages to the user by using the info box at the top of the screen rather than a pop-up box.</li>
+</ul></li>
+<li><code>SPICEWORKS.portalv2</code>: You can use this API for elements that are part of the User Portal.</li>
+<li><code>SPICEWORKS.persistence</code>: This API allows you to store data on the server so all users can access information.</li>
+<li><code>SPICEWORKS.utils</code>: this API allows you to make changes in the visualization of Spiceworks or include script from a remote location.
+
+<ul>
+<li><code>SPICEWORKS.utils.google</code>: This API allows you to use Google&#39;s data visualization <strong>gadgets</strong>.</li>
+</ul></li>
+<li><code>SPICEWORKS.data.Ticket</code>: This API returns information about tickets.</li>
+<li><code>SPICEWORKS.data.Device</code>: This API returns information about devices.</li>
+<li><code>SPICEWORKS.data.Alert</code>: This returns information about alerts.</li>
+<li><code>SPICEWORKS.data.DataMonitor</code>: This API returns information about monitors.</li>
+<li><code>SPICEWORKS.data.Group</code>: This API returns information about groups.</li>
+<li><code>SPICEWORKS.data.Software</code>: This API returns information about software.</li>
+<li><code>SPICEWORKS.data.Service</code>: This API returns information about services.</li>
+<li><code>SPICEWORKS.data.Hotfix</code>: This API returns information about hotfixes.</li>
+<li><code>SPICEWORKS.data.User</code>: This API returns information about users.</li>
+<li><code>SPICEWORKS.data.Report</code>: This API returns information about reports.</li>
+</ul>
+
+<h3 id="tools-to-make-plugins-easier">Tools To Make Plugins Easier</h3>
+
+<p>There are always ways to make things easier, so if you&#39;re not a programming expert, don&#39;t assume that you&#39;re left out of the game.  Using these tools will help to level the playing field so that anyone can create a plugin.</p>
+
+<h3 id="cloning-a-plugin">Cloning A Plugin</h3>
+
+<p>Cloning a plugin is a great way to start building your plugin.  If you can find a plugin that is similar to the one you want to make, why not use someone else&#39;s hard work as a starting point.  You can simply clone the plugin and make changes to it to accomplish what you&#39;re trying to do.</p>
+
+<ul>
+<li>Download a plugin from the <a href="http://community.spiceworks.com/plugin">Plugin Directory</a>, or if you&#39;ve already downloaded the plugin, navigate to <strong>Settings &rarr; Manage Plugins</strong>.</li>
+<li>Click <strong>source</strong> next to the plugin you want to clone.</li>
+<li>Click <strong>Clone Plugin</strong> to create a new plugin that you can edit, containing the same code.<br></li>
+</ul>
+
+<p><img alt="Clone plugin" src="http://community.spiceworks.com/wiki_attachments/cloneplugin.png" /></p>
+
+<h3 id="firebug">Firebug</h3>
+
+<p>You can use a Firefox plugin called Firebug to help you to create plugins for Spiceworks.  Firebug allows you to view and change the scripts that are running on a page.</p>
+
+<ul>
+<li>You can navigate to the page you want to change in Spiceworks and find the code that is running on that page to see how certain commands are executed.  Then you can make changes in Firebug and see how the program responds.</li>
+<li>Check out the <a href="http://getfirebug.com">Firebug home page</a> for more information and to get the plugin.</li>
+</ul>
+
+<p><img alt="Firebug" src="http://community.spiceworks.com/wiki_attachments/firebug.png" /></p>
+
+<h3 id="sharing-your-plugins">Sharing Your Plugins</h3>
+
+<p>Sharing plugins with other users is a great way to get feedback and ideas to improve your plugin. Plus, you&#39;ll be helping someone else do their job better and get credit for your contribution.  Even though we know you&#39;re a top-notch programmer, when you first share a plugin it will not be listed in the plugin directory.  This is to allow you to get user feedback, update the description, and fix any bugs that might pop up.</p>
+
+<h4 id="sharing-a-plugin">Sharing a plugin</h4>
+
+<p><img alt="Share plugin" src="http://community.spiceworks.com/wiki_attachments/shareplugin.png" /></p>
+
+<ul>
+<li>After you&#39;ve written and saved your plugin, click <strong>share</strong> in the row of the plugin you want to share.</li>
+<li>Click <strong>Share</strong> in the pop-up to confirm that you want to share the plugin.</li>
+<li>Update the description of the plugin with detailed information about the plugin and how to use it.</li>
+<li>Add screenshots to help users see how the plugin will look.</li>
+</ul>
+
+<p>Once you&#39;ve shared a plugin, post about it in the Extending Spiceworks group. Users can download the plugin by going directly to the url of your plugin. Once you&#39;ve got users to try out your plugin and it&#39;s ready to be shared with everyone, we&#39;ll list it in the directory.</p>
+
+<h4 id="more-reading">More Reading</h4>
+
+<p>Developing Plugins for Spiceworks is, in some ways, like creating scripts for the Greasemonkey Firefox Add On. If you&#39;d like some more examples of how powerful this sort of scripting can be, please check out <a href="http://wiki.greasespot.net/Main_Page">the examples provided by the Greasemonkey team</a></p>
+
+<h4 id="spiceworks-api-information">Spiceworks API Information</h4>
+
+<p>The Spiceworks APIs are the tools that allow you to make change to Spiceworks. Find out what they can do on the following links:</p>
+
+<ul>
+<li><a href="http://developers.spice.spiceworks.com/docs/in-spiceworks/plugin-data-api-reference">Data API</a></li>
+<li><a href="reference/">App, persistence, utils APIs</a></li>
+</ul>
+
+<h3 id="helpful-plugin-pages">Helpful Plugin Pages</h3>
+
+<ul>
+<li><a href="http://community.spiceworks.com/help/Plugins">Plugins</a>: Information on downloading and using plugins.</li>
+<li><a href="your-first-plugin/">Plugin Tutorials</a>: See several examples of plugins.  Here you can see the code to help learn how to write your own.</li>
+<li><a href="reference/">Spiceworks Plugin APIs</a>: See the code for the APIs that Spiceworks has created for you to use.</li>
+<li><a href="http://community.spiceworks.com/group/show/300">Extending Spiceworks Group</a>: This is the group to join to discuss plugins with other Spiceworks users.</li>
+<li><a href="http://community.spiceworks.com/plugin">Plugin Directory</a>: Here you can download the plugins that have been created and deemed working.</li>
+</ul>
+
+      </section>
+    </main>
+  </div>
+
+    </div>
+
+    <footer>
+  <div class="sui-fluid-container">
+    <a href="http://spiceworks.com" class="spiceworks-brand">
+      <img alt="Spiceworks Logo" src="../../images/spiceworks_reversed.png" />
+    </a>
+    <div class="mid-section">
+      <div class="copy-wrapper">
+        <p>An IT application, community, and marketplace all rolled into one. Spiceworks is the network more than 6 million IT professionals use to connect with one another and over 3,000 technology brands.</p>
+        <p><a href="http://spiceworks.com">Learn More <span class="arrows">»</span></a></p>
+      </div>
+      <div class="button-wrapper">
+        <a class="btn btn-orange is-outlined" href="../../support/">Contact Us</a>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <span class="copyright">© Copyright 2006-14 Spiceworks, Inc.</span>
+      <ul class="footer-links">
+        <li><a href="//www.spiceworks.com/about">About</a></li>
+        <li><a href="//www.spiceworks.com/app">App</a></li>
+        <li><a href="//www.spiceworks.com/downloads">Downloads</a></li>
+        <li><a href="//community.spiceworks.com">Community</a></li>
+        <li><a href="//www.spiceworks.com/marketing">Advertising</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script src="../../javascripts/application.js" type="text/javascript"></script>
+  </body>
+</html>

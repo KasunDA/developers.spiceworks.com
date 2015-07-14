@@ -1,0 +1,436 @@
+<!doctype html>
+<!--[if lt IE 9]>  <html class="ie lte9"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9 lte9"> <![endif]-->
+<!--[if !IE]><!--> <html class="no-ie"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Spiceworks Developers - App Authentication</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../../../images/favicon.gif" rel="icon" type="image/gif" />
+
+    <link href="../../../stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-314222-31', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+
+  <body data-page-name="documentation_cloud-apps_authentication_index" class="documentation documentation_cloud-apps documentation_cloud-apps_authentication documentation_cloud-apps_authentication_index">
+
+    <header class="site-navigation sui-opt-in">
+  <nav class="global-nav " data-navbar="global">
+    <div class="nav-fluid-container">
+      <a class="global-nav_brand" href="../../../">Home</a>
+      <img src="//static.spiceworks.com/assets/masthead/print_logo.png" class="global-nav_print-logo">
+    </div>
+  </nav>
+  <nav class="domestic-nav" data-sticky="true" data-navbar="domestic">
+    <div class="nav-fluid-container">
+<a class="domestic-nav_brand" href="../../../">        <div class="swoosh-logo"></div><span class="domestic-nav_title">Developers</span>
+</a>      <ul class="domestic-menus">
+        <li class=" domestic-menus_entry"><a href="../../../what-is-spiceworks/">What is Spiceworks?</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../getting-started/">Getting Started</a></li>
+        <li class=" domestic-menus_entry"><a href="../../">Documentation</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../downloads/">Downloads</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../support/">Support</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="content-wrapper sui-fluid-container">
+        <div class="with-sidebar with-breadcrumbs">
+    <ul class="breadcrumbs">
+      <li>
+        <a href="../../">Documentation</a>
+      </li>
+      <li>
+        <a href="../">Build Cloud Apps</a>
+      </li>
+      <li>
+        App Authentication
+      </li>
+    </ul>
+
+    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Build Cloud Apps</h4><ul class='nav' role='tablist'><li class=''><a href="../">Getting Started</a><nav class='submenu'><ul class='nav'><li class=''><a href="#installing-spiceworks">Installing Spiceworks</a></li><li class=''><a href="#create-a-place-for-your-app-to-live">Create a Place for Your App</a></li><li class=''><a href="#create-&amp;-register-your-web-app-with-spiceworks">Register Your App with Spiceworks</a></li><li class=''><a href="#add-javascript-to-your-application-to-get-data-from-spiceworks">Spiceworks JS API Client</a></li><li class=''><a href="#resources">Resources</a></li></ul></nav></li><li class=''><a href="../api-basics/">API Basics</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-card">Creating a Card</a></li><li class=''><a href="#card-lifecycle">Card Lifecycle</a></li><li class=''><a href="#card-services">Card Services</a></li><li class=''><a href="#requests">Requests</a></li><li class=''><a href="#events">Events</a></li><li class=''><a href="#error-handling">Error Handling</a></li></ul></nav></li><li class='active'><a href="./">App Authentication</a><nav class='submenu'><ul class='nav'><li class=''><a href="#background">Background</a></li><li class=''><a href="#step-1:-obtain-the-current-user-identifier">Step 1: The current user</a></li><li class=''><a href="#step-2:-obtain-an-oauth2-access-token">Step 2: Get an access token</a></li><li class=''><a href="#step-3:-use-the-oauth2-token-to-authenticate-the-user">Step 3: Verify the access token</a></li><li class=''><a href="#best-practices">Best practices</a></li><li class=''><a href="#further-reading">Further reading</a></li></ul></nav></li><hr /><li class=''><a href="//github.com/spiceworks/spiceworks-js-sdk/tree/master/examples">Examples</a></li><li class=''><a href="../reference/environment/">API Reference</a><nav class='submenu'><ul class='nav'><li class=''><a href="../reference/environment/">Environment</a></li><li class=''><a href="../reference/helpdesk/">Help Desk</a></li><li class=''><a href="../reference/inventory/">Inventory</a></li><li class=''><a href="../reference/people/">People</a></li><li class=''><a href="../reference/reporting/">Reporting</a></li></ul></nav></li></ul></nav></aside></div>
+
+    <main class="with-left-sidebar">
+      <section class="documentation-hero-header">
+        <img alt="Spiceworks Swoosh" src="../../../images/spiceworks-o.png" />
+        <h1>Build Cloud Apps</h1>
+        <hr class="divider-shadow">
+      </section>
+      <section class="doc-content">
+        <blockquote>
+<p><strong>Note:</strong> Currently, if you want to allow seamless authentication to your App
+using the Spiceworks Login API described below, you must apply to receive an App
+UID and secret. <a href="http://www.surveygizmo.com/s3/2206835/Challenge-Post-Access-Token-Request">Apply here
+now</a>.</p>
+</blockquote>
+
+<h1 id="authentication">Authentication</h1>
+
+<p>Typical web sites and web applications identify and authenticate users
+by using email- or username-based logins with passwords, or they delegate
+part of this responsibility to an OAuth2 provider like Facebook Login
+or Google+ Sign-In.</p>
+
+<p>While your cloud app is free to implement its own forms-based or OAuth2
+registration and login system, this doc will cover how to use the
+Spiceworks SDK to authenticate users and altogether avoid login forms
+and login buttons.</p>
+
+<p>By following the steps in this guide, your cloud app will be able to
+authenticate a login session for the Spiceworks user accessing your app.
+Further, if your cloud app costs money in the Spiceworks App Center,
+following the steps of this guide will ensure the user accessing your
+app is authorized to do so.</p>
+
+<h3 id="background">Background</h3>
+
+<p>Your cloud app built for Spiceworks is a web application that will be
+embedded within the Spiceworks Desktop application (a.k.a. the host
+application) within an &lt;iframe&gt;. From within this container, your
+JavaScript can leverage the Spiceworks SDK to obtain information from
+the Spiceworks host application about its environment.</p>
+
+<p>The Spiceworks SDK will communicate between the &lt;iframe&gt; containing your
+cloud app and the parent window of the Spiceworks host application.
+Because the user has already authenticated to the Spiceworks host application,
+these APIs will rely on that trust so that you can establish an
+OAuth2-authenticated session to your canvas app while never prompting
+the user to login.</p>
+
+<h3 id="step-1:-obtain-the-current-user-identifier">Step 1: Obtain the current user identifier</h3>
+
+<p>Identifying the current Spiceworks user in your canvas app requires
+JavaScript to extract the user information with the Spiceworks SDK.
+Do this using the <code>environment</code> service:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'environment'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'environment'</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">environment</span><span class="p">){</span>
+    <span class="cm">/* details below */</span>
+  <span class="p">));</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"app_host"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"auid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92a450d9a3e596d7bef9ed9853b6a454"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">159</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_auid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e34e59c92f43b49f9725a29f86632c12"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jolly"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fellow"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><strong><em>Note:</em></strong> <em>Additional details omitted from the JSON above.</em></p>
+
+<h4 id="environment">Environment</h4>
+
+<p>Using the <code>environment</code> object, you can now uniquely identify the hosting
+application and/or the Spiceworks user of your cloud app.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>app_host.auid</code></td>
+<td><code>string</code></td>
+<td>Uniquely identifies the Spiceworks app into which your cloud app is installed</td>
+</tr>
+<tr>
+<td><code>user.user_auid</code></td>
+<td><code>string</code></td>
+<td>Uniquely identifies the Spiceworks user accessing your cloud app</td>
+</tr>
+<tr>
+<td><code>user.id</code></td>
+<td><code>integer</code></td>
+<td>Identifies the Spiceworks user, but scoped only to this Spiceworks host application</td>
+</tr>
+<tr>
+<td><code>user.first_name</code></td>
+<td><code>string</code></td>
+<td>The user&#39;s first name</td>
+</tr>
+<tr>
+<td><code>user.last_name</code></td>
+<td><code>string</code></td>
+<td>The user&#39;s last name</td>
+</tr>
+</tbody></table>
+
+<p>Both <code>auid</code> and <code>user_auid</code> are application-unique identifiers. This means they
+are unique to your cloud app alone. If the same real-life user installs your
+cloud app into a different installation of Spiceworks, you will see
+a different <code>auid</code> but the same <code>user_auid</code>. Also, if you build more than one
+cloud app, the same real-life user from the same install of Spiceworks will be
+identified with a different pair of values to each of your two cloud apps.</p>
+
+<h3 id="step-2:-obtain-an-oauth2-access-token">Step 2: Obtain an OAuth2 access token</h3>
+
+<blockquote>
+<p><strong>Note:</strong> Currently, to use this API you must apply to receive an App UID
+(<code>appUid</code>) and secret. <a href="http://www.surveygizmo.com/s3/2206835/Challenge-Post-Access-Token-Request">Apply here
+now</a>.</p>
+</blockquote>
+
+<p>An OAuth2 access token is like a temporary password granted to your cloud app
+on behalf of the Spiceworks user without the Spiceworks user having to
+give you his or her password directly.</p>
+
+<p>Using the <code>Login</code> object while inside of a Spiceworks host application will
+automatically grant you an OAuth2 access token without forcing the user to
+reauthenticate with Spiceworks:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">login</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Login</span><span class="p">({</span><span class="na">appUid</span><span class="p">:</span> <span class="s2">"your-oauth2-application-id"</span><span class="p">});</span>
+<span class="nx">login</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="s1">'login'</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">access_token</span><span class="p">){</span>
+    <span class="cm">/* success! */</span>
+  <span class="p">},</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">errors</span><span class="p">){</span>
+    <span class="cm">/* oh no! */</span>
+  <span class="p">});</span>
+</code></pre>
+
+<h4 id="login-parameters">Login parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>appUid</code></td>
+<td><code>string</code></td>
+<td>The OAuth2 application identifier generated for you when you first created your cloud app with Spiceworks</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p><strong>Note:</strong> Handle the returned <code>access_token</code> with care and never request access
+tokens unnecessarily. OAuth2 requires that you <strong>always use HTTPS/SSL</strong> when
+transmitting access tokens. Never transmit an access token &quot;in the clear&quot;.</p>
+</blockquote>
+
+<h3 id="step-3:-use-the-oauth2-token-to-authenticate-the-user">Step 3: Use the OAuth2 token to authenticate the user</h3>
+
+<p>At this point, your JavaScript is free to use the Spiceworks SDK to do
+cool and amazing things inside the browser. However, at some point you&#39;re
+going to want the user to access some protected area of your cloud app, or
+you&#39;re going to want to store some user or environment data in your server.
+To restrict access and protect data, you need to use the details
+collected earlier to complete a login to your cloud app.</p>
+
+<h4 id="step-3a.-submit-the-login-details-to-your-server">Step 3a. Submit the login details to your server</h4>
+
+<p>A typical form-based login passes a username and password securely
+to the server where it is verified. In this case, the &quot;username&quot; is
+the combination of <code>environment.app_host.auid</code> and
+<code>environment.user.user_auid</code>, and the &quot;password&quot; is the
+<code>access_token</code> provided by the <code>Login</code> object.</p>
+
+<h5 id="example-with-jquery-ajax">Example with jQuery AJAX</h5>
+<pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'https://your-server/sign_in'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">auid</span><span class="p">:</span> <span class="nx">environment</span><span class="p">.</span><span class="nx">app_host</span><span class="p">.</span><span class="nx">auid</span><span class="p">,</span>
+    <span class="na">user_auid</span><span class="p">:</span> <span class="nx">environment</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">user_auid</span><span class="p">,</span>
+    <span class="na">access_token</span><span class="p">:</span> <span class="nx">access_token</span>
+  <span class="p">});</span>
+</code></pre>
+
+<h5 id="example-with-javascript-and-an-html-form">Example with JavaScript and an HTML FORM</h5>
+<pre class="highlight html"><code><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"login-form"</span> <span class="na">action=</span><span class="s">"https://your-server/sign_in"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"login-auid"</span> <span class="na">name=</span><span class="s">"auid"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"login-user_auid"</span> <span class="na">name=</span><span class="s">"user_auid"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"login-access_token"</span> <span class="na">name=</span><span class="s">"access_token"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'login-auid'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">environment</span><span class="p">.</span><span class="nx">app_host</span><span class="p">.</span><span class="nx">auid</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'login-user_auid'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">environment</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">user_auid</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'login-access_token'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">access_token</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'login-form'</span><span class="p">).</span><span class="nx">submit</span><span class="p">();</span>
+</code></pre>
+
+<h4 id="step-3b.-verify-the-oauth2-token-with-spiceworks">Step 3b. Verify the OAuth2 token with Spiceworks</h4>
+
+<blockquote>
+<p><strong>Note:</strong> Currently, to use this API you must apply to receive an App UID and
+secret (<code>app_secret</code>). <a href="http://www.surveygizmo.com/s3/2206835/Challenge-Post-Access-Token-Request">Apply here
+now</a>.</p>
+</blockquote>
+
+<p>Recall that an OAuth2 access token is like a temporary password granted
+to your cloud app. Even if it were the real user&#39;s password, you would
+need to &quot;ask&quot; Spiceworks whether the password was right before trusting the
+user. OAuth2 is no different; your server needs to verify the authenticity
+of the access token with Spiceworks.</p>
+
+<p>Once the credentials have been passed to your server,
+<strong>your server submits them to Spiceworks</strong> for verification at
+<a href="https://frontend.spiceworks.com/appcenter/api/app_user_authorization">https://frontend.spiceworks.com/appcenter/api/app_user_authorization</a>
+by passing the following parameters:</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>host_auid</code></td>
+<td>The host identifier obtained from <code>environment.app_host.auid</code> in step 1</td>
+</tr>
+<tr>
+<td><code>user_auid</code></td>
+<td>The user identifier obtained from <code>environment.user.user_auid</code> in step 1</td>
+</tr>
+<tr>
+<td><code>access_token</code></td>
+<td>The access token obtained from the <code>Login</code> object in step 2</td>
+</tr>
+<tr>
+<td><code>app_secret</code></td>
+<td>The OAuth2 secret key generated for you when you first created your cloud app with Spiceworks</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p><strong>Note:</strong> Your OAuth2 <code>app_secret</code> must be protected as confidentially as
+possible! Never embed this value in a public code repository, do not log
+this value in your log files, and never pass this value to any service besides
+Spiceworks. <strong>The only time you will ever use this value in production is to
+authenticate your application&#39;s identity to Spiceworks, and only over HTTPS/SSL.</strong></p>
+</blockquote>
+
+<p>In response, you will receive an <code>HTTP 200 OK</code> result with authorization information:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="s2">"authorization"</span><span class="p">:</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"namespace"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-app-namespace"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"host_auid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92a450d9a3e596d7bef9ed9853b6a454"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"user_auid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e34e59c92f43b49f9725a29f86632c12"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>If the user is not authorized you will receive an <code>HTTP 403 Forbidden</code> result with error information:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"User is not authorized for your application"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h5 id="example-with-curl">Example with cURL</h5>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl -G -X GET -H <span class="s2">"Accept: application/json"</span> -d <span class="s2">"access_token=814bd50cb926cfaebea353dd8b5f704def9e04b77372eed01f0d26f1d602e108"</span> -d <span class="s2">"app_secret=bfda03b8c726a62309fe624f0ba4228b6a2e0cd8c5c4d518ded4758e43ac21c3"</span> -d <span class="s2">"host_auid=92a450d9a3e596d7bef9ed9853b6a454"</span> https://frontend.spiceworks.com/appcenter/api/app_user_authorization
+</code></pre>
+
+<h5 id="example-with-ruby">Example with Ruby</h5>
+<pre class="highlight ruby"><code><span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://frontend.spiceworks.com/appcenter/api/app_user_authorization.json?'</span> <span class="o">+</span> <span class="p">{</span><span class="ss">access_token: </span><span class="s1">'814bd50cb926cfaebea353dd8b5f704def9e04b77372eed01f0d26f1d602e108'</span><span class="p">,</span> <span class="ss">app_secret: </span><span class="s1">'bfda03b8c726a62309fe624f0ba4228b6a2e0cd8c5c4d518ded4758e43ac21c3'</span><span class="p">,</span> <span class="ss">host_auid: </span><span class="s1">'92a450d9a3e596d7bef9ed9853b6a454'</span><span class="p">}.</span><span class="nf">to_query</span><span class="p">))</span>
+</code></pre>
+
+<h3 id="best-practices">Best practices</h3>
+
+<h4 id="cookie-based-sessions">Cookie-based sessions</h4>
+
+<p>While it&#39;s technically possible to use the Spiceworks SDK on every web page of
+your canvas app to request an access token and validate it with Spiceworks,
+you probably wouldn&#39;t do that if every attempt forced the user to supply his
+password, right? No! You&#39;d probably authenticate the user&#39;s password once, and
+then you&#39;d probably use some sort of browser cookie-based mechanism for
+maintaining a &quot;login session&quot; with your web site.</p>
+
+<p>OAuth2-based login systems should be no different. True, the user isn&#39;t
+mentally &quot;taxed&quot; to repeatedly enter his or her password. However, there is
+&quot;tax&quot; in the cost of AJAX and server-side requests to issue and verify tokens.</p>
+
+<p>Once you have completed steps 1-3 above, you have established authenticity
+of the Spiceworks host application and of the current user logged into Spiceworks.
+At this point, please establish a trusted cookie with the browser to maintain
+the login session, at least for a reasonable period of time.</p>
+
+<h4 id="authorization">Authorization</h4>
+
+<p>Usually when developers talk about authentication, a conversation about
+authorization is not too far away. Within Spiceworks host applications,
+the options are effectively limited to combinations of the following
+two authorization schemes. How you decide to authorize users inside of
+your cloud app probably depends on whether you want users sharing
+information or not.</p>
+
+<h5 id="1.-per-user">1. Per-user</h5>
+
+<p>One option is that each user is authorized to create, update, delete, or
+otherwise interact with resources specific to him- or herself.</p>
+
+<h5 id="2.-per-spiceworks-host-application">2. Per-Spiceworks host application</h5>
+
+<p>Another option is that every user within the same Spiceworks host application
+(as identified by the <code>environment.app_host.host_auid</code> value) shares access
+rights with the other users of the same Spiceworks host application.</p>
+
+<h3 id="further-reading">Further reading</h3>
+
+<ul>
+<li><a href="../api-basics/">Spiceworks App API Basics</a></li>
+<li><a href="../reference/environment/">Spiceworks Environment API Reference</a></li>
+<li><a href="http://oauth.net/2/">OAuth 2.0</a></li>
+</ul>
+
+      </section>
+    </main>
+  </div>
+
+    </div>
+
+    <footer>
+  <div class="sui-fluid-container">
+    <a href="http://spiceworks.com" class="spiceworks-brand">
+      <img alt="Spiceworks Logo" src="../../../images/spiceworks_reversed.png" />
+    </a>
+    <div class="mid-section">
+      <div class="copy-wrapper">
+        <p>An IT application, community, and marketplace all rolled into one. Spiceworks is the network more than 6 million IT professionals use to connect with one another and over 3,000 technology brands.</p>
+        <p><a href="http://spiceworks.com">Learn More <span class="arrows">»</span></a></p>
+      </div>
+      <div class="button-wrapper">
+        <a class="btn btn-orange is-outlined" href="../../../support/">Contact Us</a>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <span class="copyright">© Copyright 2006-14 Spiceworks, Inc.</span>
+      <ul class="footer-links">
+        <li><a href="//www.spiceworks.com/about">About</a></li>
+        <li><a href="//www.spiceworks.com/app">App</a></li>
+        <li><a href="//www.spiceworks.com/downloads">Downloads</a></li>
+        <li><a href="//community.spiceworks.com">Community</a></li>
+        <li><a href="//www.spiceworks.com/marketing">Advertising</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script src="../../../javascripts/application.js" type="text/javascript"></script>
+  </body>
+</html>

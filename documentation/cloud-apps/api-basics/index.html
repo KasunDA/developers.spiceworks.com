@@ -1,0 +1,456 @@
+<!doctype html>
+<!--[if lt IE 9]>  <html class="ie lte9"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9 lte9"> <![endif]-->
+<!--[if !IE]><!--> <html class="no-ie"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Spiceworks Developers - API Basics</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../../../images/favicon.gif" rel="icon" type="image/gif" />
+
+    <link href="../../../stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-314222-31', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+
+  <body data-page-name="documentation_cloud-apps_api-basics_index" class="documentation documentation_cloud-apps documentation_cloud-apps_api-basics documentation_cloud-apps_api-basics_index">
+
+    <header class="site-navigation sui-opt-in">
+  <nav class="global-nav " data-navbar="global">
+    <div class="nav-fluid-container">
+      <a class="global-nav_brand" href="../../../">Home</a>
+      <img src="//static.spiceworks.com/assets/masthead/print_logo.png" class="global-nav_print-logo">
+    </div>
+  </nav>
+  <nav class="domestic-nav" data-sticky="true" data-navbar="domestic">
+    <div class="nav-fluid-container">
+<a class="domestic-nav_brand" href="../../../">        <div class="swoosh-logo"></div><span class="domestic-nav_title">Developers</span>
+</a>      <ul class="domestic-menus">
+        <li class=" domestic-menus_entry"><a href="../../../what-is-spiceworks/">What is Spiceworks?</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../getting-started/">Getting Started</a></li>
+        <li class=" domestic-menus_entry"><a href="../../">Documentation</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../downloads/">Downloads</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../support/">Support</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="content-wrapper sui-fluid-container">
+        <div class="with-sidebar with-breadcrumbs">
+    <ul class="breadcrumbs">
+      <li>
+        <a href="../../">Documentation</a>
+      </li>
+      <li>
+        <a href="../">Build Cloud Apps</a>
+      </li>
+      <li>
+        API Basics
+      </li>
+    </ul>
+
+    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Build Cloud Apps</h4><ul class='nav' role='tablist'><li class=''><a href="../">Getting Started</a><nav class='submenu'><ul class='nav'><li class=''><a href="#installing-spiceworks">Installing Spiceworks</a></li><li class=''><a href="#create-a-place-for-your-app-to-live">Create a Place for Your App</a></li><li class=''><a href="#create-&amp;-register-your-web-app-with-spiceworks">Register Your App with Spiceworks</a></li><li class=''><a href="#add-javascript-to-your-application-to-get-data-from-spiceworks">Spiceworks JS API Client</a></li><li class=''><a href="#resources">Resources</a></li></ul></nav></li><li class='active'><a href="./">API Basics</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-card">Creating a Card</a></li><li class=''><a href="#card-lifecycle">Card Lifecycle</a></li><li class=''><a href="#card-services">Card Services</a></li><li class=''><a href="#requests">Requests</a></li><li class=''><a href="#events">Events</a></li><li class=''><a href="#error-handling">Error Handling</a></li></ul></nav></li><li class=''><a href="../authentication/">App Authentication</a><nav class='submenu'><ul class='nav'><li class=''><a href="#background">Background</a></li><li class=''><a href="#step-1:-obtain-the-current-user-identifier">Step 1: The current user</a></li><li class=''><a href="#step-2:-obtain-an-oauth2-access-token">Step 2: Get an access token</a></li><li class=''><a href="#step-3:-use-the-oauth2-token-to-authenticate-the-user">Step 3: Verify the access token</a></li><li class=''><a href="#best-practices">Best practices</a></li><li class=''><a href="#further-reading">Further reading</a></li></ul></nav></li><hr /><li class=''><a href="//github.com/spiceworks/spiceworks-js-sdk/tree/master/examples">Examples</a></li><li class=''><a href="../reference/environment/">API Reference</a><nav class='submenu'><ul class='nav'><li class=''><a href="../reference/environment/">Environment</a></li><li class=''><a href="../reference/helpdesk/">Help Desk</a></li><li class=''><a href="../reference/inventory/">Inventory</a></li><li class=''><a href="../reference/people/">People</a></li><li class=''><a href="../reference/reporting/">Reporting</a></li></ul></nav></li></ul></nav></aside></div>
+
+    <main class="with-left-sidebar">
+      <section class="documentation-hero-header">
+        <img alt="Spiceworks Swoosh" src="../../../images/spiceworks-o.png" />
+        <h1>Build Cloud Apps</h1>
+        <hr class="divider-shadow">
+      </section>
+      <section class="doc-content">
+        <h1 id="api-basics">API Basics</h1>
+
+<h2 id="creating-a-card">Creating a Card</h2>
+
+<p>In order to access any of the Cloud App APIs, you first must create a <code>Card</code>
+instance inside of your App.  The <code>SW</code> global namespace will be used for all
+Spiceworks-related APIs, including the <code>Card</code> constructor:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+</code></pre>
+
+<p>Once you&#39;ve created a Card object, you can use the card to make requests and
+respond to events from Spiceworks.</p>
+
+<h2 id="card-lifecycle">Card Lifecycle</h2>
+
+<p>When an App Card is first loaded inside of Spiceworks the <code>activate</code> event will
+be fired.  Your App can respond to the <code>activate</code> event by passing a callback to
+the <code>onActivate</code> method:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">onActivate</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">envData</span><span class="p">){</span>
+  <span class="c1">// do any app setup or configuration</span>
+<span class="p">});</span>
+</code></pre>
+
+<p>Your callback function will receive a single argument that is an object
+containing data about the environment in which your Card was loaded.
+See <a href="https://github.com/spiceworks/spiceworks-js-sdk/blob/master/docs/apis/environment.md">Environment
+Service</a>
+for more detail.</p>
+
+<h2 id="card-services">Card Services</h2>
+
+<p>The Canvas App APIs are divided into groups called <code>services</code>.  Each service
+provides its own scope within Spiceworks.  For example, the <code>helpdesk</code> service
+provides your app access to read and write  user data related to the Spiceworks
+Helpdesk.  When a Spiceworks user downloads your app, they can decide whether to
+give your app access to each service.</p>
+
+<p>To access a service, simply call the <code>Card#services</code> method and pass in the name
+of the service you want, e.g.:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">);</span>
+</code></pre>
+
+<p>The <code>services</code> method will then return a <code>CardService</code> object that responds to
+requests.  For a full list of the available services see <a href="https://github.com/spiceworks/spiceworks-js-sdk/blob/master/docs/apis/helpdesk.md">Canvas App
+Services</a>.</p>
+
+<h2 id="requests">Requests</h2>
+
+<p>Each service will respond to a specific set of API requests.  To make a request
+to a service, you simply call the <code>CardService#request</code> method.  For example if
+you wanted to get the list of tickets for the current user, you simply request
+<code>tickets</code> from the <code>helpdesk</code> service:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'tickets'</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="cm">/* prints to the console:
+ * {
+ *   meta: {...},
+ *   tickets: [...]
+ * }
+ *
+ */</span>
+</code></pre>
+
+<p>Requests will always return a response from the service.  Services will respond
+asynchronously with a promise object that responds to a method <code>then</code>, as
+defined by the <a href="http://promises-aplus.github.com/promises-spec/">Promises/A+</a>
+specification.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p>Requests can also handle arguments that help fulfill a request.  For instance,
+to get a single ticket from the <code>helpdesk</code> service, you must include a ticket
+<code>id</code> with the <code>ticket</code> request:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'ticket'</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">ticket</span><span class="p">){</span>
+    <span class="c1">// do something with the ticket...</span>
+  <span class="p">});</span>
+</code></pre>
+
+<p>All requests accept a final, optional parameter that specifies options to the
+request method.  For example, the <code>tickets</code> request allows you to optionally
+filter the list of tickets returned.  So, if you wanted just the list of
+currently open tickets, you could write the following:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'tickets'</span><span class="p">,</span> <span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="s1">'open'</span> <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+    <span class="c1">// do something with tickets...</span>
+  <span class="p">});</span>
+</code></pre>
+
+<p>For a full list of the supported requests for a service visit the <a href="https://github.com/spiceworks/spiceworks-js-sdk/blob/master/docs/apis/helpdesk.md">service
+documentation
+page</a>.</p>
+
+<h3 id="date-time-filtering">Date Time Filtering</h3>
+
+<p>The date time filter allows you to filter the objects returned based on the value of their timestamp in a single field.</p>
+
+<p>All filters that accept a datetime range take a JSON object with at least one of the following keys:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>after</code> (optional)</td>
+<td><code>string</code></td>
+<td>Match all objects whose datetime field is <code>&gt;=</code> the timestamp, provided in ISO 8601 format: <code>YYYY-MM-DDTHH:MM:SSZ</code>.</td>
+</tr>
+<tr>
+<td><code>before</code> (optional)</td>
+<td><code>string</code></td>
+<td>Match all objects whose datetime field is <code>&lt;=</code> the timestamp, provided in ISO 8601 format: <code>YYYY-MM-DDTHH:MM:SSZ</code>.</td>
+</tr>
+</tbody></table>
+
+<p>For example, if you want to find all tickets
+that were created before March 1st, 2015 at 12:00PM UTC, you would write:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'tickets'</span><span class="p">,</span> <span class="p">{</span><span class="na">created_at</span><span class="p">:</span> <span class="p">{</span><span class="na">before</span><span class="p">:</span> <span class="s1">'2015-03-01T12:00:00Z'</span><span class="p">}})</span>
+</code></pre>
+
+<p>Some more examples:</p>
+
+<p>All devices that were <code>last_scanned</code> starting on March 6th, 2015:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'inventory'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'devices'</span><span class="p">,</span> <span class="p">{</span><span class="na">last_scanned_at</span><span class="p">:</span> <span class="p">{</span><span class="na">after</span><span class="p">:</span> <span class="s1">'2015-03-06T00:00:00Z'</span><span class="p">}})</span>
+</code></pre>
+
+<p>All reports that were <code>created_at</code> starting on January 5th at 1:00PM UTC, 2015 and up to March 5th at 7:00AM UTC, 2015:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'reporting'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'reports'</span><span class="p">,</span> <span class="p">{</span><span class="na">created_at</span><span class="p">:</span> <span class="p">{</span><span class="na">after</span><span class="p">:</span> <span class="s1">'2015-01-05T13:00:00Z'</span><span class="p">,</span> <span class="na">before</span><span class="p">:</span> <span class="s1">'2015-03-05T07:00:00Z'</span><span class="p">}})</span>
+</code></pre>
+
+<h3 id="searching">Searching</h3>
+
+<p>Like in the open tickets example above, requests that return a collection of
+resources support filtering the collection by the exact values of the model
+attributes.  Some requests also support a special, additional <code>search</code> filter
+for filtering by the values of the model attributes with inexact matching.</p>
+
+<p>The <code>search</code> filter allows you to specify a set of substrings to search for
+across a set of model fields.  For example, if you want to find all open tickets
+that contain the word &#39;keyboard&#39; in either their <code>summary</code> or <code>description</code>
+fields, you would write:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'tickets'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">status</span><span class="p">:</span> <span class="s1">'open'</span><span class="p">,</span>
+  <span class="na">search</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">query</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">terms</span><span class="p">:</span> <span class="p">[</span><span class="s1">'keyboard'</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="na">fields</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">names</span><span class="p">:</span> <span class="p">[</span><span class="s1">'summary'</span><span class="p">,</span> <span class="s1">'description'</span><span class="p">]</span>
+      <span class="na">operator</span><span class="p">:</span> <span class="s1">'or'</span>
+    <span class="p">}</span>
+  <span class="p">}}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+    <span class="c1">// do something with tickets...</span>
+  <span class="p">});</span>
+</code></pre>
+
+<p>The <code>search</code> filter requires an object with two properties, <code>query</code> and
+<code>fields</code>.  Both the <code>query</code> and <code>fields</code> properties are also objects.</p>
+
+<p>The <code>query</code> object contains two properties:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>terms</code></td>
+<td><code>array</code></td>
+<td><strong>Required</strong>. The list of substrings that you want to find in model attributes.</td>
+</tr>
+<tr>
+<td><code>operator</code></td>
+<td><code>string</code></td>
+<td>The boolean operator that you want to use when searching for the set of <code>terms</code>. Can be <code>and</code> or <code>or</code>.  Default: <code>or</code>.</td>
+</tr>
+</tbody></table>
+
+<p>If you use the <code>or</code> operator in the <code>query</code> object, the search will return
+models whose fields match at least <strong>ONE</strong> of the <code>terms</code> in your search.  If
+you use the <code>and</code> operator it will only return results with fields that contain
+<strong>ALL</strong> the terms in your search.</p>
+
+<p>The <code>fields</code> object also contains two properties:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>names</code></td>
+<td><code>array</code></td>
+<td><strong>Required</strong>. The list of model field names that you want to search across.</td>
+</tr>
+<tr>
+<td><code>operator</code></td>
+<td><code>string</code></td>
+<td>The boolean operator that you want to use when searching across fields. Can be <code>and</code> or <code>or</code>.  Default: <code>or</code>.</td>
+</tr>
+</tbody></table>
+
+<p>If you use the <code>or</code> operator the search will return objects that match your
+query in at least <strong>ONE</strong> of the <code>fields</code> in your search.  If you use the <code>and</code>
+operator, it will only return results that have your query in <strong>ALL</strong> fields.</p>
+
+<p>Some examples:</p>
+
+<p>All tickets with the words &#39;Microsoft&#39; and &#39;keyboard&#39; in their <code>summary</code> field:</p>
+<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'tickets'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">search</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">query</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">terms</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Microsoft'</span><span class="p">,</span> <span class="s1">'keyboard'</span><span class="p">],</span>
+      <span class="na">operator</span><span class="p">:</span> <span class="s1">'and'</span>
+    <span class="p">},</span>
+    <span class="na">fields</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">names</span><span class="p">:</span> <span class="p">[</span><span class="s1">'summary'</span><span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}})</span>
+</code></pre>
+
+<p>All tickets with either the word &#39;mouse&#39; or &#39;keyboard&#39; in their <code>summary</code>:</p>
+<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'tickets'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">search</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">query</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">terms</span><span class="p">:</span> <span class="p">[</span><span class="s1">'mouse'</span><span class="p">,</span> <span class="s1">'keyboard'</span><span class="p">],</span>
+      <span class="na">operator</span><span class="p">:</span> <span class="s1">'or'</span>
+    <span class="p">},</span>
+    <span class="na">fields</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">names</span><span class="p">:</span> <span class="p">[</span><span class="s1">'summary'</span><span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}})</span>
+</code></pre>
+
+<p>All tickets with the word &#39;mouse&#39; in both their <code>summary</code> and their
+<code>description</code>:</p>
+<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'tickets'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">search</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">query</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">terms</span><span class="p">:</span> <span class="p">[</span><span class="s1">'mouse'</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="na">fields</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">names</span><span class="p">:</span> <span class="p">[</span><span class="s1">'summary'</span><span class="p">,</span> <span class="s1">'description'</span><span class="p">],</span>
+      <span class="na">operator</span><span class="p">:</span> <span class="s1">'and'</span>
+    <span class="p">}</span>
+  <span class="p">}})</span>
+</code></pre>
+
+<h3 id="paging">Paging</h3>
+
+<p>Requests that return multiple items will be paginated.  The pagination will keep
+from returning too many items at once, which can slow down your app or the
+Spiceworks server.</p>
+
+<p>For paginated requests, you can request a specific page of results.  For some
+paginated requests, you can also specify the number of results per page.  To set
+these parameters pass them to the <code>request</code> function as keys in the final
+options argument. The default value for the <code>per_page</code> attribute is 30, and only integer values between 1 and 100 are allowed.</p>
+
+<p>For example, if you wanted the second page of currently open tickets with 50
+tickets per page you would write:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'tickets'</span><span class="p">,</span> <span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="s1">'open'</span><span class="p">,</span> <span class="na">page</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">per_page</span><span class="p">:</span> <span class="mi">50</span> <span class="p">})</span>
+</code></pre>
+
+<p>If you do not pass in a <code>page</code> value, then a request will always return the
+first page (page <code>1</code>) of results.  Different resources will have a different
+default <code>per_page</code> value and may have different limits.  See the specific
+request documentation for more information on the <code>per_page</code> defaults.</p>
+
+<p>When a paginated request is returned, it will always have a top-level <code>meta</code>
+attribute containing pagination information.  For example:</p>
+<pre class="highlight json"><code><span class="s2">"meta"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"total_entries"</span><span class="p">:</span><span class="w"> </span><span class="mi">205</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">items,</span><span class="w"> </span><span class="err">across</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">pages</span><span class="w">
+  </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">pages</span><span class="w">
+  </span><span class="s2">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">items</span><span class="w"> </span><span class="err">per</span><span class="w"> </span><span class="err">page</span><span class="w">
+  </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">number</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="events">Events</h2>
+
+<p>In addition to responding to requests, every API service will keep your App up to date on
+changes inside of Spiceworks.  When a change occurs relating to a service, it
+will send your App an <code>event</code>.  Your App can listen for these events and
+register event handlers to respond to the changes using the <code>CardService#on</code>
+method.</p>
+
+<p>Suppose you were creating an App that displayed information on a Spiceworks Help
+Desk ticket.  To update the view in your App when a new ticket is shown on the
+Spiceworks Help Desk you could use the following:</p>
+<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'showTicket'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ticketId</span><span class="p">){</span>
+  <span class="c1">// update your App for the new ticket with id ticketId</span>
+<span class="p">});</span>
+</code></pre>
+
+<p>The <code>on</code> method always takes the name of the event you are listening for and a
+callback that will handle the event.  The parameters passed to the callback will
+vary depending on the event, so see the relevant service API reference for more
+information.</p>
+
+<h2 id="error-handling">Error Handling</h2>
+
+<p>Your app should gracefully handle errors returned by a request.  Since all
+requests return a promise object, this simply means providing an error handler
+to the <code>then</code> function:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'tickets'</span><span class="p">)</span>
+   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">errors</span><span class="p">){</span>
+    <span class="c1">// handle errors</span>
+   <span class="p">});</span>
+</code></pre>
+
+<p>When an error occurs on a request, the promise will be rejected with an object
+containing a list of error objects.  For instance, in the previous example if
+your app did not have access to the <code>helpdesk</code> service, the promise would be
+rejected with the following object:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">errors</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="na">title</span><span class="p">:</span> <span class="s1">'Connection Error'</span><span class="p">,</span>
+    <span class="na">details</span><span class="p">:</span> <span class="s1">'Could not connect to service helpdesk. Make sure the service name is correct and that your App has access to this service.'</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
+</code></pre>
+
+      </section>
+    </main>
+  </div>
+
+    </div>
+
+    <footer>
+  <div class="sui-fluid-container">
+    <a href="http://spiceworks.com" class="spiceworks-brand">
+      <img alt="Spiceworks Logo" src="../../../images/spiceworks_reversed.png" />
+    </a>
+    <div class="mid-section">
+      <div class="copy-wrapper">
+        <p>An IT application, community, and marketplace all rolled into one. Spiceworks is the network more than 6 million IT professionals use to connect with one another and over 3,000 technology brands.</p>
+        <p><a href="http://spiceworks.com">Learn More <span class="arrows">»</span></a></p>
+      </div>
+      <div class="button-wrapper">
+        <a class="btn btn-orange is-outlined" href="../../../support/">Contact Us</a>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <span class="copyright">© Copyright 2006-14 Spiceworks, Inc.</span>
+      <ul class="footer-links">
+        <li><a href="//www.spiceworks.com/about">About</a></li>
+        <li><a href="//www.spiceworks.com/app">App</a></li>
+        <li><a href="//www.spiceworks.com/downloads">Downloads</a></li>
+        <li><a href="//community.spiceworks.com">Community</a></li>
+        <li><a href="//www.spiceworks.com/marketing">Advertising</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script src="../../../javascripts/application.js" type="text/javascript"></script>
+  </body>
+</html>

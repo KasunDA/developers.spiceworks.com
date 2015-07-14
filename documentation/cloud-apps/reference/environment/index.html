@@ -1,0 +1,395 @@
+<!doctype html>
+<!--[if lt IE 9]>  <html class="ie lte9"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9 lte9"> <![endif]-->
+<!--[if !IE]><!--> <html class="no-ie"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Spiceworks Developers - API Reference</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../../../../images/favicon.gif" rel="icon" type="image/gif" />
+
+    <link href="../../../../stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-314222-31', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+
+  <body data-page-name="documentation_cloud-apps_reference_environment_index" class="documentation documentation_cloud-apps documentation_cloud-apps_reference documentation_cloud-apps_reference_environment documentation_cloud-apps_reference_environment_index">
+
+    <header class="site-navigation sui-opt-in">
+  <nav class="global-nav " data-navbar="global">
+    <div class="nav-fluid-container">
+      <a class="global-nav_brand" href="../../../../">Home</a>
+      <img src="//static.spiceworks.com/assets/masthead/print_logo.png" class="global-nav_print-logo">
+    </div>
+  </nav>
+  <nav class="domestic-nav" data-sticky="true" data-navbar="domestic">
+    <div class="nav-fluid-container">
+<a class="domestic-nav_brand" href="../../../../">        <div class="swoosh-logo"></div><span class="domestic-nav_title">Developers</span>
+</a>      <ul class="domestic-menus">
+        <li class=" domestic-menus_entry"><a href="../../../../what-is-spiceworks/">What is Spiceworks?</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../../getting-started/">Getting Started</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../">Documentation</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../../downloads/">Downloads</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../../support/">Support</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="content-wrapper sui-fluid-container">
+        <div class="with-sidebar with-breadcrumbs">
+    <ul class="breadcrumbs">
+      <li>
+        <a href="../../../">Documentation</a>
+      </li>
+      <li>
+        <a href="../../">Build Cloud Apps</a>
+      </li>
+      <li>
+        API Reference
+      </li>
+    </ul>
+
+    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Build Cloud Apps</h4><ul class='nav' role='tablist'><li class=''><a href="../../">Getting Started</a><nav class='submenu'><ul class='nav'><li class=''><a href="#installing-spiceworks">Installing Spiceworks</a></li><li class=''><a href="#create-a-place-for-your-app-to-live">Create a Place for Your App</a></li><li class=''><a href="#create-&amp;-register-your-web-app-with-spiceworks">Register Your App with Spiceworks</a></li><li class=''><a href="#add-javascript-to-your-application-to-get-data-from-spiceworks">Spiceworks JS API Client</a></li><li class=''><a href="#resources">Resources</a></li></ul></nav></li><li class=''><a href="../../api-basics/">API Basics</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-card">Creating a Card</a></li><li class=''><a href="#card-lifecycle">Card Lifecycle</a></li><li class=''><a href="#card-services">Card Services</a></li><li class=''><a href="#requests">Requests</a></li><li class=''><a href="#events">Events</a></li><li class=''><a href="#error-handling">Error Handling</a></li></ul></nav></li><li class=''><a href="../../authentication/">App Authentication</a><nav class='submenu'><ul class='nav'><li class=''><a href="#background">Background</a></li><li class=''><a href="#step-1:-obtain-the-current-user-identifier">Step 1: The current user</a></li><li class=''><a href="#step-2:-obtain-an-oauth2-access-token">Step 2: Get an access token</a></li><li class=''><a href="#step-3:-use-the-oauth2-token-to-authenticate-the-user">Step 3: Verify the access token</a></li><li class=''><a href="#best-practices">Best practices</a></li><li class=''><a href="#further-reading">Further reading</a></li></ul></nav></li><hr /><li class=''><a href="//github.com/spiceworks/spiceworks-js-sdk/tree/master/examples">Examples</a></li><li class='active'><a href="./">API Reference</a><nav class='submenu'><ul class='nav'><li class='active'><a href="./">Environment</a></li><li class=''><a href="../helpdesk/">Help Desk</a></li><li class=''><a href="../inventory/">Inventory</a></li><li class=''><a href="../people/">People</a></li><li class=''><a href="../reporting/">Reporting</a></li></ul></nav></li></ul></nav></aside></div>
+
+    <main class="with-left-sidebar">
+      <section class="documentation-hero-header">
+        <img alt="Spiceworks Swoosh" src="../../../../images/spiceworks-o.png" />
+        <h1>Build Cloud Apps</h1>
+        <hr class="divider-shadow">
+      </section>
+      <section class="doc-content">
+        <h1 id="environment-service">Environment Service</h1>
+
+<h2 id="environment">Environment</h2>
+
+<h3 id="requests">Requests</h3>
+
+<h4 id="get-the-environment">Get the environment</h4>
+
+<p>Get environment information from the Spiceworks application in which your
+cloud app is installed:</p>
+<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'environment'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'environment'</span><span class="p">)</span>
+</code></pre>
+
+<p>Alternatively, this environment information is available on App Card activation:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">onActivate</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">environment</span><span class="p">){</span>
+  <span class="c1">// see response below</span>
+<span class="p">});</span>
+</code></pre>
+
+<h5 id="response">Response</h5>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"app_host"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"app_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"desktop"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"auid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92a450d9a3e596d7bef9ed9853b6a454"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">see</span><span class="w"> </span><span class="err">(1)</span><span class="w"> </span><span class="err">below</span><span class="w">
+      </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7.4.00000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"placement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">see</span><span class="w"> </span><span class="err">(3)</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"device"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_device_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">159</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_auid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e34e59c92f43b49f9725a29f86632c12"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">see</span><span class="w"> </span><span class="err">(2)</span><span class="w"> </span><span class="err">below</span><span class="w">
+      </span><span class="s2">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/people/159"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jolly"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fellow"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"department"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEV"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/images/icons/medium/person-avatar-admin.png"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Notes:</p>
+
+<p>(1) The app-unique identifier <code>app_host.auid</code> uniquely identifies the Spiceworks application
+into which your cloud app is integrated. This identifier is unique to your cloud app.</p>
+
+<p>(2) The app-unique identifier <code>user.user_auid</code> uniquely identifies the current user
+of Spiceworks using your app. This identifier is unique to your cloud app, and will be
+consistent for the Spiceworks user across multiple and/or different Spiceworks applications.</p>
+
+<p>(3) The <code>placement</code> is the location within the Spiceworks application where your
+app is being activated. The <code>name</code> of the placement will always be provided, and
+other information relevant to the location will be provided in the <code>placement</code>
+object.</p>
+
+<h4 id="list-users">List users</h4>
+
+<p>List all users (IT Pros) in the system:</p>
+<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'environment'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'users'</span><span class="p">)</span>
+</code></pre>
+
+<h5 id="response">Response</h5>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"total_entries"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">see</span><span class="w"> </span><span class="err">below</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">JSON</span><span class="w"> </span><span class="err">example</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="get-a-single-user">Get a single user</h4>
+<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'environment'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'user'</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>
+</code></pre>
+
+<h5 id="parameters">Parameters</h5>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>integer</code></td>
+<td>The <code>id</code> of the user</td>
+</tr>
+</tbody></table>
+
+<h5 id="response">Response</h5>
+
+<p>Example user (note all arrays have been reduced to a single example item)</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lucy"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chipotle"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"department"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/images/icons/medium/person-avatar-admin.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/people/2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_auid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e34e59c92f43b49f9725a29f86632c12"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"community_unread_message_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"community_activity_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"community_activity_seen_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chief IT Person"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main Office"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-26T00:46:53-06:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-26T01:52:23-06:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"billing_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"supervisor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"David"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocoto"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"department"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/images/icons/medium/person-avatar-admin.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/people/3"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"notifications"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"alert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"helpdesk"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"weekly_updates"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"tickets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total_entries"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tickets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"assignee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total_entries"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tickets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tickets/list/single_ticket/40"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Computer issues"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My computer is crashing quite often and running rather slow"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"due_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-25T11:42:27-06:00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-20T00:47:01-06:00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-26T00:47:09-06:00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Justin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brownie"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"end_user"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"department"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/images/icons/medium/person-avatar-restricted.png"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/people/5"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"assignee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lucy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chipotle"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"department"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/images/icons/medium/person-avatar-admin.png"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/people/2"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"cc"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total_entries"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"tickets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tickets/list/single_ticket/36"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mouse troubles"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My mouse squeeks too much and the co worker that sits next to me gives me a terrible look everytime I scroll."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"due_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-26T19:11:53-06:00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-20T00:46:59-06:00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-26T00:47:09-06:00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Marie"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocoto"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"end_user"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"department"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/images/icons/medium/person-avatar-restricted.png"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/people/18"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"assignee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"purchases"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total_entries"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"purchases"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"receiver"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total_entries"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"purchases"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/purchases/1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Logitech Keyboard K120 for Business - Cable - USB - PC"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"purchased"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"product_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"//static.spiceworks.com/images/products/0007/6787/3031596_profile.jpeg"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"part_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"920-003688"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"devices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/inventory/groups/devices/70"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fancy-okapi"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Device"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"//h10003.www1.hp.com/digmedialib/prodimg/lowres/c02680978.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"model_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ProBook 6460b"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vendor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hewlett-Packard"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avg_rating"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rating_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="events">Events</h3>
+
+<h4 id="navigate-the-host-environment">Navigate the host environment</h4>
+
+<p>Trigger a navigation event to direct the host application window to a new
+relative url.</p>
+<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'environment'</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">'navigate'</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span>
+</code></pre>
+
+<h5 id="parameters">Parameters</h5>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>The relative path for the host application to visit</td>
+</tr>
+</tbody></table>
+
+      </section>
+    </main>
+  </div>
+
+    </div>
+
+    <footer>
+  <div class="sui-fluid-container">
+    <a href="http://spiceworks.com" class="spiceworks-brand">
+      <img alt="Spiceworks Logo" src="../../../../images/spiceworks_reversed.png" />
+    </a>
+    <div class="mid-section">
+      <div class="copy-wrapper">
+        <p>An IT application, community, and marketplace all rolled into one. Spiceworks is the network more than 6 million IT professionals use to connect with one another and over 3,000 technology brands.</p>
+        <p><a href="http://spiceworks.com">Learn More <span class="arrows">»</span></a></p>
+      </div>
+      <div class="button-wrapper">
+        <a class="btn btn-orange is-outlined" href="../../../../support/">Contact Us</a>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <span class="copyright">© Copyright 2006-14 Spiceworks, Inc.</span>
+      <ul class="footer-links">
+        <li><a href="//www.spiceworks.com/about">About</a></li>
+        <li><a href="//www.spiceworks.com/app">App</a></li>
+        <li><a href="//www.spiceworks.com/downloads">Downloads</a></li>
+        <li><a href="//community.spiceworks.com">Community</a></li>
+        <li><a href="//www.spiceworks.com/marketing">Advertising</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script src="../../../../javascripts/application.js" type="text/javascript"></script>
+  </body>
+</html>

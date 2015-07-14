@@ -1,0 +1,287 @@
+<!doctype html>
+<!--[if lt IE 9]>  <html class="ie lte9"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9 lte9"> <![endif]-->
+<!--[if !IE]><!--> <html class="no-ie"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Spiceworks Developers - API Reference</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../../../../images/favicon.gif" rel="icon" type="image/gif" />
+
+    <link href="../../../../stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-314222-31', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+
+  <body data-page-name="documentation_plugins_reference_data-api_index" class="documentation documentation_plugins documentation_plugins_reference documentation_plugins_reference_data-api documentation_plugins_reference_data-api_index">
+
+    <header class="site-navigation sui-opt-in">
+  <nav class="global-nav " data-navbar="global">
+    <div class="nav-fluid-container">
+      <a class="global-nav_brand" href="../../../../">Home</a>
+      <img src="//static.spiceworks.com/assets/masthead/print_logo.png" class="global-nav_print-logo">
+    </div>
+  </nav>
+  <nav class="domestic-nav" data-sticky="true" data-navbar="domestic">
+    <div class="nav-fluid-container">
+<a class="domestic-nav_brand" href="../../../../">        <div class="swoosh-logo"></div><span class="domestic-nav_title">Developers</span>
+</a>      <ul class="domestic-menus">
+        <li class=" domestic-menus_entry"><a href="../../../../what-is-spiceworks/">What is Spiceworks?</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../../getting-started/">Getting Started</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../">Documentation</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../../downloads/">Downloads</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../../support/">Support</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="content-wrapper sui-fluid-container">
+        <div class="with-sidebar with-breadcrumbs">
+    <ul class="breadcrumbs">
+      <li>
+        <a href="../../../">Documentation</a>
+      </li>
+      <li>
+        <a href="../../">Modify Spiceworks</a>
+      </li>
+      <li>
+        API Reference
+      </li>
+    </ul>
+
+    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Modify Spiceworks</h4><ul class='nav' role='tablist'><li class=''><a href="../../">Creating Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-plugins">Creating Plugins</a></li><li class=''><a href="#what-are-plugins">What Are Plugins?</a></li><li class=''><a href="#getting-started">Getting Started</a></li><li class=''><a href="#using-multiple-files-for-a-plugin">Using Multiple Files For A Plugin</a></li><li class=''><a href="#code-templates">Code Templates</a></li><li class=''><a href="#spiceworks-apis">Spiceworks APIs</a></li><li class=''><a href="#tools-to-make-plugins-easier">Tools To Make Plugins Easier</a></li><li class=''><a href="#cloning-a-plugin">Cloning A Plugin</a></li><li class=''><a href="#firebug">Firebug</a></li><li class=''><a href="#sharing-your-plugins">Sharing Your Plugins</a></li><li class=''><a href="#helpful-plugin-pages">Helpful Plugin Pages</a></li></ul></nav></li><li class=''><a href="../../your-first-plugin/">Creating Your First Plugin</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-new-plugin">Creating A New Plugin</a></li><li class=''><a href="#adding-content">Adding Content</a></li><li class=''><a href="#what-s-happening">What's Happening?</a></li><li class=''><a href="#using-javascript">Using Javascript</a></li></ul></nav></li><li class=''><a href="../../themes/">Themes for Spiceworks</a><nav class='submenu'><ul class='nav'><li class=''><a href="#updating-the-look-of-spiceworks-with-plugins">Updating The Look Of Spiceworks With Plugins</a></li><li class=''><a href="#changing-the-background-to-an-image">Changing The Background To An Image</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../../building-widgets/">Building Widgets</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-new-dashboard-widgets">Creating New Dashboard Widgets</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../../adding-navigation/">Adding Navigation</a><nav class='submenu'><ul class='nav'><li class=''><a href="#adding-navigational-elements">Adding Navigational Elements</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../../reporting/">Reporting with Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#using-plugins-to-run-reports">Using Plugins To Run Reports</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../../messaging/">Messaging with Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#adding-a-message-to-spiceworks-with-plugins">Adding A Message To Spiceworks With Plugins</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../../responding-to-events/">Responding to Events</a><nav class='submenu'><ul class='nav'><li class=''><a href="#have-plugins-cause-spiceworks-to-respond-to-events-within-the-application">Have Plugins Cause Spiceworks To Respond To Events Within The Application</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../../settings/">Using Plugin Settings</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-configurable-plugins">Creating Configurable Plugins</a></li><li class=''><a href="#what-s-going-on-here">What's going on here?</a></li></ul></nav></li><li class=''><a href="../../multi-file-plugins/">Multi File Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#using-multiple-files-within-a-plugin">Using Multiple files within a plugin</a></li><li class=''><a href="#adding-an-image">Adding an image</a></li><li class=''><a href="#adding-and-editing-css-file">Adding and editing CSS file</a></li><li class=''><a href="#editing-the-js-file">Editing the JS file</a></li><li class=''><a href="#view-your-masterpiece">View your masterpiece</a></li></ul></nav></li><li class=''><a href="../../html-plugins/">Creating HTML Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#create-&amp;-edit-the-plugin">Create & Edit the Plugin</a></li><li class=''><a href="#add-&amp;-edit-the-html-file">Add & Edit the HTML</a></li><li class=''><a href="#edit-the-js-file">Edit the JS file</a></li><li class=''><a href="#view-your-masterpiece">View Your Masterpiece</a></li></ul></nav></li><li class=''><a href="../../helpdesk-v2/">Updating Help Desk Plugins</a><nav class='submenu'><ul class='nav'><li class=''><a href="#updating-plugins-for-helpdesk-v2">Updating Plugins for Helpdesk v2</a></li><li class=''><a href="#example-modifying-the-helpdesk-once-it-s-ready">Example: Modifying the Helpdesk once it's ready</a></li><li class=''><a href="#example-modifying-the-helpdesk-in-response-to-events">Example: Modifying the Helpdesk in response to events</a></li><li class=''><a href="#example-modifying-helpdesk-comments">Example: Modifying helpdesk comments</a></li></ul></nav></li><li class=''><a href="../../language-packs/">Creating Language Packs</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-language-pack">Creating A Language Pack</a></li><li class=''><a href="#sharing-a-language-pack">Sharing A Language Pack</a></li><li class=''><a href="#installing-a-language-pack">Installing A Language Pack</a></li><li class=''><a href="#enabling-a-language-pack">Enabling A Language Pack</a></li><li class=''><a href="#editing-a-language-pack">Editing A Language Pack</a></li></ul></nav></li><hr /><li class=''><a href="../../examples/">Examples</a></li><li class='active'><a href="../">API Reference</a><nav class='submenu'><ul class='nav'><li class=''><a href="../">Plugin API Overview</a></li><li class='active'><a href="./">Data API</a></li></ul></nav></li></ul></nav></aside></div>
+
+    <main class="with-left-sidebar">
+      <section class="documentation-hero-header">
+        <img alt="Spiceworks Swoosh" src="../../../../images/spiceworks-o.png" />
+        <h1>Modify Spiceworks</h1>
+        <hr class="divider-shadow">
+      </section>
+      <section class="doc-content">
+        <p>Each of the following types can be called with additional parameters to determine what&#39;s returned.  All the return types are JSON objects and the best way to introspect the data is Firebug. It makes it really easy to try out. Just open firebug on a page with Spiceworks loaded and type in the javascript fragment.</p>
+
+<p>Each type can be called with additional parameters to determine what&#39;s returned.  With Tickets, for exmaple:</p>
+<pre class="highlight javascript"><code>  <span class="c1">// All unassigned tickets</span>
+  <span class="nx">SPICEWORKS</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">Ticket</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'all'</span><span class="p">,</span> <span class="p">{</span><span class="na">filter</span><span class="p">:</span><span class="s1">'unassigned_tickets'</span><span class="p">});</span>
+
+  <span class="c1">// All open tickets    SPICEWORKS.data.Ticket.find('all', {filter:'open'});</span>
+</code></pre>
+
+<h3 id="tickets">Tickets</h3>
+
+<p>To return data about the tickets in the system you can make the following calls:</p>
+
+<p><strong>Note</strong>: These calls will only return 100 tickets. In order to view additional tickets, you will have to use the page_size and page commands. As an example, to view open ticket number 101-150, you would use the command:</p>
+<pre class="highlight javascript"><code>    <span class="nx">SPICEWORKS</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">Ticket</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">'all'</span><span class="p">,</span> <span class="p">{</span><span class="na">filter</span><span class="p">:</span><span class="s1">'open'</span><span class="p">,</span> <span class="na">page_size</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="na">page</span><span class="p">:</span><span class="mi">3</span><span class="p">});</span>
+</code></pre>
+
+<p>Unfortunately there is currently not a way to get the total count, but this is under development. <a href="http://community.spiceworks.com/topic/73154">See here</a> for a workaround to gather ticket counts.</p>
+
+<ul>
+<li><strong>Open Tickets:</strong> <code>SPICEWORKS.data.Ticket.find( &#39;all&#39;, {filter:&#39;open&#39;});</code></li>
+<li><strong>Closed Tickets:</strong> <code>SPICEWORKS.data.Ticket.find( &#39;all&#39;, {filter:&#39;closed&#39;});</code></li>
+<li><strong>Unassigned Tickets:</strong>  <code>SPICEWORKS.data.Ticket.find( &#39;all&#39;, {filter:&#39;unassigned&#39;});</code></li>
+<li><strong>Past Due Tickets:</strong>  <code>SPICEWORKS.data.Ticket.find( &#39;all&#39;, {filter:&#39;past_due&#39;});</code></li>
+<li><strong>Recent Tickets:</strong>  <code>SPICEWORKS.data.Ticket.find( &#39;all&#39;, {filter:&#39;recent&#39;});</code></li>
+<li><strong>Assigned Tickets:</strong>  <code>SPICEWORKS.data.Ticket.find( &#39;all&#39;, {filter:&#39;assigned&#39;});</code></li>
+<li><strong>Tickets Requiring A Purchase:</strong>  <code>SPICEWORKS.data.Ticket.find( &#39;all&#39;, {filter:&#39;requiring_purchase&#39;});</code></li>
+<li><strong>Tickets By Email Address:</strong>  <code>SPICEWORKS.data.Ticket.find( &#39;all&#39;, {filter:&#39;email&#39;});</code></li>
+<li><strong>Tickets Opened &amp; Assigned To A Certain User ID:</strong>  <code>SPICEWORKS.data.Ticket.find( &#39;all&#39;, {filter:&#39;open_and_assigned_to&#39;});</code></li>
+<li><strong>Tickets Opened &amp; Assigned To The Current User:</strong>  <code>SPICEWORKS.data.Ticket.find( &#39;all&#39;, {filter:&#39;open_and_assigned_to_current_user&#39;});</code></li>
+<li><strong>Tickets Assigned To A Certain User And Have Not Been Viewed:</strong>  <code>SPICEWORKS.data.Ticket.find( &#39;all&#39;, {filter:&#39;assigned_to_user_and_has_not_been_viewed&#39;});</code></li>
+</ul>
+
+<h3 id="devices">Devices</h3>
+
+<p>To return data about the devices in the system you can make the following calls:</p>
+
+<ul>
+<li><p><strong>Devices By Hostname (where host_name is the Hostname):</strong> There are many options when searching by hostname.</p>
+
+<ul>
+<li><strong>Disks:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;disks&#39;});</code></li>
+<li><strong>Attachments:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;attachments&#39;});</code></li>
+<li><strong>Notes:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;note&#39;});</code></li>
+<li><strong>Webservers:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;webservers&#39;});</code></li>
+<li><strong>Scan Alerts:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;scan_alerts&#39;});</code></li>
+<li><strong>Network Adaptors:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;network_adapters&#39;});</code></li>
+<li><strong>Events:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;events&#39;});</code></li>
+<li><strong>VLAN Ports:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;vlan_ports&#39;});</code></li>
+<li><strong>Interfaces:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;interfaces&#39;});</code></li>
+<li><strong>Categories:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;categories&#39;});</code></li>
+<li><strong>Anti-Virus Products:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;anti_virus_products&#39;});</code></li>
+<li><strong>Service Installations:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;service_installations&#39;});</code></li>
+<li><strong>Services:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;services&#39;});</code></li>
+<li><strong>Local Disks:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;local_disks&#39;});</code></li>
+<li><strong>Software Installations:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;software_installations&#39;});</code></li>
+<li><strong>Software:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;software&#39;});</code></li>
+<li><strong>Hotfix Installations:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;hotfix_installations&#39;});</code></li>
+<li><strong>Hotfixes:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;hotfixes&#39;});</code></li>
+<li><strong>Shares:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;shares&#39;});</code></li>
+<li><strong>Open Shares:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;open_shares&#39;});</code></li>
+<li><strong>Network Users:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;network_users&#39;});</code></li>
+<li><strong>Printers:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;printers&#39;});</code></li>
+<li><strong>Firewall Products:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;firewall_products&#39;});</code></li>
+<li><strong>Memory Slots:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;memory_slots&#39;});</code></li>
+<li><strong>Microsoft Exchange:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;microsoft_exchange&#39;});</code></li>
+<li>Microsoft Exchange Counter:** <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;microsoft_exchange_counter&#39;});</code></li>
+<li><strong>Microsoft Exchange Mailboxes:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;microsoft_exchange_mailboxes&#39;});</code></li>
+<li><strong>Video Controllers:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;video_controllers&#39;});</code></li>
+<li><strong>Desktop Monitors:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;desktop_monitors&#39;});</code></li>
+<li><strong>Comparable Disks:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;comparable_disks&#39;});</code></li>
+<li><strong>Comparable Services:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;comparable_services&#39;});</code></li>
+<li><strong>Comparable Software:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;comparable_software&#39;});</code></li>
+<li><strong>Comparable Hotfixes:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;comparable_hotfixes&#39;});</code></li>
+<li><strong>Monitor Alerts:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;monitor_alerts&#39;});</code></li>
+<li><strong>Tickets:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;tickets&#39;});</code></li>
+<li><strong>Activities:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {hostname:&#39;host_name&#39;, method:&#39;activities&#39;});</code></li>
+</ul></li>
+<li><p><strong>Devices in a Specific Group:</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {category: &#39;inventory_group&#39;});</code></p></li>
+<li><p><strong>Devices By IP Address (where ip_address is the actual IP address and you can use any of the methods listed above):</strong> <code>SPICEWORKS.data.Device.find(&#39;all&#39;, {ip:&#39;ip_address&#39;, method:&#39;from_above&#39;});</code></p></li>
+</ul>
+
+<h3 id="alerts">Alerts</h3>
+
+<p>To return data about an alert, you can make the following calls:</p>
+
+<ul>
+<li><strong>Alerts By Data Monitor ID(where desired_id is the id you want to search for:</strong> <code>SPICEWORKS.data.Alert.find(&#39;all&#39;, {data_monitor_id:&#39;desired_id&#39;});</code></li>
+<li><strong>Active Monitor Alerts:</strong> <code>SPICEWORKS.data.Alert.find(&#39;all&#39;, {filter:&#39;active&#39;});</code></li>
+<li><strong>Recent Alerts:</strong> <code>SPICEWORKS.data.Alert.find(&#39;all&#39;, {filter:&#39;recent&#39;});</code></li>
+<li><strong>External Alerts:</strong> <code>SPICEWORKS.data.Alert.find(&#39;all&#39;, {filter:&#39;external&#39;});</code></li>
+</ul>
+
+<p>There are more specific that I don&#39;t understand.</p>
+
+<h3 id="data-monitors">Data Monitors</h3>
+
+<p>To return data from monitors, you can make the following calls: (I&#39;m not really sure what this is)</p>
+
+<ul>
+<li><strong>Find All Data Monitors By Model:</strong> <code>SPICEWORKS.data.DataMonitor.find(&#39;all&#39;, {model:&#39;enter_model&#39;});</code></li>
+<li><strong>Find All Data Monitors By ID:</strong> <code>SPICEWORKS.data.DataMonitor.find(&#39;all&#39;, {id:&#39;enter_id&#39;});</code></li>
+<li><strong>Find All Active Data Monitors:</strong> <code>SPICEWORKS.data.DataMonitor.find(&#39;all&#39;, {filter:&#39;active&#39;});</code></li>
+<li><strong>Find All Data Monitors Set To Notify User:</strong> <code>SPICEWORKS.data.DataMonitor.find(&#39;all&#39;, {filter:&#39;notify_user&#39;});</code></li>
+<li><strong>Find All Data Monitors By Name:</strong> <code>SPICEWORKS.data.DataMonitor.find(&#39;all&#39;, {name:&#39;enter_name&#39;});</code></li>
+<li><strong>Find All Data Monitors By Criteria:</strong> <code>SPICEWORKS.data.DataMonitor.find(&#39;all&#39;, {criteria:&#39;enter_criteria&#39;});</code></li>
+<li><strong>Find All Data Monitors By Qualifier:</strong> <code>SPICEWORKS.data.DataMonitor.find(&#39;all&#39;, {qualifier:&#39;enter_qualifier&#39;});</code></li>
+</ul>
+
+<h3 id="groups">Groups</h3>
+
+<p>Make the following calls to return data about groups:</p>
+
+<ul>
+<li><strong>Return a collection of all Groups:</strong> <code>SPICEWORKS.data.Group.find(&#39;all&#39;);</code></li>
+</ul>
+
+<h3 id="software">Software</h3>
+
+<p>Make the following calls to return software data:</p>
+
+<ul>
+<li><strong>Find Software By Vendor:</strong> <code>SPICEWORKS.data.Software.find(&#39;all&#39;, {vendor:&#39;enter_vendor&#39;});</code></li>
+<li><strong>Find Software By Name:</strong> <code>SPICEWORKS.data.Software.find(&#39;all&#39;, {name:&#39;enter_name&#39;});</code></li>
+<li><strong>Find Software By Statistics:</strong> <code>SPICEWORKS.data.Software.find(&#39;all&#39;, {method:&#39;statistics&#39;});</code></li>
+<li><strong>Find Software By Computer:</strong> <code>SPICEWORKS.data.Software.find(&#39;all&#39;, {method:&#39;computers&#39;});</code></li>
+<li><strong>Find Software By Installations:</strong> <code>SPICEWORKS.data.Software.find(&#39;all&#39;, {method:&#39;installations&#39;});</code></li>
+<li><strong>Find Software By Alerts:</strong> <code>SPICEWORKS.data.Software.find(&#39;all&#39;, {method:&#39;alerts&#39;});</code></li>
+</ul>
+
+<h3 id="services">Services</h3>
+
+<p>The following calls will return data about services:</p>
+
+<ul>
+<li><strong>Find Services By Name:</strong> <code>SPICEWORKS.data.Service.find(&#39;all&#39;, {name:&#39;enter_name&#39;});</code></li>
+<li><strong>Find Services By Statistics:</strong> <code>SPICEWORKS.data.Service.find(&#39;all&#39;, {method:&#39;statistics&#39;});</code></li>
+<li><strong>Find Services By Computer:</strong> <code>SPICEWORKS.data.Service.find(&#39;all&#39;, {method:&#39;computers&#39;});</code></li>
+<li><strong>Find Services By Installation:</strong> <code>SPICEWORKS.data.Service.find(&#39;all&#39;, {method:&#39;installations&#39;});</code></li>
+</ul>
+
+<h3 id="hotfixes">Hotfixes</h3>
+
+<p>Return data about hotfixes with the following calls:</p>
+
+<ul>
+<li><strong>Find Hotfixes By Name:</strong> <code>SPICEWORKS.data.Hotfix.find(&#39;all&#39;, {name:&#39;enter_name&#39;});</code></li>
+<li><strong>Find Hotfixes By Statistics:</strong> <code>SPICEWORKS.data.Hotfix.find(&#39;all&#39;, {method:&#39;statistics&#39;});</code></li>
+<li><strong>Find Hotfixes By Computer:</strong> <code>SPICEWORKS.data.Hotfix.find(&#39;all&#39;, {method:&#39;computers&#39;});</code></li>
+<li><strong>Find Hotfixes By Installation:</strong> <code>SPICEWORKS.data.Hotfix.find(&#39;all&#39;, {method:&#39;installations&#39;});</code></li>
+</ul>
+
+<h3 id="users">Users</h3>
+
+<p>Return user data by making the following calls:</p>
+
+<ul>
+<li><strong>Find Users By ID:</strong> <code>SPICEWORKS.data.User.find(&#39;all&#39;, {id:&#39;enter_id&#39;});</code></li>
+<li><strong>Find Users By Email Address:</strong> <code>SPICEWORKS.data.User.find(&#39;all&#39;, {email:&#39;enter_email_address&#39;});</code></li>
+<li><strong>Find Users By First Name:</strong> <code>SPICEWORKS.data.User.find(&#39;all&#39;, {first_name:&#39;enter_name&#39;});</code></li>
+<li><strong>Find Users By Last Name:</strong> <code>SPICEWORKS.data.User.find(&#39;all&#39;, {last_name:&#39;enter_name&#39;});</code></li>
+</ul>
+
+<h3 id="reports">Reports</h3>
+
+<p>Make the following calls to return report data:</p>
+
+<ul>
+<li><strong>Find Reports By ID:</strong> <code>SPICEWORKS.data.Report.find(&#39;all&#39;, {id:&#39;enter_id&#39;});</code></li>
+<li><strong>Find Reports By Description:</strong> <code>SPICEWORKS.data.Report.find(&#39;all&#39;, {description:&#39;enter_description&#39;});</code></li>
+<li><strong>Find The Last Run Report:</strong> <code>SPICEWORKS.data.Report.find(&#39;all&#39;, {last_run:&#39;&#39;});</code></li>
+<li><strong>Find Reports By Name:</strong> <code>SPICEWORKS.data.Report.find(&#39;all&#39;, {name:&#39;enter_name&#39;});</code></li>
+</ul>
+
+      </section>
+    </main>
+  </div>
+
+    </div>
+
+    <footer>
+  <div class="sui-fluid-container">
+    <a href="http://spiceworks.com" class="spiceworks-brand">
+      <img alt="Spiceworks Logo" src="../../../../images/spiceworks_reversed.png" />
+    </a>
+    <div class="mid-section">
+      <div class="copy-wrapper">
+        <p>An IT application, community, and marketplace all rolled into one. Spiceworks is the network more than 6 million IT professionals use to connect with one another and over 3,000 technology brands.</p>
+        <p><a href="http://spiceworks.com">Learn More <span class="arrows">»</span></a></p>
+      </div>
+      <div class="button-wrapper">
+        <a class="btn btn-orange is-outlined" href="../../../../support/">Contact Us</a>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <span class="copyright">© Copyright 2006-14 Spiceworks, Inc.</span>
+      <ul class="footer-links">
+        <li><a href="//www.spiceworks.com/about">About</a></li>
+        <li><a href="//www.spiceworks.com/app">App</a></li>
+        <li><a href="//www.spiceworks.com/downloads">Downloads</a></li>
+        <li><a href="//community.spiceworks.com">Community</a></li>
+        <li><a href="//www.spiceworks.com/marketing">Advertising</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script src="../../../../javascripts/application.js" type="text/javascript"></script>
+  </body>
+</html>

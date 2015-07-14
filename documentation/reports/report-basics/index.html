@@ -1,0 +1,252 @@
+<!doctype html>
+<!--[if lt IE 9]>  <html class="ie lte9"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9 lte9"> <![endif]-->
+<!--[if !IE]><!--> <html class="no-ie"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Spiceworks Developers - Report Basics</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../../../images/favicon.gif" rel="icon" type="image/gif" />
+
+    <link href="../../../stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-314222-31', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+
+  <body data-page-name="documentation_reports_report-basics_index" class="documentation documentation_reports documentation_reports_report-basics documentation_reports_report-basics_index">
+
+    <header class="site-navigation sui-opt-in">
+  <nav class="global-nav " data-navbar="global">
+    <div class="nav-fluid-container">
+      <a class="global-nav_brand" href="../../../">Home</a>
+      <img src="//static.spiceworks.com/assets/masthead/print_logo.png" class="global-nav_print-logo">
+    </div>
+  </nav>
+  <nav class="domestic-nav" data-sticky="true" data-navbar="domestic">
+    <div class="nav-fluid-container">
+<a class="domestic-nav_brand" href="../../../">        <div class="swoosh-logo"></div><span class="domestic-nav_title">Developers</span>
+</a>      <ul class="domestic-menus">
+        <li class=" domestic-menus_entry"><a href="../../../what-is-spiceworks/">What is Spiceworks?</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../getting-started/">Getting Started</a></li>
+        <li class=" domestic-menus_entry"><a href="../../">Documentation</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../downloads/">Downloads</a></li>
+        <li class=" domestic-menus_entry"><a href="../../../support/">Support</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="content-wrapper sui-fluid-container">
+        <div class="with-sidebar with-breadcrumbs">
+    <ul class="breadcrumbs">
+      <li>
+        <a href="../../">Documentation</a>
+      </li>
+      <li>
+        <a href="../">Reports</a>
+      </li>
+      <li>
+        Report Basics
+      </li>
+    </ul>
+
+    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Custom Reports</h4><ul class='nav' role='tablist'><li class=''><a href="../">Reports Overview</a><nav class='submenu'><ul class='nav'><li class=''><a href="#why-should-i-use-reports">Why Should I Use Reports?</a></li><li class=''><a href="#what-can-i-do-with-reports">What Can I Do With Reports?</a></li></ul></nav></li><li class='active'><a href="./">Report Basics</a><nav class='submenu'><ul class='nav'><li class=''><a href="#accessing-reports">Accessing Reports</a></li><li class=''><a href="#running-a-report">Running A Report</a></li><li class=''><a href="#creating-a-custom-report">Creating A Custom Report</a></li><li class=''><a href="#making-a-report-public">Making a Report Public</a></li><li class=''><a href="#editing-a-report">Editing A Report</a></li><li class=''><a href="#deleting-a-report">Deleting A Report</a></li></ul></nav></li><li class=''><a href="../sharing-reports/">Find and Share Reports</a><nav class='submenu'><ul class='nav'><li class=''><a href="#finding-a-report">Finding A Report</a></li><li class=''><a href="#sharing-a-report">Sharing A Report</a></li></ul></nav></li><li class=''><a href="../import-and-export-reports/">Import and Export Reports</a><nav class='submenu'><ul class='nav'><li class=''><a href="#exporting-a-report">Exporting A Report</a></li><li class=''><a href="#importing-a-report">Importing A Report</a></li></ul></nav></li><li class=''><a href="../advanced-tips/">Advanced Tips</a><nav class='submenu'><ul class='nav'><li class=''><a href="#use-time-worked-in-reports">Use "Time Worked" In Reports</a></li><li class=''><a href="#some-reporting-tricks-and-examples">Some Reporting Tricks And Examples</a></li><li class=''><a href="#using-sql-reports">Using SQL Reports</a></li><li class=''><a href="#using-specific-relative-dates-and-times">Using Specific & Relative Dates and Times</a></li></ul></nav></li><li class=''><a href="../sql-errors/">Potential SQL Errors</a><nav class='submenu'><ul class='nav'><li class=''><a href="#spiceworks-6-2">Spiceworks 6.2</a></li><li class=''><a href="#spiceworks-4-0">Spiceworks 4.0</a></li></ul></nav></li></ul></nav></aside></div>
+
+    <main class="with-left-sidebar">
+      <section class="documentation-hero-header">
+        <img alt="Spiceworks Swoosh" src="../../../images/spiceworks-o.png" />
+        <h1>Spiceworks Reports</h1>
+        <hr class="divider-shadow">
+      </section>
+      <section class="doc-content">
+        <h3 id="accessing-reports">Accessing Reports</h3>
+
+<p>There are two levels of access when it come to reports in Spiceworks.  There is Admin access and Reporting access.  You can designate reporting access to anyone who might regularly need reports.  A convenient way to save yourself a little work.</p>
+
+<ul>
+<li><p><strong>Admin access:</strong> This is the normal level of access that you have as the administrator of Spiceworks.  You have complete control over all reporting functions, including granting &quot;Reporting&quot; access to others.</p></li>
+<li><p><strong>Reporting access:</strong> People with reporting access are allowed to open Spiceworks and run reports designated &quot;public&quot;.  Reporting users cannot create their own reports nor access any other Spiceworks features. See <a href="http://community.spiceworks.com/help/Managing_Users">Users</a> to learn how to grant reporting access.</p></li>
+</ul>
+
+<h3 id="running-a-report">Running A Report</h3>
+
+<p>You&#39;ll be amazed at how easy Spiceworks has made it to run reports, whether you&#39;re a user with &#39;Admin&#39; access or &#39;Reporting&#39; access.  </p>
+
+<p><strong>To run a report if you have &#39;Admin&#39; access:</strong></p>
+
+<ul>
+<li>Click <strong>Reporting</strong> under any of the navigation drop-downs.</li>
+<li>Click on the report you&#39;d like to run in the report table.<br></li>
+</ul>
+
+<p><strong>To run a report if you have &#39;Reporting&#39; access:</strong></p>
+
+<ul>
+<li>Log-in to the Spiceworks desktop.</li>
+<li><p>You will be taken directly to a web page designed for users with reporting access to run &#39;public&#39; reports.</p></li>
+<li><p>Click on a report in the table.</p></li>
+<li><p>Click column headings to sort the report information.</p></li>
+<li><p>Click the <strong>Print</strong>, <strong>PDF</strong>, <strong>CSV</strong> or <strong>Excel</strong> links to print or save the report in the desired format.  </p></li>
+</ul>
+
+<p><strong>Once you are viewing the report:</strong>
+<img alt="Report Export Options" src="http://community.spiceworks.com/wiki_attachments/reportexportoptions.png" />{: style=&quot;float:right;&quot;}</p>
+
+<ul>
+<li>Click column headings to sort the report information.</li>
+<li>Click the <strong>Print</strong> link, or hover your mouse over <strong>Export</strong> and select <strong>PDF</strong>, <strong>CSV</strong> or <strong>XLS</strong> links to print or save the report in the desired format.</li>
+<li>When saving a report to Excel, you must open the document with Microsoft Office 2003 or later. If you are using <em>Open Office</em>, you should try saving as a .CSV file and then importing it.  If you are using Microsoft Office 2003 or later and exporting to Excel still doesn&#39;t seem to work, you can <a href="http://community.spiceworks.com/help/How_Do_I_Send_Spiceworks_My_Log_Files%3F">send Spiceworks your log files</a> and we&#39;ll try to help.</li>
+</ul>
+
+<h3 id="creating-a-custom-report">Creating A Custom Report</h3>
+
+<p>As much as Spiceworks tries to anticipate your needs, sometimes you want a report run on something we never would&#39;ve guessed.  Don&#39;t worry, though.  You can create custom reports to gather the data you need.</p>
+
+<p><strong>To create a custom report:</strong>
+<img alt="Report Creation" src="http://community.spiceworks.com/wiki_attachments/newreport.png" />{: style=&quot;float:right;&quot;}</p>
+
+<ul>
+<li>Click <strong>Reporting</strong> under any of the navigation drop-downs.</li>
+<li>Click the <strong>New Report</strong> button.</li>
+<li>You will be taken to the <strong>Report Details&#39;</strong> page where you can enter the following:
+
+<ul>
+<li>The report name</li>
+<li>The report description</li>
+<li>Whether or not you want to make the report public</li>
+<li>The report type</li>
+<li>What to include in report</li>
+<li>What columns to display</li>
+<li>For a detailed description of each of these fields, please see below.</li>
+</ul></li>
+<li>Click <strong>Save</strong> or <strong>Save and Run</strong>.</li>
+</ul>
+
+<p><strong>Name</strong>
+This is the name that will appear in the name column of the Reports Table.</p>
+
+<p><strong>Description</strong>
+This is the description that will appear in the description column of the Reports Table.</p>
+
+<p><strong>Public</strong>
+Check this box if you want to make the report available to Reporting users.</p>
+
+<p><strong>Report type</strong>
+Choose between Devices, Tickets, Applications, Vendors/Services, People and Purchases.</p>
+
+<p><strong>What to include in report</strong>
+This section is the heart of your search criteria. It will dictate what rows are displayed in your report.</p>
+
+<ul>
+<li><p>Identify what type of entity you&#39;re searching for (devices, tickets or applications).</p></li>
+<li><p>Indicate whether &#39;any&#39; or &#39;all&#39; search criteria must be true to be included in the report.</p></li>
+<li><p>Enter what you&#39;re searching for (your &#39;search criteria&#39;). You can specify more than one search criteria by selecting the <strong>Add</strong> button just below the list of search criteria. Each data field is driven by selections made up to that point. You will always be given a list box with relevant choices based on selections you&#39;ve already made.</p></li>
+</ul>
+
+<p><strong>Columns to display</strong>
+This section allows you to essentially &#39;format&#39; your report. You can add, remove, or rearrange columns. Spiceworks will select a default set of columns to be included in the report automatically depending on what type of entity you&#39;re searching for (devices, tickets, or applications).</p>
+
+<ul>
+<li><p>You can remove any column by clicking &#39;x&#39; in the column heading.</p></li>
+<li><p>You can rearrange the columns by dragging/dropping the column to a new location.</p></li>
+<li><p>You can add new columns by selecting a column heading from the drop-down list and clicking the <strong>Add</strong> button. The drop-down list only shows column headings that are not already selected and are relevant for the entity type you&#39;re searching for (devices, tickets, or applications).</p></li>
+</ul>
+
+<h3 id="making-a-report-public">Making a Report Public</h3>
+
+<p>Same report, different data.  It doesn&#39;t have to be up to you to run the same reports for the same people over and over.  You can <a href="http://community.spiceworks.com/help/Managing_Users">set up key personnel as Spiceworks users</a> with reporting access only. All reports you make &#39;public&#39; can be run by any Spiceworks user with reporting access.</p>
+
+<p><strong>To make a report public:</strong></p>
+
+<ul>
+<li>Click <strong>Reporting</strong> under any of the navigation drop-downs.</li>
+<li>Find the report you want to make public in the table.</li>
+<li>Check the box in the <strong>Public</strong> column.  You can always uncheck the box if you change your mind later.</li>
+</ul>
+
+<h3 id="editing-a-report">Editing A Report</h3>
+
+<p>You can easily make changes to what is displayed in a report.</p>
+
+<p><strong>To edit a report:</strong>
+<img alt="Report Editing" src="http://community.spiceworks.com/wiki_attachments/reportedit.png" />{: style=&quot;float:right;&quot;}</p>
+
+<ul>
+<li>Click <strong>Reporting</strong> under any of the navigation drop-downs.</li>
+<li>Find the report you&#39;d like to edit in the report table, hover over the arrow to the right of it snd select <strong>edit</strong></li>
+<li>You will be taken to the Report Details page where you can change the following:
+
+<ul>
+<li>The report name: The report description: Whether or not you want to make a report public.</li>
+<li>The report type</li>
+<li>What to include in the report</li>
+<li>What columns to display</li>
+<li>For a detailed description of these fields please see the <a href="#">Create a Custom Report Guide</a>.</li>
+</ul></li>
+<li>Click <strong>Save</strong> or <strong>Save and Run</strong>.</li>
+</ul>
+
+<h3 id="deleting-a-report">Deleting A Report</h3>
+
+<p>You can easily delete any Spiceworks Report.</p>
+
+<p><strong>To delete a report:</strong></p>
+
+<ul>
+<li>Click <strong>Reporting</strong> under any of the navigation drop-downs.</li>
+<li>Find the report you&#39;d like to delete in the report table, hover over the arrow to the right of it and select <strong>delete</strong>.</li>
+<li>Confirm that you want to delete the report.</li>
+</ul>
+
+      </section>
+    </main>
+  </div>
+
+    </div>
+
+    <footer>
+  <div class="sui-fluid-container">
+    <a href="http://spiceworks.com" class="spiceworks-brand">
+      <img alt="Spiceworks Logo" src="../../../images/spiceworks_reversed.png" />
+    </a>
+    <div class="mid-section">
+      <div class="copy-wrapper">
+        <p>An IT application, community, and marketplace all rolled into one. Spiceworks is the network more than 6 million IT professionals use to connect with one another and over 3,000 technology brands.</p>
+        <p><a href="http://spiceworks.com">Learn More <span class="arrows">»</span></a></p>
+      </div>
+      <div class="button-wrapper">
+        <a class="btn btn-orange is-outlined" href="../../../support/">Contact Us</a>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <span class="copyright">© Copyright 2006-14 Spiceworks, Inc.</span>
+      <ul class="footer-links">
+        <li><a href="//www.spiceworks.com/about">About</a></li>
+        <li><a href="//www.spiceworks.com/app">App</a></li>
+        <li><a href="//www.spiceworks.com/downloads">Downloads</a></li>
+        <li><a href="//community.spiceworks.com">Community</a></li>
+        <li><a href="//www.spiceworks.com/marketing">Advertising</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script src="../../../javascripts/application.js" type="text/javascript"></script>
+  </body>
+</html>

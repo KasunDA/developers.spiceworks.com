@@ -1,0 +1,148 @@
+<!doctype html>
+<!--[if lt IE 9]>  <html class="ie lte9"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9 lte9"> <![endif]-->
+<!--[if !IE]><!--> <html class="no-ie"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Spiceworks Developers - Reports Overview</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../../images/favicon.gif" rel="icon" type="image/gif" />
+
+    <link href="../../stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-314222-31', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+
+  <body data-page-name="documentation_reports_index" class="documentation documentation_reports documentation_reports_index">
+
+    <header class="site-navigation sui-opt-in">
+  <nav class="global-nav " data-navbar="global">
+    <div class="nav-fluid-container">
+      <a class="global-nav_brand" href="../../">Home</a>
+      <img src="//static.spiceworks.com/assets/masthead/print_logo.png" class="global-nav_print-logo">
+    </div>
+  </nav>
+  <nav class="domestic-nav" data-sticky="true" data-navbar="domestic">
+    <div class="nav-fluid-container">
+<a class="domestic-nav_brand" href="../../">        <div class="swoosh-logo"></div><span class="domestic-nav_title">Developers</span>
+</a>      <ul class="domestic-menus">
+        <li class=" domestic-menus_entry"><a href="../../what-is-spiceworks/">What is Spiceworks?</a></li>
+        <li class=" domestic-menus_entry"><a href="../../getting-started/">Getting Started</a></li>
+        <li class=" domestic-menus_entry"><a href="../">Documentation</a></li>
+        <li class=" domestic-menus_entry"><a href="../../downloads/">Downloads</a></li>
+        <li class=" domestic-menus_entry"><a href="../../support/">Support</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="content-wrapper sui-fluid-container">
+        <div class="with-sidebar with-breadcrumbs">
+    <ul class="breadcrumbs">
+      <li>
+        <a href="../">Documentation</a>
+      </li>
+      <li>
+        <a href="./">Reports</a>
+      </li>
+      <li>
+        Reports Overview
+      </li>
+    </ul>
+
+    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Custom Reports</h4><ul class='nav' role='tablist'><li class='active'><a href="./">Reports Overview</a><nav class='submenu'><ul class='nav'><li class=''><a href="#why-should-i-use-reports">Why Should I Use Reports?</a></li><li class=''><a href="#what-can-i-do-with-reports">What Can I Do With Reports?</a></li></ul></nav></li><li class=''><a href="report-basics/">Report Basics</a><nav class='submenu'><ul class='nav'><li class=''><a href="#accessing-reports">Accessing Reports</a></li><li class=''><a href="#running-a-report">Running A Report</a></li><li class=''><a href="#creating-a-custom-report">Creating A Custom Report</a></li><li class=''><a href="#making-a-report-public">Making a Report Public</a></li><li class=''><a href="#editing-a-report">Editing A Report</a></li><li class=''><a href="#deleting-a-report">Deleting A Report</a></li></ul></nav></li><li class=''><a href="sharing-reports/">Find and Share Reports</a><nav class='submenu'><ul class='nav'><li class=''><a href="#finding-a-report">Finding A Report</a></li><li class=''><a href="#sharing-a-report">Sharing A Report</a></li></ul></nav></li><li class=''><a href="import-and-export-reports/">Import and Export Reports</a><nav class='submenu'><ul class='nav'><li class=''><a href="#exporting-a-report">Exporting A Report</a></li><li class=''><a href="#importing-a-report">Importing A Report</a></li></ul></nav></li><li class=''><a href="advanced-tips/">Advanced Tips</a><nav class='submenu'><ul class='nav'><li class=''><a href="#use-time-worked-in-reports">Use "Time Worked" In Reports</a></li><li class=''><a href="#some-reporting-tricks-and-examples">Some Reporting Tricks And Examples</a></li><li class=''><a href="#using-sql-reports">Using SQL Reports</a></li><li class=''><a href="#using-specific-relative-dates-and-times">Using Specific & Relative Dates and Times</a></li></ul></nav></li><li class=''><a href="sql-errors/">Potential SQL Errors</a><nav class='submenu'><ul class='nav'><li class=''><a href="#spiceworks-6-2">Spiceworks 6.2</a></li><li class=''><a href="#spiceworks-4-0">Spiceworks 4.0</a></li></ul></nav></li></ul></nav></aside></div>
+
+    <main class="with-left-sidebar">
+      <section class="documentation-hero-header">
+        <img alt="Spiceworks Swoosh" src="../../images/spiceworks-o.png" />
+        <h1>Spiceworks Reports</h1>
+        <hr class="divider-shadow">
+      </section>
+      <section class="doc-content">
+        <h3 id="overview">Overview</h3>
+
+<p>End of month. End of quarter. End of year. It&#39;s all the same. Somebody wants one of those pesky reports. What software is installed in our network? I need a list of all our hardware assets. How much disk space are we using? And you&#39;re left scrambling to make it happen. Not anymore.</p>
+
+<h3 id="why-should-i-use-reports?">Why Should I Use Reports?</h3>
+
+<p>Are you tired of being asked the same questions by the same people? Well now, with just a few clicks, you can have a report ready to hand them, or even better, you can give them reporting access to Spiceworks and let them answer their questions themselves.</p>
+
+<ul>
+<li><p><strong>Answer common questions easily.</strong> There are some questions that we know you are going to be asked so we&#39;ve gone ahead and included several report options out-of-the-box.  But we know that there&#39;s going to be that guy who asks for some strange report, so we&#39;ve given you the ability to generate a report for almost anything.</p></li>
+<li><p><strong>Make a good impression.</strong> You can reply to a question from your boss with a fancy report either printed out or as a PDF, CSV, or Excel file.  Or you can show off one of your more slick reports to the Spiceworks Community by sharing it through the Extensions Center.</p></li>
+<li><p><strong>Allow people to print their own reports</strong> Get yourself out of the loop and grant certain people &quot;reporting access&quot;.  Now the office administrator can print a report to determine which printers need new toner, or accounting can print reports for themselves on their own.</p></li>
+</ul>
+
+<h3 id="what-can-i-do-with-reports?">What Can I Do With Reports?</h3>
+
+<p>From the &#39;Reports&#39; tab you can:</p>
+
+<ul>
+<li><p><strong>Access Set access to reports</strong> Allow others to access Spiceworks to only run reports</p></li>
+<li><p><strong>Run Run a report.</strong> Run a report then print it or save it to PDF, CSV, or Excel format</p></li>
+<li><p><strong>Edit Edit a report.</strong> See how to edit an existing report to better meet your needs</p></li>
+<li><p><strong>Delete Delete a report.</strong> When you don&#39;t need a report anymore</p></li>
+<li><p><strong>Export Export a report.</strong> Allows you to create a backup of a report or share it with others</p></li>
+<li><p><strong>Import Import a report.</strong> Allows you to restore a backup or a report shared to the community</p></li>
+<li><p><strong>Create_Custom Create a custom report.</strong> When you don&#39;t find the exact report you need to run, create your own</p></li>
+<li><p><strong>Share Share custom reports.</strong> The Spiceworks Community is a great channel for sharing slick reports</p></li>
+<li><p><strong>Find Find a report.</strong> Search for shared reports in the Spiceworks community</p></li>
+<li><p><strong>Public Make a report public.</strong> Make a report available to be run by anyone with reporting access</p></li>
+<li><p><strong>Dates Using dates and times in reports.</strong> Customize your reports using both specific and relative dates and times</p></li>
+<li><p><strong>SQL Create a report using SQL.</strong> You can create your own reports using SQL</p></li>
+<li><p><strong>Time Use &quot;time worked&quot; in reports.</strong> Add fields to your reports to show the time that you or your fellow admins have spent working tickets</p></li>
+<li><p><strong>Tricks Some reporting tricks and examples.</strong>Report on devices that <em>don&#39;t</em> have certain software installed or use relative dates (last week, today, etc.)  </p></li>
+</ul>
+
+      </section>
+    </main>
+  </div>
+
+    </div>
+
+    <footer>
+  <div class="sui-fluid-container">
+    <a href="http://spiceworks.com" class="spiceworks-brand">
+      <img alt="Spiceworks Logo" src="../../images/spiceworks_reversed.png" />
+    </a>
+    <div class="mid-section">
+      <div class="copy-wrapper">
+        <p>An IT application, community, and marketplace all rolled into one. Spiceworks is the network more than 6 million IT professionals use to connect with one another and over 3,000 technology brands.</p>
+        <p><a href="http://spiceworks.com">Learn More <span class="arrows">»</span></a></p>
+      </div>
+      <div class="button-wrapper">
+        <a class="btn btn-orange is-outlined" href="../../support/">Contact Us</a>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <span class="copyright">© Copyright 2006-14 Spiceworks, Inc.</span>
+      <ul class="footer-links">
+        <li><a href="//www.spiceworks.com/about">About</a></li>
+        <li><a href="//www.spiceworks.com/app">App</a></li>
+        <li><a href="//www.spiceworks.com/downloads">Downloads</a></li>
+        <li><a href="//community.spiceworks.com">Community</a></li>
+        <li><a href="//www.spiceworks.com/marketing">Advertising</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+    <script src="../../javascripts/application.js" type="text/javascript"></script>
+  </body>
+</html>
