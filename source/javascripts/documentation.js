@@ -28,10 +28,15 @@
   setFollowButtonCode = function(){
     var vendorName = $('#vendor-name').val();
     vendorName = vendorName || 'VENDOR_NAME';
+    if (swoosh.checked) {
+      var button = "Follow";
+    } else if (swooshFollow.checked) {
+        button = "FollowSwoosh";
+    }
     $('.follow-button-code')
       .val('<a href="http://community.spiceworks.com/pages/' + vendorName +
-        '/follow"><img src="http://static.spiceworks.com/share/follow.png"' +
-        'title="Follow us on Spiceworks" alt="Follow us on Spiceworks" /></a>');
+          '/follow"><img src="http://static.spiceworks.com/share/follow.png"' +
+          'title="Follow us on Spiceworks" alt="' + button + ' us on Spiceworks" /></a>');
   },
 
   startListeningForCopyToClipboardClicks = function(){
