@@ -17079,18 +17079,31 @@ body.documentation_index {
 .code-input {
   white-space: pre; }
 
-/* line 169, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_documentation.scss */
+/* line 170, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_documentation.scss */
+.follow-button-code-form .follow-choice {
+  margin-bottom: 15px; }
+/* line 174, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_documentation.scss */
+.follow-button-code-form .follow-icon {
+  margin-right: 10px;
+  margin-left: 4px;
+  vertical-align: text-bottom; }
+/* line 180, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_documentation.scss */
+.follow-button-code-form .follow-radio {
+  width: auto;
+  margin-right: 6px;
+  vertical-align: top; }
+/* line 186, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_documentation.scss */
 .follow-button-code-form .terms-of-use {
   margin-bottom: 0; }
-/* line 173, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_documentation.scss */
+/* line 190, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_documentation.scss */
 .follow-button-code-form .follow-button-code, .follow-button-code-form .terms-of-use {
   margin-top: 10px; }
 
-/* line 179, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_documentation.scss */
+/* line 196, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_documentation.scss */
 .screenshot {
   float: right; }
 
-/* line 184, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_documentation.scss */
+/* line 201, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_documentation.scss */
 .documentation_share_reviews img {
   float: left;
   margin: 5px 20px 5px 0; }

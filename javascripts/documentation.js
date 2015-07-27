@@ -28,23 +28,33 @@
   setFollowButtonCode = function(){
     var vendorName = $('#vendor-name').val();
     vendorName = vendorName || 'VENDOR_NAME';
+    if (swoosh.checked) {
+      var button = "follow";
+    } else if (swooshFollow.checked) {
+        button = "spicebutton-follow";
+    }
     $('.follow-button-code')
       .val('<a href="http://community.spiceworks.com/pages/' + vendorName +
-        '/follow"><img src="http://static.spiceworks.com/share/follow.png"' +
-        'title="Follow us on Spiceworks" alt="Follow us on Spiceworks" /></a>');
+          '/follow"><img src="http://static.spiceworks.com/share/' + button + '.png"' +
+          'title="Follow us on Spiceworks" alt="Follow us on Spiceworks" /></a>');
   },
 
   startListeningForCopyToClipboardClicks = function(){
-    $('.copy-to-clipboard-btn')
-      .on('click', function(e){
-        e.preventDefault();
+    var $copyButton = $('.copy-to-clipboard-btn');
+    var client = new ZeroClipboard( $copyButton );
+
+    $copyButton.on('click', function(e){ e.preventDefault(); })
+    client.on( 'ready', function(event) {
+      client.on( 'aftercopy', function(event) {
+        console.log('Copied text to clipboard: ' + event.data['text/plain']);
         highlightElement($('.copy-success'));
-      })
-      .zclip({
-        path:'http://www.steamdev.com/zclip/js/ZeroClipboard.swf',
-        copy: function(){return $('#' + $(this).data('clipboard-source')).val();},
-        afterCopy: function(){highlightElement($(this).data('clipboard-source'));}
-      });
+      } );
+    } );
+
+    client.on( 'error', function(event) {
+      // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
+      ZeroClipboard.destroy();
+    } );
   };
 
   developers.documentation = {

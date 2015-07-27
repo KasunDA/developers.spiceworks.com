@@ -104,12 +104,18 @@
       <p>Baam! That's IT.</p>
       <p>Questions? Email <a href="mailto:partner_support@spiceworks.com">partner_support@spiceworks.com</a> and we'll help you out!</p>
       <form class="follow-button-code-form">
-        <input id="vendor-name" type="text" placeholder="Enter your Spiceworks vendor page name..." />
-        <button class="sui-bttn update-follow-button-code" data-target-element="follow-button-code">
-          Update Code
+        <div class = 'follow-choice'>
+          <input type = "radio" name = "follow-choice" id = "swoosh" class = "follow-radio" checked = "checked">Swoosh
+          <img alt="Follow Icon" class="follow-icon" src="../../images/documentation/spicebutton-20px.png" />
+          <input type = "radio" name = "follow-choice" id = "swooshFollow" class = "follow-radio">Swoosh + Follow
+          <img alt="Follow Icon" class="follow-icon" src="../../images/documentation/spicebutton-follow.png" />
+        </div>
+         <input id="vendor-name" type="text" placeholder="Enter your Spiceworks vendor page name..." />
+        <button class="sui-bttn sui-bttn-primary update-follow-button-code" data-target-element="follow-button-code">
+          Get Code
         </button>
         <textarea id="follow-button-code" class="follow-button-code code-input"></textarea>
-        <button  class="sui-bttn sui-bttn-primary copy-to-clipboard-btn" data-clipboard-source="follow-button-code">
+        <button  class="sui-bttn copy-to-clipboard-btn" data-clipboard-target="follow-button-code">
           Copy to Clipboard
         </button>
         <span class="copy-success">Copied!</span>
@@ -141,7 +147,7 @@
     <p>Login with Spiceworks is a simple way for IT pros to sign-in or join your login system, with their 'IT' social profile. IT just makes sense! Use the profile they use while doing their jobs. When IT pros log into your site with their Spiceworks IDs they bring IT with them… to you.</p>
     <div class="instructions social-buttons">
       <div class="login-button-form">
-        <form accept-charset="UTF-8" action="https://pages.spiceworks.com/index.php/leadCapture/save" class="login-with-spiceworks-form" data-remote="true" method="post" role="form">
+        <form accept-charset="UTF-8" action="http://pages.spiceworks.com/index.php/leadCapture/save" class="login-with-spiceworks-form" data-remote="true" method="post" role="form">
           <h5 class="login-button-form_header">Get the Login with Spiceworks social button</h5>
           <div>
             <label class="sr-only" for="ApplicationURL">Main application URL</label>
