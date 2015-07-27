@@ -19757,13 +19757,11 @@ jQuery(function(){
     $copyButton.on('click', function(e){ e.preventDefault(); })
     client.on( 'ready', function(event) {
       client.on( 'aftercopy', function(event) {
-        console.log('Copied text to clipboard: ' + event.data['text/plain']);
         highlightElement($('.copy-success'));
       } );
     } );
 
     client.on( 'error', function(event) {
-      // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
       ZeroClipboard.destroy();
     } );
   };
