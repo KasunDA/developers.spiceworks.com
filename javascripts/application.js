@@ -18101,7 +18101,7 @@ jQuery( document ).ready( onReady.init );
   return this || window;
 }());
 ZeroClipboard.config( {
-  swfPath: "/images/zeroclipboard/ZeroClipboard.swf" } );
+  swfPath: "developers.spiceworks.com/images/zeroclipboard/ZeroClipboard.swf" } );
 // >=IE10 no longer supports conditional comments so we have to manually add
 // the 'ie' class to html for that browser
 // See: http://jsfiddle.net/evildonald/jLuF5/
