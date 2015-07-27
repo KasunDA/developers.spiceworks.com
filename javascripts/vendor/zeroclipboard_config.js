@@ -1,2 +1,2 @@
 ZeroClipboard.config( {
-  swfPath: "../images/zeroclipboard/ZeroClipboard.swf" } );
+  swfPath: "/images/zeroclipboard/ZeroClipboard.swf" } );
