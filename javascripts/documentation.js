@@ -29,9 +29,9 @@
     var vendorName = $('#vendor-name').val();
     vendorName = vendorName || 'VENDOR_NAME';
     if (swoosh.checked) {
-      var button = "follow";
-    } else if (swooshFollow.checked) {
-        button = "spicebutton-follow";
+      var button = "swoosh_follow";
+    } else if (swooshAndFollow.checked) {
+      button = "follow";
     }
     $('.follow-button-code')
       .val('<a href="http://community.spiceworks.com/pages/' + vendorName +
