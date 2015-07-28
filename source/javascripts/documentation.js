@@ -30,15 +30,17 @@
     var vendorName = $('#vendor-name').val();
     vendorName = vendorName || 'VENDOR_NAME';
     if (swooshOnly.checked) {
-      iconName = "swoosh_follow";
+      iconName = "spicebutton-20px";
+      var subdirectory = "/5010/"
       mediumName = "button_swoosh_only";
     } else if (swooshAndFollow.checked) {
-      iconName = "follow";
+      iconName = "spicebutton-follow";
+      var subdirectory = "/5009/"
       mediumName = "button_swoosh_and_follow";
     }
     $('.follow-button-code')
-      .val('<a href="http://community.spiceworks.com/pages/' + vendorName +
-          '/follow?utm_medium=' + mediumName + '"><img src="http://static.spiceworks.com/share/' + iconName + '.png"' +
+      .val('<a href="//community.spiceworks.com/pages/' + vendorName +
+          '/follow?utm_medium=' + mediumName + '"><img src="//static.spiceworks.com/shared/post/0010' + subdirectory + iconName + '.png"' +
           'title="Follow us on Spiceworks" alt="Follow us on Spiceworks" /></a>');
   },
 
