@@ -19737,16 +19737,19 @@ jQuery(function(){
   },
 
   setFollowButtonCode = function(){
+    var iconName, mediumName;
     var vendorName = $('#vendor-name').val();
     vendorName = vendorName || 'VENDOR_NAME';
-    if (swoosh.checked) {
-      var button = "swoosh_follow";
+    if (swooshOnly.checked) {
+      iconName = "swoosh_follow";
+      mediumName = "button_swoosh_only";
     } else if (swooshAndFollow.checked) {
-      button = "follow";
+      iconName = "follow";
+      mediumName = "button_swoosh_and_follow";
     }
     $('.follow-button-code')
       .val('<a href="http://community.spiceworks.com/pages/' + vendorName +
-          '/follow"><img src="http://static.spiceworks.com/share/' + button + '.png"' +
+          '/follow?utm_medium=' + mediumName + '"><img src="http://static.spiceworks.com/share/' + iconName + '.png"' +
           'title="Follow us on Spiceworks" alt="Follow us on Spiceworks" /></a>');
   },
 
