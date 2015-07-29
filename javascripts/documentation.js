@@ -26,20 +26,20 @@
   },
 
   setFollowButtonCode = function(){
-    var iconName, mediumName;
+    var iconPath, mediumName;
     var vendorName = $('#vendor-name').val();
     vendorName = vendorName || 'VENDOR_NAME';
     if (swooshOnly.checked) {
-      iconName = "swoosh_follow";
+      iconPath = "/5010/spicebutton-20px";
       mediumName = "button_swoosh_only";
     } else if (swooshAndFollow.checked) {
-      iconName = "follow";
+      iconPath = "/5009/spicebutton-follow";
       mediumName = "button_swoosh_and_follow";
     }
     $('.follow-button-code')
-      .val('<a href="http://community.spiceworks.com/pages/' + vendorName +
-          '/follow?utm_medium=' + mediumName + '"><img src="http://static.spiceworks.com/share/' + iconName + '.png"' +
-          'title="Follow us on Spiceworks" alt="Follow us on Spiceworks" /></a>');
+      .val('<a href="//community.spiceworks.com/pages/' + vendorName +
+          '/follow?utm_medium=' + mediumName + '"><img src="//static.spiceworks.com/shared/post/0010' + iconPath + '.png"' +
+          ' title="Follow us on Spiceworks" alt="Follow us on Spiceworks" /></a>');
   },
 
   startListeningForCopyToClipboardClicks = function(){
@@ -48,12 +48,16 @@
 
     $copyButton.on('click', function(e){ e.preventDefault(); })
     client.on( 'ready', function(event) {
+
       client.on( 'aftercopy', function(event) {
         highlightElement($('.copy-success'));
       } );
     } );
 
     client.on( 'error', function(event) {
+      if(event.name == "flash-disabled") {
+        $('button[name=copy-btn]').hide();
+      }
       ZeroClipboard.destroy();
     } );
   };
