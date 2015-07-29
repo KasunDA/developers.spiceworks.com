@@ -41,7 +41,7 @@
     $('.follow-button-code')
       .val('<a href="//community.spiceworks.com/pages/' + vendorName +
           '/follow?utm_medium=' + mediumName + '"><img src="//static.spiceworks.com/shared/post/0010' + subdirectory + iconName + '.png"' +
-          'title="Follow us on Spiceworks" alt="Follow us on Spiceworks" /></a>');
+          ' title="Follow us on Spiceworks" alt="Follow us on Spiceworks" /></a>');
   },
 
   startListeningForCopyToClipboardClicks = function(){
@@ -50,12 +50,16 @@
 
     $copyButton.on('click', function(e){ e.preventDefault(); })
     client.on( 'ready', function(event) {
+
       client.on( 'aftercopy', function(event) {
         highlightElement($('.copy-success'));
       } );
     } );
 
     client.on( 'error', function(event) {
+      if(event.name == "flash-disabled") {
+        $('button[name=copy-btn]').hide();
+      }
       ZeroClipboard.destroy();
     } );
   };
