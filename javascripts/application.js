@@ -10395,16 +10395,14 @@ return jQuery;
 
     // Default way to get an element's href. May be overridden at $.rails.href.
     href: function(element) {
-      return element.attr('href');
+      return element[0].href;
     },
 
     // Submits "remote" forms and links with ajax
     handleRemote: function(element) {
-      var method, url, data, elCrossDomain, crossDomain, withCredentials, dataType, options;
+      var method, url, data, withCredentials, dataType, options;
 
       if (rails.fire(element, 'ajax:before')) {
-        elCrossDomain = element.data('cross-domain');
-        crossDomain = elCrossDomain === undefined ? null : elCrossDomain;
         withCredentials = element.data('with-credentials') || null;
         dataType = element.data('type') || ($.ajaxSettings && $.ajaxSettings.dataType);
 
@@ -10456,7 +10454,7 @@ return jQuery;
           error: function(xhr, status, error) {
             element.trigger('ajax:error', [xhr, status, error]);
           },
-          crossDomain: crossDomain
+          crossDomain: rails.isCrossDomain(url)
         };
 
         // There is no withCredentials for IE6-8 when
@@ -10476,6 +10474,27 @@ return jQuery;
       }
     },
 
+    // Determines if the request is a cross domain request.
+    isCrossDomain: function(url) {
+      var originAnchor = document.createElement("a");
+      originAnchor.href = location.href;
+      var urlAnchor = document.createElement("a");
+
+      try {
+        urlAnchor.href = url;
+        // This is a workaround to a IE bug.
+        urlAnchor.href = urlAnchor.href;
+
+        // Make sure that the browser parses the URL and that the protocols and hosts match.
+        return !urlAnchor.protocol || !urlAnchor.host ||
+          (originAnchor.protocol + "//" + originAnchor.host !==
+            urlAnchor.protocol + "//" + urlAnchor.host);
+      } catch (e) {
+        // If there is an error parsing the URL, assume it is crossDomain.
+        return true;
+      }
+    },
+
     // Handles "data-method" on links such as:
     // <a href="/users/5" data-method="delete" rel="nofollow" data-confirm="Are you sure?">Delete</a>
     handleMethod: function(link) {
@@ -10487,7 +10506,7 @@ return jQuery;
         form = $('<form method="post" action="' + href + '"></form>'),
         metadataInput = '<input name="_method" value="' + method + '" type="hidden" />';
 
-      if (csrfParam !== undefined && csrfToken !== undefined) {
+      if (csrfParam !== undefined && csrfToken !== undefined && !rails.isCrossDomain(href)) {
         metadataInput += '<input name="' + csrfParam + '" value="' + csrfToken + '" type="hidden" />';
       }
 
@@ -10753,7 +10772,7 @@ return jQuery;
   }
 
 })( jQuery );
-//     Underscore.js 1.8.2
+//     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 //     Underscore may be freely distributed under the MIT license.
@@ -10810,7 +10829,7 @@ return jQuery;
   }
 
   // Current version.
-  _.VERSION = '1.8.2';
+  _.VERSION = '1.8.3';
 
   // Internal function that returns an efficient (for current engines) version
   // of the passed-in callback, to be repeatedly applied in other Underscore
@@ -10877,12 +10896,20 @@ return jQuery;
     return result;
   };
 
+  var property = function(key) {
+    return function(obj) {
+      return obj == null ? void 0 : obj[key];
+    };
+  };
+
   // Helper for collection methods to determine whether a collection
   // should be iterated as an array or as an object
   // Related: http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength
+  // Avoids a very nasty iOS 8 JIT bug on ARM-64. #2094
   var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
+  var getLength = property('length');
   var isArrayLike = function(collection) {
-    var length = collection && collection.length;
+    var length = getLength(collection);
     return typeof length == 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
   };
 
@@ -11007,11 +11034,12 @@ return jQuery;
     return false;
   };
 
-  // Determine if the array or object contains a given value (using `===`).
+  // Determine if the array or object contains a given item (using `===`).
   // Aliased as `includes` and `include`.
-  _.contains = _.includes = _.include = function(obj, target, fromIndex) {
+  _.contains = _.includes = _.include = function(obj, item, fromIndex, guard) {
     if (!isArrayLike(obj)) obj = _.values(obj);
-    return _.indexOf(obj, target, typeof fromIndex == 'number' && fromIndex) >= 0;
+    if (typeof fromIndex != 'number' || guard) fromIndex = 0;
+    return _.indexOf(obj, item, fromIndex) >= 0;
   };
 
   // Invoke a method (with arguments) on every item in a collection.
@@ -11235,7 +11263,7 @@ return jQuery;
   // Internal implementation of a recursive `flatten` function.
   var flatten = function(input, shallow, strict, startIndex) {
     var output = [], idx = 0;
-    for (var i = startIndex || 0, length = input && input.length; i < length; i++) {
+    for (var i = startIndex || 0, length = getLength(input); i < length; i++) {
       var value = input[i];
       if (isArrayLike(value) && (_.isArray(value) || _.isArguments(value))) {
         //flatten current level of array or arguments object
@@ -11266,7 +11294,6 @@ return jQuery;
   // been sorted, you have the option of using a faster algorithm.
   // Aliased as `unique`.
   _.uniq = _.unique = function(array, isSorted, iteratee, context) {
-    if (array == null) return [];
     if (!_.isBoolean(isSorted)) {
       context = iteratee;
       iteratee = isSorted;
@@ -11275,7 +11302,7 @@ return jQuery;
     if (iteratee != null) iteratee = cb(iteratee, context);
     var result = [];
     var seen = [];
-    for (var i = 0, length = array.length; i < length; i++) {
+    for (var i = 0, length = getLength(array); i < length; i++) {
       var value = array[i],
           computed = iteratee ? iteratee(value, i, array) : value;
       if (isSorted) {
@@ -11302,10 +11329,9 @@ return jQuery;
   // Produce an array that contains every item shared between all the
   // passed-in arrays.
   _.intersection = function(array) {
-    if (array == null) return [];
     var result = [];
     var argsLength = arguments.length;
-    for (var i = 0, length = array.length; i < length; i++) {
+    for (var i = 0, length = getLength(array); i < length; i++) {
       var item = array[i];
       if (_.contains(result, item)) continue;
       for (var j = 1; j < argsLength; j++) {
@@ -11334,7 +11360,7 @@ return jQuery;
   // Complement of _.zip. Unzip accepts an array of arrays and groups
   // each array's elements on shared indices
   _.unzip = function(array) {
-    var length = array && _.max(array, 'length').length || 0;
+    var length = array && _.max(array, getLength).length || 0;
     var result = Array(length);
 
     for (var index = 0; index < length; index++) {
@@ -11348,7 +11374,7 @@ return jQuery;
   // the corresponding values.
   _.object = function(list, values) {
     var result = {};
-    for (var i = 0, length = list && list.length; i < length; i++) {
+    for (var i = 0, length = getLength(list); i < length; i++) {
       if (values) {
         result[list[i]] = values[i];
       } else {
@@ -11358,42 +11384,11 @@ return jQuery;
     return result;
   };
 
-  // Return the position of the first occurrence of an item in an array,
-  // or -1 if the item is not included in the array.
-  // If the array is large and already in sort order, pass `true`
-  // for **isSorted** to use binary search.
-  _.indexOf = function(array, item, isSorted) {
-    var i = 0, length = array && array.length;
-    if (typeof isSorted == 'number') {
-      i = isSorted < 0 ? Math.max(0, length + isSorted) : isSorted;
-    } else if (isSorted && length) {
-      i = _.sortedIndex(array, item);
-      return array[i] === item ? i : -1;
-    }
-    if (item !== item) {
-      return _.findIndex(slice.call(array, i), _.isNaN);
-    }
-    for (; i < length; i++) if (array[i] === item) return i;
-    return -1;
-  };
-
-  _.lastIndexOf = function(array, item, from) {
-    var idx = array ? array.length : 0;
-    if (typeof from == 'number') {
-      idx = from < 0 ? idx + from + 1 : Math.min(idx, from + 1);
-    }
-    if (item !== item) {
-      return _.findLastIndex(slice.call(array, 0, idx), _.isNaN);
-    }
-    while (--idx >= 0) if (array[idx] === item) return idx;
-    return -1;
-  };
-
   // Generator function to create the findIndex and findLastIndex functions
-  function createIndexFinder(dir) {
+  function createPredicateIndexFinder(dir) {
     return function(array, predicate, context) {
       predicate = cb(predicate, context);
-      var length = array != null && array.length;
+      var length = getLength(array);
       var index = dir > 0 ? 0 : length - 1;
       for (; index >= 0 && index < length; index += dir) {
         if (predicate(array[index], index, array)) return index;
@@ -11403,16 +11398,15 @@ return jQuery;
   }
 
   // Returns the first index on an array-like that passes a predicate test
-  _.findIndex = createIndexFinder(1);
-
-  _.findLastIndex = createIndexFinder(-1);
+  _.findIndex = createPredicateIndexFinder(1);
+  _.findLastIndex = createPredicateIndexFinder(-1);
 
   // Use a comparator function to figure out the smallest index at which
   // an object should be inserted so as to maintain order. Uses binary search.
   _.sortedIndex = function(array, obj, iteratee, context) {
     iteratee = cb(iteratee, context, 1);
     var value = iteratee(obj);
-    var low = 0, high = array.length;
+    var low = 0, high = getLength(array);
     while (low < high) {
       var mid = Math.floor((low + high) / 2);
       if (iteratee(array[mid]) < value) low = mid + 1; else high = mid;
@@ -11420,11 +11414,43 @@ return jQuery;
     return low;
   };
 
+  // Generator function to create the indexOf and lastIndexOf functions
+  function createIndexFinder(dir, predicateFind, sortedIndex) {
+    return function(array, item, idx) {
+      var i = 0, length = getLength(array);
+      if (typeof idx == 'number') {
+        if (dir > 0) {
+            i = idx >= 0 ? idx : Math.max(idx + length, i);
+        } else {
+            length = idx >= 0 ? Math.min(idx + 1, length) : idx + length + 1;
+        }
+      } else if (sortedIndex && idx && length) {
+        idx = sortedIndex(array, item);
+        return array[idx] === item ? idx : -1;
+      }
+      if (item !== item) {
+        idx = predicateFind(slice.call(array, i, length), _.isNaN);
+        return idx >= 0 ? idx + i : -1;
+      }
+      for (idx = dir > 0 ? i : length - 1; idx >= 0 && idx < length; idx += dir) {
+        if (array[idx] === item) return idx;
+      }
+      return -1;
+    };
+  }
+
+  // Return the position of the first occurrence of an item in an array,
+  // or -1 if the item is not included in the array.
+  // If the array is large and already in sort order, pass `true`
+  // for **isSorted** to use binary search.
+  _.indexOf = createIndexFinder(1, _.findIndex, _.sortedIndex);
+  _.lastIndexOf = createIndexFinder(-1, _.findLastIndex);
+
   // Generate an integer Array containing an arithmetic progression. A port of
   // the native Python `range()` function. See
   // [the Python documentation](http://docs.python.org/library/functions.html#range).
   _.range = function(start, stop, step) {
-    if (arguments.length <= 1) {
+    if (stop == null) {
       stop = start || 0;
       start = 0;
     }
@@ -11803,6 +11829,15 @@ return jQuery;
   // Fill in a given object with default properties.
   _.defaults = createAssigner(_.allKeys, true);
 
+  // Creates an object that inherits from the given prototype object.
+  // If additional properties are provided then they will be added to the
+  // created object.
+  _.create = function(prototype, props) {
+    var result = baseCreate(prototype);
+    if (props) _.extendOwn(result, props);
+    return result;
+  };
+
   // Create a (shallow-cloned) duplicate of an object.
   _.clone = function(obj) {
     if (!_.isObject(obj)) return obj;
@@ -11880,7 +11915,7 @@ return jQuery;
     }
     // Assume equality for cyclic structures. The algorithm for detecting cyclic
     // structures is adapted from ES 5.1 section 15.12.3, abstract operation `JO`.
-    
+
     // Initializing stack of traversed objects.
     // It's done here since we only need them for objects and arrays comparison.
     aStack = aStack || [];
@@ -12031,11 +12066,7 @@ return jQuery;
 
   _.noop = function(){};
 
-  _.property = function(key) {
-    return function(obj) {
-      return obj == null ? void 0 : obj[key];
-    };
-  };
+  _.property = property;
 
   // Generates a function for a given object that returns a given property.
   _.propertyOf = function(obj) {
@@ -12044,7 +12075,7 @@ return jQuery;
     };
   };
 
-  // Returns a predicate for checking whether an object has a given set of 
+  // Returns a predicate for checking whether an object has a given set of
   // `key:value` pairs.
   _.matcher = _.matches = function(attrs) {
     attrs = _.extendOwn({}, attrs);
@@ -12271,7 +12302,7 @@ return jQuery;
   // Provide unwrapping proxy for some methods used in engine operations
   // such as arithmetic and JSON stringification.
   _.prototype.valueOf = _.prototype.toJSON = _.prototype.value;
-  
+
   _.prototype.toString = function() {
     return '' + this._wrapped;
   };
@@ -12290,9 +12321,9 @@ return jQuery;
   }
 }.call(this));
 /*!
- * Bootstrap v3.3.4 (http://getbootstrap.com)
+ * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under the MIT license
  */
 
 
@@ -12309,7 +12340,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: transition.js v3.3.4
+ * Bootstrap: transition.js v3.3.5
  * http://getbootstrap.com/javascript/#transitions
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -12369,7 +12400,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: alert.js v3.3.4
+ * Bootstrap: alert.js v3.3.5
  * http://getbootstrap.com/javascript/#alerts
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -12388,7 +12419,7 @@ if (typeof jQuery === 'undefined') {
     $(el).on('click', dismiss, this.close)
   }
 
-  Alert.VERSION = '3.3.4'
+  Alert.VERSION = '3.3.5'
 
   Alert.TRANSITION_DURATION = 150
 
@@ -12464,7 +12495,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: button.js v3.3.4
+ * Bootstrap: button.js v3.3.5
  * http://getbootstrap.com/javascript/#buttons
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -12484,7 +12515,7 @@ if (typeof jQuery === 'undefined') {
     this.isLoading = false
   }
 
-  Button.VERSION  = '3.3.4'
+  Button.VERSION  = '3.3.5'
 
   Button.DEFAULTS = {
     loadingText: 'loading...'
@@ -12496,7 +12527,7 @@ if (typeof jQuery === 'undefined') {
     var val  = $el.is('input') ? 'val' : 'html'
     var data = $el.data()
 
-    state = state + 'Text'
+    state += 'Text'
 
     if (data.resetText == null) $el.data('resetText', $el[val]())
 
@@ -12521,15 +12552,19 @@ if (typeof jQuery === 'undefined') {
     if ($parent.length) {
       var $input = this.$element.find('input')
       if ($input.prop('type') == 'radio') {
-        if ($input.prop('checked') && this.$element.hasClass('active')) changed = false
-        else $parent.find('.active').removeClass('active')
+        if ($input.prop('checked')) changed = false
+        $parent.find('.active').removeClass('active')
+        this.$element.addClass('active')
+      } else if ($input.prop('type') == 'checkbox') {
+        if (($input.prop('checked')) !== this.$element.hasClass('active')) changed = false
+        this.$element.toggleClass('active')
       }
-      if (changed) $input.prop('checked', !this.$element.hasClass('active')).trigger('change')
+      $input.prop('checked', this.$element.hasClass('active'))
+      if (changed) $input.trigger('change')
     } else {
       this.$element.attr('aria-pressed', !this.$element.hasClass('active'))
+      this.$element.toggleClass('active')
     }
-
-    if (changed) this.$element.toggleClass('active')
   }
 
 
@@ -12572,7 +12607,7 @@ if (typeof jQuery === 'undefined') {
       var $btn = $(e.target)
       if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
       Plugin.call($btn, 'toggle')
-      e.preventDefault()
+      if (!($(e.target).is('input[type="radio"]') || $(e.target).is('input[type="checkbox"]'))) e.preventDefault()
     })
     .on('focus.bs.button.data-api blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
       $(e.target).closest('.btn').toggleClass('focus', /^focus(in)?$/.test(e.type))
@@ -12581,7 +12616,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: carousel.js v3.3.4
+ * Bootstrap: carousel.js v3.3.5
  * http://getbootstrap.com/javascript/#carousel
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -12612,7 +12647,7 @@ if (typeof jQuery === 'undefined') {
       .on('mouseleave.bs.carousel', $.proxy(this.cycle, this))
   }
 
-  Carousel.VERSION  = '3.3.4'
+  Carousel.VERSION  = '3.3.5'
 
   Carousel.TRANSITION_DURATION = 600
 
@@ -12819,7 +12854,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: collapse.js v3.3.4
+ * Bootstrap: collapse.js v3.3.5
  * http://getbootstrap.com/javascript/#collapse
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -12849,7 +12884,7 @@ if (typeof jQuery === 'undefined') {
     if (this.options.toggle) this.toggle()
   }
 
-  Collapse.VERSION  = '3.3.4'
+  Collapse.VERSION  = '3.3.5'
 
   Collapse.TRANSITION_DURATION = 350
 
@@ -13031,7 +13066,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: dropdown.js v3.3.4
+ * Bootstrap: dropdown.js v3.3.5
  * http://getbootstrap.com/javascript/#dropdowns
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -13051,7 +13086,41 @@ if (typeof jQuery === 'undefined') {
     $(element).on('click.bs.dropdown', this.toggle)
   }
 
-  Dropdown.VERSION = '3.3.4'
+  Dropdown.VERSION = '3.3.5'
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+  function clearMenus(e) {
+    if (e && e.which === 3) return
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+
+      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
+    })
+  }
 
   Dropdown.prototype.toggle = function (e) {
     var $this = $(this)
@@ -13066,7 +13135,10 @@ if (typeof jQuery === 'undefined') {
     if (!isActive) {
       if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
         // if mobile we use a backdrop because click events don't delegate
-        $('<div class="dropdown-backdrop"/>').insertAfter($(this)).on('click', clearMenus)
+        $(document.createElement('div'))
+          .addClass('dropdown-backdrop')
+          .insertAfter($(this))
+          .on('click', clearMenus)
       }
 
       var relatedTarget = { relatedTarget: this }
@@ -13099,55 +13171,23 @@ if (typeof jQuery === 'undefined') {
     var $parent  = getParent($this)
     var isActive = $parent.hasClass('open')
 
-    if ((!isActive && e.which != 27) || (isActive && e.which == 27)) {
+    if (!isActive && e.which != 27 || isActive && e.which == 27) {
       if (e.which == 27) $parent.find(toggle).trigger('focus')
       return $this.trigger('click')
     }
 
     var desc = ' li:not(.disabled):visible a'
-    var $items = $parent.find('[role="menu"]' + desc + ', [role="listbox"]' + desc)
+    var $items = $parent.find('.dropdown-menu' + desc)
 
     if (!$items.length) return
 
     var index = $items.index(e.target)
 
-    if (e.which == 38 && index > 0)                 index--                        // up
-    if (e.which == 40 && index < $items.length - 1) index++                        // down
-    if (!~index)                                      index = 0
+    if (e.which == 38 && index > 0)                 index--         // up
+    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (!~index)                                    index = 0
 
     $items.eq(index).trigger('focus')
-  }
-
-  function clearMenus(e) {
-    if (e && e.which === 3) return
-    $(backdrop).remove()
-    $(toggle).each(function () {
-      var $this         = $(this)
-      var $parent       = getParent($this)
-      var relatedTarget = { relatedTarget: this }
-
-      if (!$parent.hasClass('open')) return
-
-      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
-
-      if (e.isDefaultPrevented()) return
-
-      $this.attr('aria-expanded', 'false')
-      $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
-    })
-  }
-
-  function getParent($this) {
-    var selector = $this.attr('data-target')
-
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
-    }
-
-    var $parent = selector && $(selector)
-
-    return $parent && $parent.length ? $parent : $this.parent()
   }
 
 
@@ -13187,13 +13227,12 @@ if (typeof jQuery === 'undefined') {
     .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
     .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
     .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
-    .on('keydown.bs.dropdown.data-api', '[role="menu"]', Dropdown.prototype.keydown)
-    .on('keydown.bs.dropdown.data-api', '[role="listbox"]', Dropdown.prototype.keydown)
+    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
 
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: modal.js v3.3.4
+ * Bootstrap: modal.js v3.3.5
  * http://getbootstrap.com/javascript/#modals
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -13227,7 +13266,7 @@ if (typeof jQuery === 'undefined') {
     }
   }
 
-  Modal.VERSION  = '3.3.4'
+  Modal.VERSION  = '3.3.5'
 
   Modal.TRANSITION_DURATION = 300
   Modal.BACKDROP_TRANSITION_DURATION = 150
@@ -13284,9 +13323,7 @@ if (typeof jQuery === 'undefined') {
         that.$element[0].offsetWidth // force reflow
       }
 
-      that.$element
-        .addClass('in')
-        .attr('aria-hidden', false)
+      that.$element.addClass('in')
 
       that.enforceFocus()
 
@@ -13320,7 +13357,6 @@ if (typeof jQuery === 'undefined') {
 
     this.$element
       .removeClass('in')
-      .attr('aria-hidden', true)
       .off('click.dismiss.bs.modal')
       .off('mouseup.dismiss.bs.modal')
 
@@ -13384,7 +13420,8 @@ if (typeof jQuery === 'undefined') {
     if (this.isShown && this.options.backdrop) {
       var doAnimate = $.support.transition && animate
 
-      this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
+      this.$backdrop = $(document.createElement('div'))
+        .addClass('modal-backdrop ' + animate)
         .appendTo(this.$body)
 
       this.$element.on('click.dismiss.bs.modal', $.proxy(function (e) {
@@ -13533,7 +13570,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tooltip.js v3.3.4
+ * Bootstrap: tooltip.js v3.3.5
  * http://getbootstrap.com/javascript/#tooltip
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ========================================================================
@@ -13555,11 +13592,12 @@ if (typeof jQuery === 'undefined') {
     this.timeout    = null
     this.hoverState = null
     this.$element   = null
+    this.inState    = null
 
     this.init('tooltip', element, options)
   }
 
-  Tooltip.VERSION  = '3.3.4'
+  Tooltip.VERSION  = '3.3.5'
 
   Tooltip.TRANSITION_DURATION = 150
 
@@ -13584,7 +13622,8 @@ if (typeof jQuery === 'undefined') {
     this.type      = type
     this.$element  = $(element)
     this.options   = this.getOptions(options)
-    this.$viewport = this.options.viewport && $(this.options.viewport.selector || this.options.viewport)
+    this.$viewport = this.options.viewport && $($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
+    this.inState   = { click: false, hover: false, focus: false }
 
     if (this.$element[0] instanceof document.constructor && !this.options.selector) {
       throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!')
@@ -13643,14 +13682,18 @@ if (typeof jQuery === 'undefined') {
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget).data('bs.' + this.type)
 
-    if (self && self.$tip && self.$tip.is(':visible')) {
-      self.hoverState = 'in'
-      return
-    }
-
     if (!self) {
       self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
       $(obj.currentTarget).data('bs.' + this.type, self)
+    }
+
+    if (obj instanceof $.Event) {
+      self.inState[obj.type == 'focusin' ? 'focus' : 'hover'] = true
+    }
+
+    if (self.tip().hasClass('in') || self.hoverState == 'in') {
+      self.hoverState = 'in'
+      return
     }
 
     clearTimeout(self.timeout)
@@ -13664,6 +13707,14 @@ if (typeof jQuery === 'undefined') {
     }, self.options.delay.show)
   }
 
+  Tooltip.prototype.isInStateTrue = function () {
+    for (var key in this.inState) {
+      if (this.inState[key]) return true
+    }
+
+    return false
+  }
+
   Tooltip.prototype.leave = function (obj) {
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget).data('bs.' + this.type)
@@ -13672,6 +13723,12 @@ if (typeof jQuery === 'undefined') {
       self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
       $(obj.currentTarget).data('bs.' + this.type, self)
     }
+
+    if (obj instanceof $.Event) {
+      self.inState[obj.type == 'focusout' ? 'focus' : 'hover'] = false
+    }
+
+    if (self.isInStateTrue()) return
 
     clearTimeout(self.timeout)
 
@@ -13719,6 +13776,7 @@ if (typeof jQuery === 'undefined') {
         .data('bs.' + this.type, this)
 
       this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
+      this.$element.trigger('inserted.bs.' + this.type)
 
       var pos          = this.getPosition()
       var actualWidth  = $tip[0].offsetWidth
@@ -13726,13 +13784,12 @@ if (typeof jQuery === 'undefined') {
 
       if (autoPlace) {
         var orgPlacement = placement
-        var $container   = this.options.container ? $(this.options.container) : this.$element.parent()
-        var containerDim = this.getPosition($container)
+        var viewportDim = this.getPosition(this.$viewport)
 
-        placement = placement == 'bottom' && pos.bottom + actualHeight > containerDim.bottom ? 'top'    :
-                    placement == 'top'    && pos.top    - actualHeight < containerDim.top    ? 'bottom' :
-                    placement == 'right'  && pos.right  + actualWidth  > containerDim.width  ? 'left'   :
-                    placement == 'left'   && pos.left   - actualWidth  < containerDim.left   ? 'right'  :
+        placement = placement == 'bottom' && pos.bottom + actualHeight > viewportDim.bottom ? 'top'    :
+                    placement == 'top'    && pos.top    - actualHeight < viewportDim.top    ? 'bottom' :
+                    placement == 'right'  && pos.right  + actualWidth  > viewportDim.width  ? 'left'   :
+                    placement == 'left'   && pos.left   - actualWidth  < viewportDim.left   ? 'right'  :
                     placement
 
         $tip
@@ -13773,8 +13830,8 @@ if (typeof jQuery === 'undefined') {
     if (isNaN(marginTop))  marginTop  = 0
     if (isNaN(marginLeft)) marginLeft = 0
 
-    offset.top  = offset.top  + marginTop
-    offset.left = offset.left + marginLeft
+    offset.top  += marginTop
+    offset.left += marginLeft
 
     // $.fn.offset doesn't round pixel values
     // so we use setOffset directly with our own function B-0
@@ -13856,7 +13913,7 @@ if (typeof jQuery === 'undefined') {
 
   Tooltip.prototype.fixTitle = function () {
     var $e = this.$element
-    if ($e.attr('title') || typeof ($e.attr('data-original-title')) != 'string') {
+    if ($e.attr('title') || typeof $e.attr('data-original-title') != 'string') {
       $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
     }
   }
@@ -13911,7 +13968,7 @@ if (typeof jQuery === 'undefined') {
       var rightEdgeOffset = pos.left + viewportPadding + actualWidth
       if (leftEdgeOffset < viewportDimensions.left) { // left overflow
         delta.left = viewportDimensions.left - leftEdgeOffset
-      } else if (rightEdgeOffset > viewportDimensions.width) { // right overflow
+      } else if (rightEdgeOffset > viewportDimensions.right) { // right overflow
         delta.left = viewportDimensions.left + viewportDimensions.width - rightEdgeOffset
       }
     }
@@ -13937,7 +13994,13 @@ if (typeof jQuery === 'undefined') {
   }
 
   Tooltip.prototype.tip = function () {
-    return (this.$tip = this.$tip || $(this.options.template))
+    if (!this.$tip) {
+      this.$tip = $(this.options.template)
+      if (this.$tip.length != 1) {
+        throw new Error(this.type + ' `template` option must consist of exactly 1 top-level element!')
+      }
+    }
+    return this.$tip
   }
 
   Tooltip.prototype.arrow = function () {
@@ -13966,7 +14029,13 @@ if (typeof jQuery === 'undefined') {
       }
     }
 
-    self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
+    if (e) {
+      self.inState.click = !self.inState.click
+      if (self.isInStateTrue()) self.enter(self)
+      else self.leave(self)
+    } else {
+      self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
+    }
   }
 
   Tooltip.prototype.destroy = function () {
@@ -13974,6 +14043,12 @@ if (typeof jQuery === 'undefined') {
     clearTimeout(this.timeout)
     this.hide(function () {
       that.$element.off('.' + that.type).removeData('bs.' + that.type)
+      if (that.$tip) {
+        that.$tip.detach()
+      }
+      that.$tip = null
+      that.$arrow = null
+      that.$viewport = null
     })
   }
 
@@ -14010,7 +14085,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: popover.js v3.3.4
+ * Bootstrap: popover.js v3.3.5
  * http://getbootstrap.com/javascript/#popovers
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -14030,7 +14105,7 @@ if (typeof jQuery === 'undefined') {
 
   if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
 
-  Popover.VERSION  = '3.3.4'
+  Popover.VERSION  = '3.3.5'
 
   Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
     placement: 'right',
@@ -14119,7 +14194,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: scrollspy.js v3.3.4
+ * Bootstrap: scrollspy.js v3.3.5
  * http://getbootstrap.com/javascript/#scrollspy
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -14148,7 +14223,7 @@ if (typeof jQuery === 'undefined') {
     this.process()
   }
 
-  ScrollSpy.VERSION  = '3.3.4'
+  ScrollSpy.VERSION  = '3.3.5'
 
   ScrollSpy.DEFAULTS = {
     offset: 10
@@ -14292,7 +14367,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tab.js v3.3.4
+ * Bootstrap: tab.js v3.3.5
  * http://getbootstrap.com/javascript/#tabs
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -14307,10 +14382,12 @@ if (typeof jQuery === 'undefined') {
   // ====================
 
   var Tab = function (element) {
+    // jscs:disable requireDollarBeforejQueryAssignment
     this.element = $(element)
+    // jscs:enable requireDollarBeforejQueryAssignment
   }
 
-  Tab.VERSION = '3.3.4'
+  Tab.VERSION = '3.3.5'
 
   Tab.TRANSITION_DURATION = 150
 
@@ -14358,7 +14435,7 @@ if (typeof jQuery === 'undefined') {
     var $active    = container.find('> .active')
     var transition = callback
       && $.support.transition
-      && (($active.length && $active.hasClass('fade')) || !!container.find('> .fade').length)
+      && ($active.length && $active.hasClass('fade') || !!container.find('> .fade').length)
 
     function next() {
       $active
@@ -14446,7 +14523,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: affix.js v3.3.4
+ * Bootstrap: affix.js v3.3.5
  * http://getbootstrap.com/javascript/#affix
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -14475,7 +14552,7 @@ if (typeof jQuery === 'undefined') {
     this.checkPosition()
   }
 
-  Affix.VERSION  = '3.3.4'
+  Affix.VERSION  = '3.3.5'
 
   Affix.RESET    = 'affix affix-top affix-bottom'
 
@@ -14525,7 +14602,7 @@ if (typeof jQuery === 'undefined') {
     var offset       = this.options.offset
     var offsetTop    = offset.top
     var offsetBottom = offset.bottom
-    var scrollHeight = $(document.body).height()
+    var scrollHeight = Math.max($(document).height(), $(document.body).height())
 
     if (typeof offset != 'object')         offsetBottom = offsetTop = offset
     if (typeof offsetTop == 'function')    offsetTop    = offset.top(this.$element)
@@ -14622,37 +14699,80 @@ if(typeof(console.error) == "undefined" || console.error == null){window.console
 if(typeof(console.warn) == "undefined" || console.warn == null){window.console.warn = function(){}};
 if(typeof(console.trace) == "undefined" || console.trace == null){window.console.trace = function(){}};
 
-window.$UI_ENV = ( window.$UI_ENV || { environment: 'development' });
+(function($) {
 
-// deprecation support
+  //////////////////////////////////////////////////
+  // UI Toolkit Environment Settings
+  //////////////////////////////////////////////////
 
-// example usage:
-// $UI.deprecated("Foo.bar will be removed in 3.0 of the Toolkit");
-//
-$UI.deprecated = function(msg) {
-  if ($UI_ENV.environment == 'development') {
-    console.warn("UI TOOLKIT DEPRECATION: " + msg);
-    console.trace();
-  }
-};
+  var defaultENV = {
 
-//
-// example usage:
-// $UI.deprecated_css_check('.some-class', '.some-class will be removed in 3.0 of the Toolkit');
-//
-$UI.deprecated_css_check = function(selector, msg) {
-  if ($UI_ENV.environment == 'development') {
-    $(selector).each(function(index, item) {
-      console.warn("UI TOOLKIT DEPRECATION: " + msg );
-      console.warn(item);
-    });
-  }
-};
+    // Deprecation warnings will be shown when in 'development'
+    environment: 'development',
 
-//
-$(function() {
-//  $UI.deprecated_css_check('.some-class', '.some-class will be removed in 3.0 of the Toolkit');
-});
+    // Override this for spcial URL handling like the Desktop->Community linking
+    linkTo: function(text, url, options) {
+      options = options || {};
+      return '<a href="' + url + '" class="' + (options['class'] || '') + '">' + text +'</a>';
+    }
+  };
+
+  window.$UI_ENV = $.extend( defaultENV, window.$UI_ENV || {} );
+
+
+  //////////////////////////////////////////////////
+  // deprecation support
+  //////////////////////////////////////////////////
+
+  // example usage:
+  // $UI.deprecated("Foo.bar will be removed in 3.0 of the Toolkit");
+  //
+  $UI.deprecated = function(msg) {
+    if ($UI_ENV.environment == 'development') {
+      console.warn("UI TOOLKIT DEPRECATION: " + msg);
+      console.trace();
+    }
+  };
+
+  //
+  // example usage:
+  // $UI.deprecated_css_check('.some-class', '.some-class will be removed in 3.0 of the Toolkit');
+  //
+  $UI.deprecated_css_check = function(selector, msg) {
+    if ($UI_ENV.environment == 'development') {
+      $(selector).each(function(index, item) {
+        console.warn("UI TOOLKIT DEPRECATION: " + msg );
+        console.warn(item);
+      });
+    }
+  };
+
+  $(function() {
+    //  $UI.deprecated_css_check('.some-class', '.some-class will be removed in 3.0 of the Toolkit');
+  });
+
+})(jQuery);
+
+(function($) {
+
+  //////////////////////////////////////////////////
+  // UI Toolkit Environment Settings
+  //////////////////////////////////////////////////
+
+  var defaultENV = {
+
+    environment: 'development',
+
+    // Override this for spcial URL handling like the Desktop->Community linking
+    linkTo: function(text, url, options) {
+      options = options || {};
+      return '<a href="' + url + '" class="' + (options['class'] || '') + '">' + text +'</a>';
+    }
+  };
+
+  window.$UI_ENV = $.extend( defaultENV, window.$UI_ENV || {} );
+
+})(jQuery);  
 
 
 // When possible use this as a condition at the time of action (not init time)
@@ -14695,17 +14815,28 @@ jQuery(function() {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////
   //  General (Global & Domestic) Navbar functionality
   /////////////////////////////////////////////////////////////////////////////////////////////////////////
+  var SITE_NAVIGATION_SELECTOR = 'header.site-navigation';
 
   var Navbar = function(navElement) {
-    this.$el = $(navElement);
-    this.enableMenuFade();
+    if ($(SITE_NAVIGATION_SELECTOR).length == 0) {
+      // there is currently no site-navigation element in the dom.
+      // Let's create one right after the body tag
+      var header_template = '<header class="site-navigation sui-opt-in"></header>';
+      $('body').prepend(header_template);
+    }
 
-    // Hide global search when any nav menu dropdown is shown
-    this.$el.on( 'shown.bs.dropdown', function() { $(document).trigger( 'global-search:hide' ); } );
+    this.selector = navElement;
+    this.initNavbar(navElement);
   };
 
   Navbar.prototype = {
 
+    initNavbar: function(navElement) {
+      this.$el = $(navElement);
+      this.enableMenuFade();
+      // Hide global search when any nav menu dropdown is shown
+      this.$el.on( 'shown.bs.dropdown', function() { $(document).trigger( 'global-search:hide' ); } );
+    },
     enableMenuFade: function() {
       var elements = this.$el.find('[data-toggle="dropdown"]').parent();
 
@@ -14719,7 +14850,6 @@ jQuery(function() {
     }
 
   }
-
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////
   //  Global Navbar
@@ -14736,19 +14866,218 @@ jQuery(function() {
     if( this.searchAutocompleteMinLength === "" ) {
       this.searchAutocompleteMinLength = null;
     }
-
+    var notif_menu = this.$el.find('[data-menu-type="community-notifications"]');
+    if(notif_menu.length == 1) {
+      this.notificationsLatestEventTime = notif_menu.data('latest-event-time');
+      if (this.notificationsLatestEventTime === "") {
+        this.notificationsLatestEventTime = null;
+      }
+    }
     this.initSearch();
+    // Opening/closing search menu in global nav
+    $(document).on( 'global-search.shown', $.proxy( this.openSearchMenu, this ) );
+    $(document).on( 'global-search.hidden', $.proxy( this.closeSearchMenu, this ) );
+
     this.initCommunityNotifications();
-  }
+  };
+
+  var GLOBAL_NAV_SELECTOR = '[data-navbar="global"]';
+
+  GlobalNavbar.init = function(params) {
+
+    if( !$UI.globalNavbar) {
+      $UI.globalNavbar = new GlobalNavbar(GLOBAL_NAV_SELECTOR);
+    }
+
+    if( $UI.globalNavbar ) {
+      $UI.globalNavbar.configure(params);
+    }
+
+    return $UI.globalNavbar;
+  };
 
   GlobalNavbar.prototype = $.extend( new Navbar(), {
 
+    configure: function(params) {
+      if (params) {
+        //we're being configured from JS, not ruby
+        this.appsMenuIconLinkTemplate = _.template('<i class="platform-app-icon <%= icon_class %>"><div class="platform-app-icon_inner-icon"></div></i><span><%= text %></span>');
+        this.appsMenuImageLinkTemplate = _.template('<img class="apps-menu-image-icon" src="<%= image_url %>"></i><span><%= text %></span>');
+        this.appsMenuEntryTemplate = _.template('<li class="apps-menu-entry_<%= unique_name %>"><%= link %></li>');
+
+        if ($(GLOBAL_NAV_SELECTOR).length == 0) {
+          // there is currently no domestic-nav element in the dom.
+          // Let's create one inside the site-navigation header
+          var global_template = '<nav class="global-nav" data-navbar="global"><div class="nav-fluid-container"><a class="global-nav_brand" href="/">Home</a><img src="//static.spiceworks.com/assets/masthead/print_logo.png" class="global-nav_print-logo"><ul class="global-nav_menus">' +
+            '<li class="global-apps-menu global-nav_menu"></li><li class="global-search-menu global-nav_menu" data-menu-type="search"></li><li class="global-nav_menu global-community-notifications-menu" data-menu-type="community-notifications"></li><li class="global-nav_menu" data-menu-type="community-messages"></li><li class="global-app-alerts-menu global-nav_menu" data-menu-type="app-alerts"></li><li class="global-user-menu global-nav_menu" data-menu-type="user"></li><li class="guest-user-navmenu global-nav_menu" data-menu-type="guest-user"></li>' +
+            '</ul><a href="#" class="global-nav_mobile-nav-toggle global-nav_menu" data-toggle="mobile-nav"><i class="navbar-icon apps-menu-icon"></i></a></div></nav>';
+          $(SITE_NAVIGATION_SELECTOR).prepend(global_template);
+
+          // Now that we have an element, refresh the cached $el attribute
+          this.$el = $(this.selector);
+        }
+
+        this.params = params;
+      }
+      this.initNavbar(this.selector);
+    },
+
+    render: function() {
+      var params = this.params || {};
+
+      if (params.logo_path) {
+        $('a.global-nav_brand').attr('href', params.logo_path);
+      }
+
+      if (params.sticky) {
+        this.makeSticky();
+      }
+
+      this.rebuildAppsMenu(params.appsMenu);
+      this.initSearch(params.search);
+      this.initCommunityNotifications(params.community_notifications);
+      this.initCommunityMessages(params.community_messages);
+      this.initAppAlerts(params.app_alerts);
+      this.initUserMenu(params.user_info);
+      this.initMobileNav(params);
+    },
+
+    makeSticky: function() {
+      $('nav.global-nav').affix({ offset: {top: 0} });
+    },
+
+    /////////  Rebuild Search Menu  ////////////////////////
+
+    /////////  Rebuild Apps Menu  ////////////////////////
+
+    marketingUrls: {
+      spiceworks_inventory: 'http://www.spiceworks.com/free-pc-network-inventory-software/?utm_source=community&utm_medium=new_nav&utm_campaign=inventory',
+      spiceworks_help_desk: 'http://www.spiceworks.com/free-help-desk-software/?utm_source=community&utm_medium=new_nav&utm_campaign=helpdesk'
+    },
+
+    appsIconClasses: {
+      start: 'start-icon',
+      spiceworks_inventory: 'inventory-icon',
+      spiceworks_help_desk: { desktop: 'helpdesk-icon', cloud: 'helpdesk-icon' },
+      spiceworks_product_reviews: 'reviews-icon',
+      spiceworks_network_monitor: 'monitoring-icon',
+      spiceworks_competitor_insights: 'marketview-icon',
+      spiceworks_app_center: 'appcenter-icon'
+    },
+
+    iconClass: function(unique_name, app_type) {
+      if( app_type == 'desktop_plugin_dev' || app_type == 'desktop_plugin' ) {
+        var signature = unique_name.length;
+        if( unique_name != '' ) {
+          signature += unique_name.charCodeAt(0);
+        }
+
+        var NUM_GRADIENT_CLASSES = 6;
+        var gradientClass = 'plugin-icon--gradient' + (signature % NUM_GRADIENT_CLASSES);
+        return 'plugin-icon ' + gradientClass;
+      }
+
+      var iconClass = this.appsIconClasses[unique_name];
+
+      if( _.isObject(iconClass) ) {
+        iconClass = iconClass[app_type];
+      }
+
+      return iconClass;
+    },
+
+    buildAppEntry: function(entryDef) {
+        var linkTemplate = this.appsMenuIconLinkTemplate;
+        if( entryDef.image ) {
+          linkTemplate = this.appsMenuImageLinkTemplate;
+        }
+
+        var link = $UI_ENV.linkTo(
+          linkTemplate({
+            unique_name: entryDef.unique_name || '',
+            icon_class: this.iconClass( entryDef.unique_name, entryDef.app_type ) || '',
+            image_url: (entryDef.image && entryDef.image.url) || '',
+            text: entryDef.display_name || ''
+          }),
+          entryDef.url
+        );
+
+        return this.appsMenuEntryTemplate({
+          unique_name: entryDef.unique_name || '',
+          link: link || ''
+        });
+    },
+
+    addAppsToMenu: function( appsMenu, apps ) {
+      apps = apps || [];
+
+      _.each( apps, _.bind( function(entryDef) {
+        if( !entryDef.url ) {
+          entryDef.url = this.marketingUrls[entryDef.unique_name];
+        }
+
+        if( entryDef.url ) {
+          appsMenu.append( this.buildAppEntry(entryDef) );
+        }
+      }, this ));
+    },
+
+    rebuildAppsMenu: function( appsMenuDefinition ) {
+      if(!appsMenuDefinition) {
+        $('li.global-apps-menu').empty();
+        return;
+      }
+      var appsMenu = this.$el.find('[data-nav-menu="apps"]');
+
+      if(appsMenu.length == 0) {
+        $('li.global-apps-menu').prepend('<a href="#" data-toggle="dropdown"><i class="navbar-icon apps-menu-icon"></i><span>Apps</span></a><ul class="global-nav_dropdown u-fade-able u-faded-in" data-content="nav-dropdown" data-nav-menu="apps"></ul>');
+        appsMenu = this.$el.find('[data-nav-menu="apps"]');
+      }
+
+      // Don't clear the menu unless there are valid main apps to add
+      if( appsMenuDefinition.apps && appsMenuDefinition.apps.length > 0 ) {
+        appsMenu.html(''); // clear the menu so we can start fresh
+
+        // The Start Page entry
+        appsMenu.append( this.buildAppEntry({
+          unique_name: 'start',
+          display_name: 'Start',
+          url: 'https://community.spiceworks.com/start?source=navbar-apps'
+        }));
+      }
+
+      // Main apps (ones from the API, including 'Spiceworks' ones)
+      this.addAppsToMenu( appsMenu, appsMenuDefinition.apps );
+
+      // Local apps (installed on local desktop but not in API)
+      this.addAppsToMenu( appsMenu, appsMenuDefinition.localApps );
+
+      // Developer's local apps (obviously not in the API)
+      this.addAppsToMenu( appsMenu, appsMenuDefinition.localDevApps );
+    },      
+
+
     /////////  Search Menu  ////////////////////////
 
-    initSearch: function() {
+    initSearch: function(params) {
       this.$searchMenu = this.$el.find('[data-menu-type="search"]');
+      this.$searchMenu.empty();
+
+      if(params == false) {
+        return;
+      }
+
+      if(params && params.autocomplete_min_length) {
+        this.searchAutocompleteMinLength = params.autocomplete_min_length;
+      }
 
       if( this.$searchMenu.length ) {
+        var searchLink = this.$searchMenu.find('> a');
+        if(searchLink.length == 0) {
+          var searchMenuTemplate = '<a href="#"><i class="navbar-icon search-icon"></i></a><div class="global-nav_dropdown u-fade-able" data-content="nav-dropdown"><!-- placholder so we get a notch--></div>';
+          this.$searchMenu.prepend(searchMenuTemplate);
+        }
+
         // Signaling global search ribbon to show/hide
         this.$searchMenu.find('> a').on( 'click', $.proxy( this.toggleGlobalSearch, this ) );
 
@@ -14780,20 +15109,189 @@ jQuery(function() {
 
     /////////  Community Notifications Menu  ////////////////////////
 
-    initCommunityNotifications: function() {
+    initCommunityNotifications: function(params) {
       var _this = this;
+      this.$communityNotifMenu = this.$el.find('[data-menu-type="community-notifications"]');
 
-      this.$el.find('[data-menu-type="community-notifications"]').on( 'shown.bs.dropdown', function() {
+      if(params === undefined) {
+        return;
+      }
+      if(params == false) {
+        this.$communityNotifMenu.empty();
+        return;
+      }
+      var unread_count = params.unread_count || 0;
+      var inbox_unread_count = params.inbox_unread_count || 0;
+      var elements = params.elements || [];
+
+      _this.notificationsLatestEventTime = params.latest_event_time;
+
+      if (this.$communityNotifMenu.length == 1) {
+        this.$communityNotifMenu.empty();
+        var linkTemplate = _.template('<a href="#" data-toggle="dropdown"><i class="navbar-icon community-notifications-icon"></i><small class="stat-bubble" count="<%= unread_count %>"><%= unread_count %></small></a><div class="global-nav_dropdown u-fade-able u-faded-in" data-content="nav-dropdown"><div class="header-bar"><h5>Notifications</h5><a count="<%= inbox_unread_count %>" href="/messages/inbox?source=navbar-community-notifications">Inbox (<%= inbox_unread_count %>)</a></div><ul><%= elements %></ul><div class="global-nav_dropdown_footer"><a href="/notifications?source=navbar-community-notifications">See all notifications ›</a></div></div>');
+        var elementTemplate = _.template('<li><i class="icon-event_<%= type %>"></i><p><%= description %></p><span class="time" data-js-postprocess="timestamp" data-timestamp-format="from_now" datetime="<%= timestamp %>" title="<%= timestamp_title %>"><%= timestamp_ago %></span></li>');
+        var contents = '';
+        _.each(elements, function(element){
+          contents += elementTemplate({
+            type: element.type,
+            timestamp: element.timestamp,
+            timestamp_ago: moment(element.timestamp).fromNow(),
+            timestamp_title: moment(element.timestamp).utc().format('MMM d, YYYY [at] h:mm A'),
+            description: element.description
+          });
+        });
+
+        this.$communityNotifMenu.prepend(linkTemplate({
+          unread_count: unread_count,
+          inbox_unread_count: inbox_unread_count,
+          elements: contents
+        }));
+      }
+
+      this.$communityNotifMenu.on( 'shown.bs.dropdown', function() {
         var countEl = $(this).find('> a small');
-
         if( countEl.attr('count') != 0 ) {
           countEl.attr('count','0').html('0');
-          _this.$el.trigger('community_notifications:read', $(this).attr('data-latest-event-time') );
+          _this.$el.trigger('community_notifications:read', _this.notificationsLatestEventTime );
         }
       });
     },
 
+    /////////  Community Messages Menu  ////////////////////////
+    initCommunityMessages: function(params) {
+      var communityMessagesMenu = this.$el.find('[data-menu-type="community-messages"]');
+      if(params === undefined) {
+        return;
+      }
+      communityMessagesMenu.empty();
+      if(params == false) {
+        return;
+      }
+      var inbox_template = _.template('<a href="<%= url %>" data-menu-type="message-count"><i class="navbar-icon community-message-count-icon"></i><small class="stat-bubble" count="<%= count %>"><%= count %></small></a>');
+      communityMessagesMenu.prepend(inbox_template({
+        url: params.url || '/messages/inbox?source=navbar',
+        count: params.count
+      }));
+    },
+
+    /////////  App Alerts Menu  ////////////////////////
+    initAppAlerts: function(params) {
+      var alertsMenu = this.$el.find('[data-menu-type="app-alerts"]');
+      if(!params) {
+        alertsMenu.empty();
+        return;
+      }
+      if (params.count > 0) {
+        alertsMenu.empty();
+        var alerts_template = _.template('<a href="#" data-toggle="dropdown"><i class="navbar-icon app-alerts-icon"></i></a><small class="stat-bubble" count="<%= count %>"><%= count %></small><div class="global-nav_dropdown u-fade-able u-faded-in" data-content="nav-dropdown"><%= content %></div>');
+        alertsMenu.prepend(alerts_template({
+          count: params.count,
+          content: params.content
+        }));
+      }
+    },
+
+    /////////  User Menu  ////////////////////////
+    initUserMenu: function(params) {
+      var guestMenu = this.$el.find('[data-menu-type="guest-user"]');
+      var userMenu = this.$el.find('[data-menu-type="user"]');
+
+      guestMenu.empty();
+      userMenu.empty();
+      if(!params) {
+        return;
+      }
+
+      if (params.guest) {
+        //TODO: need additional params for guest choices?
+        var guest_template = _.template('<a href="#" data-modal-name="login" data-target="#" data-toggle="modal"><span>Login</span></a><a href="#" data-modal-name="join" data-target="#" data-toggle="modal" class="join-button"><span>Join</span></a>');
+        guestMenu.prepend(guest_template());
+      }
+      else {
+        var user_template = _.template('<a data-toggle="dropdown" href="#"><img alt="<%= name %>" class="avatar-small" height="24" src="<%= avatar %>" style="height:24px; width:24px;" width="24"><span class="usernav-link"><%= name %></span></a><ul class="global-nav_dropdown u-fade-able u-faded-in" data-content="nav-dropdown"><%= menu_items %></ul>');
+        var menu_item_template = _.template('<li><a class="user-menu-entry--<%= type %>" href="<%= href %>"><%= title %></a></li>');
+
+        var items = '';
+        _.each(params.menu_items, function (element) {
+          items += menu_item_template({
+            type: element.type,
+            href: element.href,
+            title: element.title
+          });
+        });
+
+        userMenu.prepend(user_template({
+          name: params.name,
+          avatar: params.avatar,
+          menu_items: items
+        }));
+      }
+    },
+
     /////////  Mobile Nav  ////////////////////////
+    initMobileNav: function(params) {
+      var mobileMenu = $('[data-navbar="mobile"]');
+      mobileMenu.remove();
+
+      if(!params || !params.include_mobile) {
+        return;
+      }
+      var searchTemplate = _.template('<form accept-charset="UTF-8" action="/search" class="nav-page-search" method="get"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div><div class="nav-search-content"><input class="nav-search-field init" data-event-enabled="false" name="query" placeholder="Search" type="text"><button class="sui-bttn-primary sui-bttn " data-button-type="submit" data-primary="true" type="submit">Search</button></div></form>');
+      var userMenu = _.template('<div class="user-menu"><a href="/profile/show/myprofile?source=navbar-subnav"><img alt="<%= name %>" class="avatar-small" height="32" src="<%= avatar %>" style="height:32px; width:32px;" width="32"><span class="usernav-link"><%= name %></span></a></div>');
+      var guestMenu = _.template('<div class="guest-user-navmenu"><a href="#" data-modal-name="login" data-target="#" data-toggle="modal"><span>Login</span></a><a href="#" data-modal-name="join" data-target="#" data-toggle="modal" class="join-button"><span>Join</span></a></div>');
+      var startMenu = _.template('<div class="start-page-link"><a href="/start?source=navbar-apps"><i class="platform-app-icon start-icon"></i><span>Start</span></a></div>');
+      var domesticMenu = _.template('<ul class="domestic-menus"></ul>');
+      var appsMenu = _.template('<ul class="apps-listing"></ul>');
+
+      var template_values = {
+        searchTemplate: searchTemplate(),
+        startMenu: startMenu(),
+        domesticMenu: domesticMenu(),
+        appsMenu: appsMenu()
+      };
+      var mobile_nav = '<nav class="mobile-nav" data-navbar="mobile">';
+      //Add search menu entry
+      if(params.search) {
+        mobile_nav += '<%= searchTemplate %>';
+      }
+      //Add Profile/UserInfo menu entry
+      if(params.user_info) {
+        if (params.user_info.guest) {
+          mobile_nav += '<%= guestMenu %>';
+          template_values['guestMenu'] = guestMenu();
+        } else {
+          mobile_nav += '<%= userMenu %>';
+          template_values['userMenu'] = userMenu({name: params.user_info.name, avatar: params.user_info.avatar});
+        }
+      }
+
+      mobile_nav += '<%= startMenu %>';
+      mobile_nav += '<%= domesticMenu %>';
+
+      if(params.appsMenu) {
+        mobile_nav += '<%= appsMenu %>';
+      }
+
+      mobile_nav += '</nav>';
+
+      var mobile_template = _.template(mobile_nav);
+      $(SITE_NAVIGATION_SELECTOR).after(mobile_template(template_values));
+
+      if(params.appsMenu) {
+        appsMenu = $('[data-navbar="mobile"] .apps-listing');
+        this.addAppsToMenu(appsMenu, params.appsMenu.apps);
+        // Local apps (installed on local desktop but not in API)
+        this.addAppsToMenu(appsMenu, params.appsMenu.localApps);
+        // Developer's local apps (obviously not in the API)
+        this.addAppsToMenu(appsMenu, params.appsMenu.localDevApps);
+      }
+
+      this.mobileNavShown = false;
+      this.mobileNavToggle = this.$el.find('[data-toggle="mobile-nav"]');
+      this.mobileNavToggle.off('click');
+      this.mobileNavToggle.on('click', $.proxy( this.toggleMobileNav, this ) );
+
+    },
 
     toggleMobileNav: function(event) {
       event && event.preventDefault() && event.stopPropagation();
@@ -14828,9 +15326,24 @@ jQuery(function() {
 
     var bias = 0.5;
 
+    // data="sticky" comes from the Rails helper
     if( this.$el.data('sticky') ) {
       this.makeSticky();
     }
+  };
+
+  var DOMESTIC_NAV_SELECTOR = '[data-navbar="domestic"]';
+
+  DomesticNavbar.init = function(params) {
+    if (!$UI.domesticNavbar) {
+      $UI.domesticNavbar = new DomesticNavbar(DOMESTIC_NAV_SELECTOR);
+    }
+
+    if (params) {
+      $UI.domesticNavbar.configure(params);
+    }
+
+    return $UI.domesticNavbar;
   };
 
   DomesticNavbar.prototype = $.extend( new Navbar(), {
@@ -14848,6 +15361,23 @@ jQuery(function() {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     configure: function(contents) {
+      contents = contents || {};
+
+      if ($(DOMESTIC_NAV_SELECTOR).length == 0) {
+        // there is currently no domestic-nav element in the dom.
+        // Let's create one inside the site-navigation header
+        var domestic_template = '<nav class="domestic-nav" data-navbar="domestic"></nav>';
+
+        $(SITE_NAVIGATION_SELECTOR).append(domestic_template);
+
+        // Now that we have an element, re-initialize the base class (refreshes the cached $el attribute)
+        this.initNavbar(this.selector);
+      }
+
+      if( contents.sticky ) {
+        this.makeSticky();
+      }
+
       this.domesticBrand = contents.domesticBrand;
       this.menus = contents.menus;
       this.secondaryMenus = contents.secondaryMenus;
@@ -14861,14 +15391,21 @@ jQuery(function() {
       this.submenuItemTemplate    = _.template('<li><a href="<%= url %>"><%= text %></a></li>');
     },
 
+    DEFAULT: "default",
+
+    tearDown: function() {
+      this.$el.remove();
+    },
+
     render: function() {
       var html = $( this.template() );
 
-      var brand = $( this.brandTemplate({ text: this.domesticBrand.text, url: this.urlFor(this.domesticBrand) }) );
-      brand.on( 'click', $.proxy( this._menuClicked, this, this.domesticBrand ) );
+      var brand = $( this.brandTemplate({ text: this.domesticBrand.text, url: this.domesticBrand.url || this.urlFor(this.domesticBrand) }) );
+      if( this.domesticBrand.handler !== this.DEFAULT ) {
+        brand.on( 'click', $.proxy( this._menuClicked, this, this.domesticBrand ) );
+      }
 
       html.append( brand );
-
 
       if( this.menus && this.menus.length ) {
         var menus = $( this.menusTemplate() );
@@ -14881,8 +15418,30 @@ jQuery(function() {
         $.fn.append.apply( secondaryMenus, this._menuItemListHtml(this.secondaryMenus) );
         html.append( secondaryMenus );
       }
-
       this.$el.html( html );
+
+      // get a handle to the responsive menu and populate it
+      var mobileHtml = $('[data-navbar="mobile"] .domestic-menus');
+      if(mobileHtml.length) {
+        var mobileBrand = $( this.brandTemplate({ text: this.domesticBrand.text, url: this.domesticBrand.url || this.urlFor(this.domesticBrand) }) );
+        if( this.domesticBrand.handler !== this.DEFAULT ) {
+          mobileBrand.on( 'click', $.proxy( this._menuClicked, this, this.domesticBrand ) );
+        }
+
+        mobileHtml.append( mobileBrand );
+        if( this.menus && this.menus.length ) {
+          var menus = $( this.menusTemplate() );
+          $.fn.append.apply( menus, this._menuItemListHtml(this.menus) );
+          mobileHtml.append( menus );
+        }
+
+        if( this.secondaryMenus && this.secondaryMenus.length ) {
+          var secondaryMenus = $( this.secondaryMenusTemplate() );
+          $.fn.append.apply( secondaryMenus, this._menuItemListHtml(this.secondaryMenus) );
+          mobileHtml.append( secondaryMenus );
+        }
+      }
+
     },
 
     _menuItemListHtml: function(items) {
@@ -14893,7 +15452,7 @@ jQuery(function() {
       menuItem = _.clone(menuItem);
 
       menuItem.classNames = (menuItem.classNames || '') + ' ' + (this._itemIsActive(menuItem) ? 'active' : '');
-      menuItem.url = this.urlFor(menuItem);
+      menuItem.url = menuItem.url || this.urlFor(menuItem);
 
       if( menuItem.items ) {
         var dropdown = $( this.menuDropdownTemplate( menuItem ) );
@@ -14902,14 +15461,22 @@ jQuery(function() {
       }
       else {
         var itemHtml = $( this.menuItemTemplate( menuItem ) );
-        itemHtml.find('a').on( 'click', $.proxy( this._menuClicked, this, menuItem ) );
+
+        if( menuItem.handler !== this.DEFAULT ) {
+          itemHtml.find('a').on( 'click', $.proxy( this._menuClicked, this, menuItem ) );
+        }
+
         return itemHtml;
       }
     },
 
     _submenuItemHtml: function(item) {
-      var itemHtml = $( this.submenuItemTemplate({ text: item.text, url: this.urlFor(item) }) );
-      itemHtml.find('a').on( 'click', $.proxy( this._menuClicked, this, item ) );
+      var itemHtml = $( this.submenuItemTemplate({ text: item.text, url: item.url || this.urlFor(item) }) );
+
+      if( item.handler !== this.DEFAULT ) {
+        itemHtml.find('a').on( 'click', $.proxy( this._menuClicked, this, item ) );
+      }
+
       return itemHtml;
     },
 
@@ -14923,11 +15490,12 @@ jQuery(function() {
       return ( isActive === null ) ? menuItem.active : isActive;
     }
 
+
   });
 
   $(function() {
-    $UI.globalNavbar = new GlobalNavbar('[data-navbar="global"]');
-    $UI.domesticNavbar = new DomesticNavbar('[data-navbar="domestic"]');
+    GlobalNavbar.init();
+    DomesticNavbar.init();
   });
 
   $UI.GlobalNavbar = GlobalNavbar;
@@ -15147,23 +15715,12 @@ jQuery(function() {
       var oldTemplateSettings = _.templateSettings;
       _.templateSettings = { evaluate: /\{\{(.+?)\}\}/g, interpolate: /\{\{=(.+?)\}\}/g, escape: /\{\{-(.+?)\}\}/g };
 
-      this.ribbonTemplate = _.template( $('#search-ribbon-template').html() );
-      $('#search-ribbon-template').remove();
-
-      this.appSelectionTemplate = _.template( $('#search-ribbon-app-selection').html() );
-      $('#search-ribbon-app-selection').remove();
-
-      this.resultsTemplate = _.template( $('#search-ribbon-results-template').html() );
-      $('#search-ribbon-results-template').remove();
-
-      this.groupTemplate = _.template( $('#search-ribbon-group-template').html() );
-      $('#search-ribbon-group-template').remove();
-
-      this.resultTemplate = _.template( $('#search-ribbon-result-template').html() );
-      $('#search-ribbon-result-template').remove();
-
-      this.suggestionTemplate = _.template( $('#search-ribbon-result-suggestion').html() );
-      $('#search-ribbon-result-suggestion').remove();
+      this.ribbonTemplate = _.template('<div class="search-ribbon_controls {{- apps_config_class }}"><div class="sui-dropdown search-ribbon_app-selector"><a href="#" class="sui-dropdown-toggle sui-bttn" data-toggle="dropdown" onclick="return false;"><i class="navbar-icon {{- selected_app_icon }}"></i> <span class="caret"></span></a><ul class="sui-dropdown-menu" data-content="app-selection-list"></ul></div><form><input type="text" autocomplete="off" placeholder="{{- placeholder }}" /><div class="search-ribbon_spinner u-fade-able"></div><button type="submit" class="sui-bttn sui-bttn-primary">Search</button></form></div>');
+      this.appSelectionTemplate = _.template('<li><a href="#" data-name="{{- internal_name }}"><i class="navbar-icon {{- icon_name }}"></i><span>{{- name }}</span></a></li>');
+      this.resultsTemplate = _.template('<div class="search-ribbon_results"><div class="search-ribbon_result is-selected" data-content="exact-search-result" data-result-type="full-search" data-text=""><a href="" class="search-ribbon_full-search-link"><i class="navbar-icon search-icon"></i><span class="search-ribbon_result-name"></span></a></div><div data-content="search-suggestions"></div><div class="search-ribbon_groups u-collapsible u-collapsed"></div></div>');
+      this.groupTemplate = _.template('<div class="search-ribbon_group u-fade-able u-faded-almost-out"><span class="search-ribbon_group-name">{{- name }}</span><ul class="search-ribbon_group-results"></ul></div>');
+      this.resultTemplate = _.template('<li class="search-ribbon_result"><a href="{{- path }}"><i class="navbar-icon search-page-icon"></i><span class="search-ribbon_result-name">{{- name }}</span><span class="search-ribbon_result-excerpt">{{= excerpt }}</span></a></li>');
+      this.suggestionTemplate = _.template('<div class="search-ribbon_result" data-result-type="full-search" data-text="{{- text }}"><a href="{{- url }}" class="search-ribbon_full-search-link"><i class="navbar-icon search-icon"></i><span class="search-ribbon_result-name">\'{{- text }}\'</span></a></div>');
 
       _.templateSettings = oldTemplateSettings;
     },

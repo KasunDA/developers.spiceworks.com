@@ -77,7 +77,7 @@
 
 <p>As Spiceworks evolves over time, so does our Database.  Sometimes, we need to make changes in order to support new features and functionality.  This Page will document changes that may affect your custom SQL reports.  This page will go into some technical detail, so knowledge of SQL is a must.</p>
 
-<h3 id="spiceworks-6.2">Spiceworks 6.2</h3>
+<h3 id="spiceworks-6-2">Spiceworks 6.2</h3>
 
 <p>There are a few substantial database changes in 6.2 that will affect existing SQL reports, mainly centered around ticketing</p>
 
@@ -103,7 +103,7 @@ will no longer work. In 6.2, you&#39;ll need to use:
  FROM tickets LEFT OUTER JOIN ticket</em>work ON ticket<em>work.ticket</em>id = tickets.id
  GROUP BY tickets.id</p>
 
-<h3 id="spiceworks-4.0">Spiceworks 4.0</h3>
+<h3 id="spiceworks-4-0">Spiceworks 4.0</h3>
 
 <p>The only major change in Spiceworks 4.0 that would affect SQL report writers is around how users are related to tickets and comments.</p>
 
