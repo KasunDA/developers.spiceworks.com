@@ -26,21 +26,19 @@
   },
 
   setFollowButtonCode = function(){
-    var iconName, mediumName;
+    var iconPath, mediumName;
     var vendorName = $('#vendor-name').val();
     vendorName = vendorName || 'VENDOR_NAME';
     if (swooshOnly.checked) {
-      iconName = "spicebutton-20px";
-      var subdirectory = "/5010/"
+      iconPath = "/5010/spicebutton-20px";
       mediumName = "button_swoosh_only";
     } else if (swooshAndFollow.checked) {
-      iconName = "spicebutton-follow";
-      var subdirectory = "/5009/"
+      iconPath = "/5009/spicebutton-follow";
       mediumName = "button_swoosh_and_follow";
     }
     $('.follow-button-code')
       .val('<a href="//community.spiceworks.com/pages/' + vendorName +
-          '/follow?utm_medium=' + mediumName + '"><img src="//static.spiceworks.com/shared/post/0010' + subdirectory + iconName + '.png"' +
+          '/follow?utm_medium=' + mediumName + '"><img src="//static.spiceworks.com/shared/post/0010' + iconPath + '.png"' +
           ' title="Follow us on Spiceworks" alt="Follow us on Spiceworks" /></a>');
   },
 
