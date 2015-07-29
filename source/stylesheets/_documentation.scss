@@ -166,6 +166,23 @@ body.documentation_index {
 }
 
 .follow-button-code-form {
+
+  .follow-choice {
+    margin-bottom: 15px;
+  }
+
+  .follow-icon {
+  margin-right: 10px;
+  margin-left: 4px;
+  vertical-align: text-bottom;
+}
+
+  .follow-radio {
+    width: auto;
+    margin-right: 6px;
+    vertical-align: top;
+  }
+  
   .terms-of-use {
     margin-bottom: 0;
   }

@@ -16,6 +16,8 @@
 //= require bootstrap
 //= require sui-main
 //= require on_ready
+//= require zeroclipboard
+//= require vendor/zeroclipboard_config
 //= require vendor/ie-detect
 //= require vendor/underscore.string
 //= require vendor/spin

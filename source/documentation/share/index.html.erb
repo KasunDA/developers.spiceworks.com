@@ -29,12 +29,18 @@
       <p>Baam! That's IT.</p>
       <p>Questions? Email <a href="mailto:partner_support@spiceworks.com">partner_support@spiceworks.com</a> and we'll help you out!</p>
       <form class="follow-button-code-form">
-        <input id="vendor-name" type="text" placeholder="Enter your Spiceworks vendor page name..." />
-        <button class="sui-bttn update-follow-button-code" data-target-element="follow-button-code">
-          Update Code
+        <div class = 'follow-choice'>
+          <input type="radio" name="follow-choice" id="swooshOnly" class="follow-radio" checked="checked">Swoosh
+          <%= image_tag 'documentation/spicebutton-20px.png', alt: 'Follow Icon', class: 'follow-icon' %>
+          <input type="radio" name="follow-choice" id="swooshAndFollow" class="follow-radio">Swoosh + Follow
+          <%= image_tag 'documentation/spicebutton-follow.png', alt: 'Follow Icon', class: 'follow-icon' %>
+        </div>
+         <input id="vendor-name" type="text" placeholder="Enter your Spiceworks vendor page name..." />
+        <button class="sui-bttn sui-bttn-primary update-follow-button-code" data-target-element="follow-button-code">
+          Get Code
         </button>
         <textarea id="follow-button-code" class="follow-button-code code-input"></textarea>
-        <button  class="sui-bttn sui-bttn-primary copy-to-clipboard-btn" data-clipboard-source="follow-button-code">
+        <button  class="sui-bttn copy-to-clipboard-btn" name="copy-btn" data-clipboard-target="follow-button-code">
           Copy to Clipboard
         </button>
         <span class="copy-success">Copied!</span>

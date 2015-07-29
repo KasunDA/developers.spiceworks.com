@@ -26,25 +26,40 @@
   },
 
   setFollowButtonCode = function(){
+    var iconPath, mediumName;
     var vendorName = $('#vendor-name').val();
     vendorName = vendorName || 'VENDOR_NAME';
+    if (swooshOnly.checked) {
+      iconPath = "/5010/spicebutton-20px";
+      mediumName = "button_swoosh_only";
+    } else if (swooshAndFollow.checked) {
+      iconPath = "/5009/spicebutton-follow";
+      mediumName = "button_swoosh_and_follow";
+    }
     $('.follow-button-code')
-      .val('<a href="http://community.spiceworks.com/pages/' + vendorName +
-        '/follow"><img src="http://static.spiceworks.com/share/follow.png"' +
-        'title="Follow us on Spiceworks" alt="Follow us on Spiceworks" /></a>');
+      .val('<a href="//community.spiceworks.com/pages/' + vendorName +
+          '/follow?utm_medium=' + mediumName + '"><img src="//static.spiceworks.com/shared/post/0010' + iconPath + '.png"' +
+          ' title="Follow us on Spiceworks" alt="Follow us on Spiceworks" /></a>');
   },
 
   startListeningForCopyToClipboardClicks = function(){
-    $('.copy-to-clipboard-btn')
-      .on('click', function(e){
-        e.preventDefault();
+    var $copyButton = $('.copy-to-clipboard-btn');
+    var client = new ZeroClipboard( $copyButton );
+
+    $copyButton.on('click', function(e){ e.preventDefault(); })
+    client.on( 'ready', function(event) {
+
+      client.on( 'aftercopy', function(event) {
         highlightElement($('.copy-success'));
-      })
-      .zclip({
-        path:'http://www.steamdev.com/zclip/js/ZeroClipboard.swf',
-        copy: function(){return $('#' + $(this).data('clipboard-source')).val();},
-        afterCopy: function(){highlightElement($(this).data('clipboard-source'));}
-      });
+      } );
+    } );
+
+    client.on( 'error', function(event) {
+      if(event.name == "flash-disabled") {
+        $('button[name=copy-btn]').hide();
+      }
+      ZeroClipboard.destroy();
+    } );
   };
 
   developers.documentation = {
