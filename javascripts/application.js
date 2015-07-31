@@ -20298,15 +20298,15 @@ jQuery(function(){
     var vendorName = $('#vendor-name').val();
     vendorName = vendorName || 'VENDOR_NAME';
     if (swooshOnly.checked) {
-      iconPath = "/5010/spicebutton-20px";
+      iconPath = "swoosh_follow";
       mediumName = "button_swoosh_only";
     } else if (swooshAndFollow.checked) {
-      iconPath = "/5009/spicebutton-follow";
+      iconPath = "follow";
       mediumName = "button_swoosh_and_follow";
     }
     $('.follow-button-code')
       .val('<a href="//community.spiceworks.com/pages/' + vendorName +
-          '/follow?utm_medium=' + mediumName + '"><img src="//static.spiceworks.com/shared/post/0010' + iconPath + '.png"' +
+          '/follow?utm_medium=' + mediumName + '"><img src="//static.spiceworks.com/share/' + iconPath + '.png"' +
           ' title="Follow us on Spiceworks" alt="Follow us on Spiceworks" /></a>');
   },
 
