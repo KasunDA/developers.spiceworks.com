@@ -16,7 +16,7 @@ Spiceworks.
 
 Spiceworks Ratings and Reviews Syndication puts you in the driver's seat.  You
 pick the products you want to feature, and you choose where these badges appear
-on your site. Ready to get started? [Click here](http://community.spiceworks.com/vendor_key/demo/developer)
+on your site. Ready to get started? [Click here](http://community.spiceworks.com/free-review-syndication)
 
 Want more good stuff like this? Spiceworks offers a more advanced version of
 syndication that can populate your website with even more product reviews as
