@@ -1,5 +1,5 @@
 ###Finding A Report
-The IT Pros in the community may already have written a report you need. Just visit the [Shared Reports](http://community.spiceworks.com/reports) section of the community. You'll see the top-rated reports on the main page. To see more reports click on See More.
+The IT pros in the community may already have written a report you need. Just visit the [Shared Reports](http://community.spiceworks.com/reports) section of the community. You'll see the top-rated reports on the main page. To see more reports click on See More.
 
 **To import the report you find:**
 

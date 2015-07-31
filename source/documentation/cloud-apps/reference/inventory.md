@@ -458,7 +458,7 @@ Example response for a user-defined asset or an unknown device on the network:
 #### Create an asset or device
 
 Create an asset or device with the given attributes. A device created via API
-must be manually maintained by the IT Pro in the Inventory application.
+must be manually maintained by the IT pro in the Inventory application.
 I.e. it is not scanned from the network.
 All attributes are optional unless indicated otherwise.
 

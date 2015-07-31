@@ -65,7 +65,7 @@ object.
 
 #### List users
 
-List all users (IT Pros) in the system:
+List all users (IT pros) in the system:
 
 ```js
 card.services('environment').request('users')

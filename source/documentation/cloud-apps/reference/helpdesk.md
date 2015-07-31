@@ -236,7 +236,7 @@ Name | Type | Description
 -----|------|--------------
 `summary`|`string`| **Required**.  A short description of the request.
 `description`|`string`| Full description of the request.
-`assignee`|`integer`| The IT Pro the ticket is assigned to.  Must be an IT Pro `id`.
+`assignee`|`integer`| The IT pro the ticket is assigned to.  Must be an IT pro `id`.
 `priority`|`string`| The priority of the request. Must be `low`, `med`, or `high`.  Default: `med`.
 `due_at`|`string`| Due date of the request.  Must be a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
 `status`|`string`| The current status of the request. Must be `open` or `closed`.  Default: `open`.
@@ -267,7 +267,7 @@ Name | Type | Description
 -----|------|--------------
 `summary`|`string`| A short description of the request.
 `description`|`string`| Full description of the request.
-`assignee`|`integer`| The IT Pro the ticket is assigned to.  Must be an IT Pro `id` or `null` to unassign the ticket.
+`assignee`|`integer`| The IT pro the ticket is assigned to.  Must be an IT pro `id` or `null` to unassign the ticket.
 `priority`|`string`| The priority of the request. Must be `low`, `med`, or `high`.  Default: `med`.
 `due_at`|`string`| Due date of the request.  Must be a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
 `status`|`string`| The current status of the request. Must be `open` or `closed`.  Default: `open`.
