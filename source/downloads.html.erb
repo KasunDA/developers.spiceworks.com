@@ -11,18 +11,49 @@
   </section>
   <section class="download-list">
     <div class="download-dev-edition download-box">
-      <%= image_tag 'spiceworks-app_icon.png',
-        alt: 'Download Spiceworks Developer Edition',
-        class: 'download-box_icon' %>
-      <h3 class='download-box_title'>Spiceworks: Developer Edition</h3>
-      <p class='download-box_description'>
-        Apps built for Spiceworks integrate inside of the Spiceworks Desktop
-        application used by IT pros. Spiceworks Developer Edition is a special build of
-        the Spiceworks Desktop that includes sample data and
-        tools to help you build and test Apps.
-      </p>
-      <%= link_to 'Install Now', '#',
-        class: 'sui-bttn sui-bttn-primary download-dev-edition-button download-box_button' %>
+      <div class="download-box_splash">
+        <%= image_tag 'spiceworks-app_icon.png',
+          alt: 'Download Spiceworks Developer Edition',
+          class: 'download-box_icon' %>
+        <h3 class='download-box_title'>Spiceworks: Developer Edition</h3>
+        <p class='download-box_description'>
+          Apps built for Spiceworks integrate inside of the Spiceworks Desktop
+          application used by IT pros. Spiceworks Developer Edition is a special build of
+          the Spiceworks Desktop that includes sample data and
+          tools to help you build and test Apps.
+        </p>
+        <%= link_to 'Install Now', '#',
+          class: 'sui-bttn sui-bttn-primary download-box_button' %>
+      </div>
+      <ul class="download-box_tab-header download-box_hidden">
+        <li class="active">
+          Windows
+        </li>
+        <li>
+          Linux
+        </li>
+        <li class="filler">
+        </li>
+      </ul>
+      <ul class="download-box_tab-body download-box_hidden">
+        <li class="active"> 
+          <%= image_tag 'spiceworks-app_icon.png',
+            alt: 'Download Spiceworks Developer Edition',
+            class: 'download-box_icon' %>
+          <h3 class='download-box_title'>Spiceworks: Developer Edition</h3>
+          <p class='download-box_description'>
+            Requires Windows XP Pro SP2+ or Windows 2003 Server SP1+.<br>
+            I seriously thought there would be more text here...
+          </p>
+          <%= link_to 'Download Now', '#',
+            class: 'sui-bttn sui-bttn-primary download-dev-edition-button download-box_button' %>
+        </li>
+        <li>
+          Linux Body
+        </li>
+      </ul>
     </div>
   </section>
 </main>
+<!--
+-->
