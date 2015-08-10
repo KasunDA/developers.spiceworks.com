@@ -40,7 +40,7 @@
           <%= image_tag 'spiceworks-app_icon.png',
             alt: 'Download Spiceworks Developer Edition',
             class: 'download-box_icon' %>
-          <h3 class='download-box_title'>Spiceworks: Developer Edition</h3>
+          <h3 class='download-box_title'>Windows</h3>
           <p class='download-box_description'>
             Requires Windows XP Pro SP2+ or Windows 2003 Server SP1+.<br>
             I seriously thought there would be more text here...
@@ -49,7 +49,17 @@
             class: 'sui-bttn sui-bttn-primary download-dev-edition-button download-box_button' %>
         </li>
         <li>
-          Linux Body
+          <%= image_tag 'spiceworks-app_icon.png',
+            alt: 'Download Spiceworks Developer Edition',
+            class: 'download-box_icon' %>
+          <h3 class='download-box_title'>Linux</h3>
+          <p class='download-box_description'>
+            This feature isn't quite ready yet.
+            If you'd like to develope from Linux, click <a> here </a> for instructions on how to setup a VM.
+            <br>
+            <%= link_to 'Email Me Updates', '#',
+              class: 'sui-bttn sui-bttn-primary download-box_button' %>
+          </p>
         </li>
       </ul>
     </div>
