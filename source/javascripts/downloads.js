@@ -37,7 +37,7 @@
   });
 
   $(document).ready(function(){
-    $(".download-box_button").click(function(e){
+    $(".download-box_splash-button").click(function(e){
       $(".download-box_splash").addClass("download-box_hidden");
       console.log('A');
       $("ul.download-box_tab-header").removeClass("download-box_hidden");
