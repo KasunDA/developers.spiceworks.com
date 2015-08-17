@@ -17921,10 +17921,6 @@ body.index {
     /* line 90, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_launch_page.scss */
     body.index section.faq p {
       font-size: 1.3em; }
-  /* line 95, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_launch_page.scss */
-  body.index .challenge-post-banner {
-    background: #ff5200;
-    padding: 0; }
 
 /* line 3, /Users/michaelg/src/developers.spiceworks.com/source/stylesheets/_contact_support.scss */
 .contact-support .btn-primary {
