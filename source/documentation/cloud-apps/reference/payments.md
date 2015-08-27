@@ -7,14 +7,14 @@
 ```js
 //maybe we should move the appUid piece to an init method??
 var payment = new SW.Payment({appUid: "your-oauth2-application-id"});
-payment.request('subscription:create', productId, options);
+payment.request('subscription:create', id, options);
 ```
 
 ##### Parameters
 
 Name | Type | Description
 -----|------|--------------
-`id`|`integer`| The `id` of the subscription being signed up for.  Can be found in the App Center developer dashboard.
+`id`|`integer`| The `id` of the subscription the user wants to purchase.  Can be found in the App Center developer dashboard.
 
 ##### Options
 
@@ -28,9 +28,9 @@ The response will have the following fields:
 
 Name | Type | Description
 -----|------|--------------
-`id`|`integer`| The `id` of the subscription being signed up for.  Can be found in the App Center developer dashboard.
+`id`|`integer`| The `id` of the user's individual subscription.
 `user`|`integer`| The `id` of the user subscribed to your app.
-`product`|`integer`| The `id` of the subscription the user purchased.
+`product`|`integer`| The `id` of the subscription the user purchased.  Should match the `id` passed in.
 `status`|`string`| The current status of the user's subscription.  Either `'active'` or `'canceled'`.
 `payment_status`|`string`| The status of the most recent payment.  One of `'success'`, `'failed'`, or `'not_billed'`.
 `signed_request`|`string`| A signed object with the same values as the response, which can be decrypted and verified using your app's secret key.  This will include the `transaction_uid` which can be used to confirm the response is legitimate.
