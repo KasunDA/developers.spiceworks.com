@@ -182,7 +182,8 @@ Example ticket (note all arrays have been reduced to a single example item):
       "purchased": false,
       "price": 74.99,
       "product_image": "http://webobjects2.cdw.com/is/image/CDW/225027",
-      "part_number": "308878-001-CT"
+      "part_number": "308878-001-CT",
+      "quantity": 1
     }
   ],
   "work": [
