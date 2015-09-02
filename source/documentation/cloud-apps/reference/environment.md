@@ -68,8 +68,15 @@ object.
 List all users (IT pros) in the system:
 
 ```js
-card.services('environment').request('users')
+card.services('environment').request('users'[, options])
 ```
+
+##### Options
+
+Name | Type | Description
+-----|------|--------------
+`page`|`integer`| The page offset.  Must be between `1` and `page_count`.  Default: `1`
+`per_page`|`integer`| Number of entries per page. Must be between `1` and `100`.  Default: `30`
 
 ##### Response
 

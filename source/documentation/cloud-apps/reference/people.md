@@ -13,8 +13,16 @@ these users, their devices, any support tickets they may have submitted, and so 
 List all people (IT pros and end users) in the system:
 
 ```js
-card.services('people').request('people')
+card.services('people').request('people'[, options])
 ```
+
+
+##### Options
+
+Name | Type | Description
+-----|------|--------------
+`page`|`integer`| The page offset.  Must be between `1` and `page_count`.  Default: `1`
+`per_page`|`integer`| Number of entries per page. Must be between `1` and `100`.  Default: `30`
 
 ##### Response
 ```json
