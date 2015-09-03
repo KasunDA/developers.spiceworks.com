@@ -352,8 +352,8 @@ Name | Type | Description
 
 Name | Type | Description
 -----|------|--------------
-`minutes`|`integer`| Minutes of time to add.
-`duration`|`string`| Duration string, like  "1d 2h".
+`time_spent`|`integer`| **Required**. Seconds of time to add.
+`user`|`integer`| IT Pro who performed the work. Must be an IT Pro `id`. Defaults to the logged in user.
 
 ##### Response
 
