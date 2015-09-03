@@ -134,3 +134,72 @@ body.documentation_index {
     }
   }
 }
+
+.login-button-form-thank-you, .copy-success {
+  display: none;
+}
+
+.copy-success {
+  vertical-align: text-top;
+  line-height: 24px;
+}
+
+.login-button-form_header {
+  margin-top: 0;
+}
+
+.follow-button-code-form, .login-button-form {
+  @extend .well;
+  width: 50%;
+}
+
+.highlighted {
+  background: $warningFill;
+}
+
+.terms-of-use {
+  font-size: 11px;
+}
+
+.code-input {
+  white-space: pre;
+}
+
+.follow-button-code-form {
+
+  .follow-choice {
+    margin-bottom: 15px;
+  }
+
+  .follow-icon {
+  margin-right: 10px;
+  margin-left: 4px;
+  vertical-align: text-bottom;
+}
+
+  .follow-radio {
+    width: auto;
+    margin-right: 6px;
+    vertical-align: top;
+  }
+  
+  .terms-of-use {
+    margin-bottom: 0;
+  }
+
+  .follow-button-code, .terms-of-use {
+    margin-top: 10px;
+  }
+
+}
+
+.screenshot {
+  float: right;
+}
+
+.documentation_share_reviews {
+  img {
+    float: left;
+    margin: 5px 20px 5px 0;
+  }
+}

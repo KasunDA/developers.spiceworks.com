@@ -1,5 +1,5 @@
 ###Finding A Report
-The IT Pros in the community may already have written a report you need. Just visit the [Shared Reports](http://community.spiceworks.com/reports) section of the community. You'll see the top-rated reports on the main page. To see more reports click on See More.
+The IT pros in the community may already have written a report you need. Just visit the [Shared Reports](http://community.spiceworks.com/reports) section of the community. You'll see the top-rated reports on the main page. To see more reports click on See More.
 
 **To import the report you find:**
 
@@ -8,7 +8,7 @@ The IT Pros in the community may already have written a report you need. Just vi
 * Be sure to 'spice up' the report by clicking on the chili pepper. This will help recognize the author for the contribution. You can also leave a personal comment by replying.
 
 
-![Report Example](http://community.spiceworks.com/wiki_attachments/report12.png){: style="float:right;"}
+![Report Example](http://community.spiceworks.com/wiki_attachments/report12.png)
 
 If you don't see the install button, you can also do the following:
 

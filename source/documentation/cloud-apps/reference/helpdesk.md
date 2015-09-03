@@ -19,18 +19,18 @@ Name | Type | Description
 `id` | `array` | Returns tickets whose id is contained within the array of ids.
 `assignee`|`integer` or `string`| Return tickets that are assigned to this user.  Can be either a user `id` or the string `none` for unassigned tickets.
 `author`|`integer`| Return tickets authored by this user. Must be the user `id`.
-`closed_at`|`object`| Return tickets closed within the given range. See [(datetime range)] (/docs/CanvasAppApis.md#date-time-filtering) documentation for more information.
-`created_at`|`object`| Return tickets created within the given range. See [(datetime range)] (/docs/CanvasAppApis.md#date-time-filtering) documentation for more information.
-`due_at`|`object`| Return tickets whose due date is within the given range. See [(datetime range)] (/docs/CanvasAppApis.md#date-time-filtering) documentation for more information.
+`closed_at`|`object`| Return tickets closed within the given range. See [(datetime range)] (/documentation/cloud-apps/api-basics.html#date-time-filtering) documentation for more information.
+`created_at`|`object`| Return tickets created within the given range. See [(datetime range)] (/documentation/cloud-apps/api-basics.html#date-time-filtering) documentation for more information.
+`due_at`|`object`| Return tickets whose due date is within the given range. See [(datetime range)] (/documentation/cloud-apps/api-basics.html#date-time-filtering) documentation for more information.
 `page`|`integer`| The page offset.  Must be between `1` and `page_count`.  Default: `1`
 `per_page`|`integer`| Number of entries per page. Must be between `1` and `100`.  Default: `30`
 `priority`|`string`| Return tickets with this priority. Can be either `low`, `med`, or `high`.
 `site`|`string`| Return tickets by `site.name`.
 `sort`|`string`| How to sort the results.  Can be either `updated`, when the ticket was last updated, or `created`, when the ticket was created.  Default: `created`
 `status`|`string`| Return tickets with this status. Can be either `open` or `closed`.
-`status_updated_at`|`object`| Return tickets whose status was last changed within the given range. See [(datetime range)] (/docs/CanvasAppApis.md#date-time-filtering) documentation for more information.
-`viewed_at`|`object`| Return tickets that were last viewed within the given range. See [(datetime range)] (/docs/CanvasAppApis.md#date-time-filtering) documentation for more information.
-`search`|`object`| Search fields: `summary`, `description`.  See [Searching](/docs/CanvasAppApis.md#searching) documentation for more information.
+`status_updated_at`|`object`| Return tickets whose status was last changed within the given range. See [(datetime range)] (/documentation/cloud-apps/api-basics.html#date-time-filtering) documentation for more information.
+`viewed_at`|`object`| Return tickets that were last viewed within the given range. See [(datetime range)] (/documentation/cloud-apps/api-basics.html#date-time-filtering) documentation for more information.
+`search`|`object`| Search fields: `summary`, `description`.  See [Searching](/documentation/cloud-apps/api-basics.html#searching) documentation for more information.
 
 ##### Response
 ```json
@@ -182,7 +182,8 @@ Example ticket (note all arrays have been reduced to a single example item):
       "purchased": false,
       "price": 74.99,
       "product_image": "http://webobjects2.cdw.com/is/image/CDW/225027",
-      "part_number": "308878-001-CT"
+      "part_number": "308878-001-CT",
+      "quantity": 1
     }
   ],
   "work": [
@@ -236,7 +237,7 @@ Name | Type | Description
 -----|------|--------------
 `summary`|`string`| **Required**.  A short description of the request.
 `description`|`string`| Full description of the request.
-`assignee`|`integer`| The IT Pro the ticket is assigned to.  Must be an IT Pro `id`.
+`assignee`|`integer`| The IT pro the ticket is assigned to.  Must be an IT pro `id`.
 `priority`|`string`| The priority of the request. Must be `low`, `med`, or `high`.  Default: `med`.
 `due_at`|`string`| Due date of the request.  Must be a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
 `status`|`string`| The current status of the request. Must be `open` or `closed`.  Default: `open`.
@@ -267,7 +268,7 @@ Name | Type | Description
 -----|------|--------------
 `summary`|`string`| A short description of the request.
 `description`|`string`| Full description of the request.
-`assignee`|`integer`| The IT Pro the ticket is assigned to.  Must be an IT Pro `id` or `null` to unassign the ticket.
+`assignee`|`integer`| The IT pro the ticket is assigned to.  Must be an IT pro `id` or `null` to unassign the ticket.
 `priority`|`string`| The priority of the request. Must be `low`, `med`, or `high`.  Default: `med`.
 `due_at`|`string`| Due date of the request.  Must be a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
 `status`|`string`| The current status of the request. Must be `open` or `closed`.  Default: `open`.

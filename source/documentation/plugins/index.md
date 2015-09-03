@@ -21,7 +21,7 @@ Some examples of how you can use the plugins:
 ### Getting Started
 When you have thought of an idea for a plugin and you're ready to put your programming skills to the test, navigate to **Settings &rarr; Manage Extensions**.  Towards the top of the page, you'll find a **New Extension** button. Hover your mouse over this button and select **New Plugin** from the list.  This will bring up a text area where you can enter the name and a description of your plugin.  When you click **Save** your plugin will be created and added to the list of Extensions. To enter code for the plugin, click **edit** and the plugin editing window will open.
 
-![Add a plugin](http://community.spiceworks.com/wiki_attachments/addplugin.png){: .screenshot}
+![Add a plugin](http://community.spiceworks.com/wiki_attachments/addplugin.png)
 
 
 There are a few things you need to take into account when you start your plugin:
@@ -30,7 +30,7 @@ There are a few things you need to take into account when you start your plugin:
 	* Mouse over **Insert Code** and select **Plugin Configuration**. Then change the values to what you need them to be.
 	* For more information on how to add additional fields, including drop-down (list) menus, check out the [Plugin Configuration Tutorial][Plugin_Configuration_Tutorial].
 
-![Plugin actions](http://community.spiceworks.com/wiki_attachments/pluginactions.png){: .screenshot}
+![Plugin actions](http://community.spiceworks.com/wiki_attachments/pluginactions.png)
 
 * **What are you changing?** Are you making a new dashboard widget, a change to the user portal, or just changing the application in general?  
 	* **Widget:** If you are making a new widget, the best place to start is with the Widget Type preexisting code in Spiceworks.  To access this code, hover your mouse over **Insert Code** and select **Widget Type**.  This will insert the base code to create a new widget.  For more information on widget type plugins, check out the [Widget Plugin Tutorial][Hello_World_Widget_Plugin_Tutorial].
@@ -52,7 +52,7 @@ There are a few code templates built in to the plugin page.  You should take adv
 * **Portal Widget Type:** This will insert the base code for a User Portal widget. This baseline model is set up to simply display the text **Hello World** in a window in the User Portal, but you can change it to build up to as complex a widget as you care to make.
 * **Navigation Item:** This will insert the base code to have a new item on the navigation panel under **My Tools**.  By default, the code is configured to add a link titled **My Page** to link to a page that simply says **Hello World** but this can be changed to accomplish many things.  Check out the [Run Report Tutorial][Run_Report_Plugin_Tutorial] for an example of using this tool to display a report.
 
-![Insert code](http://community.spiceworks.com/wiki_attachments/insertcode.png){: .screenshot}
+![Insert code](http://community.spiceworks.com/wiki_attachments/insertcode.png)
 
 * **Run Report:** This will insert the code that runs a report of your choosing.  This code is not useful by itself, but you could add it to a widget or navigation item to put it somewhere useful.  You will need to add information to tell Spiceworks what kind of information to display.  You can learn more about how to put a report in a plugin by checking out the [Run Report Plugin Tutorial][Run_Report_Plugin_Tutorial].
 * **Add Message:** This will insert a snippet of code that displays a message at the top of Spiceworks.  You can learn more about this type of plugin at the [Message Plugin Tutorial][Message_Plugin_Tutorial].
@@ -90,7 +90,7 @@ Cloning a plugin is a great way to start building your plugin.  If you can find 
 * Click **source** next to the plugin you want to clone.
 * Click **Clone Plugin** to create a new plugin that you can edit, containing the same code.  
 
-![Clone plugin](http://community.spiceworks.com/wiki_attachments/cloneplugin.png){: .screenshot}
+![Clone plugin](http://community.spiceworks.com/wiki_attachments/cloneplugin.png)
 
 ### Firebug
 You can use a Firefox plugin called Firebug to help you to create plugins for Spiceworks.  Firebug allows you to view and change the scripts that are running on a page.
@@ -98,14 +98,14 @@ You can use a Firefox plugin called Firebug to help you to create plugins for Sp
 * You can navigate to the page you want to change in Spiceworks and find the code that is running on that page to see how certain commands are executed.  Then you can make changes in Firebug and see how the program responds.
 * Check out the [Firebug home page](http://getfirebug.com) for more information and to get the plugin.
 
-![Firebug](http://community.spiceworks.com/wiki_attachments/firebug.png){: .screenshot}
+![Firebug](http://community.spiceworks.com/wiki_attachments/firebug.png)
 
 ### Sharing Your Plugins
 Sharing plugins with other users is a great way to get feedback and ideas to improve your plugin. Plus, you'll be helping someone else do their job better and get credit for your contribution.  Even though we know you're a top-notch programmer, when you first share a plugin it will not be listed in the plugin directory.  This is to allow you to get user feedback, update the description, and fix any bugs that might pop up.
 
 #### Sharing a plugin
 
-![Share plugin](http://community.spiceworks.com/wiki_attachments/shareplugin.png){: .screenshot}
+![Share plugin](http://community.spiceworks.com/wiki_attachments/shareplugin.png)
 
 * After you've written and saved your plugin, click **share** in the row of the plugin you want to share.
 * Click **Share** in the pop-up to confirm that you want to share the plugin.

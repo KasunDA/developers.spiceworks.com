@@ -1,0 +1,108 @@
+<section class="overview">
+  <div class="section-content">
+    <h2 id="whats_a_spicebutton">What's a SpiceButton?</h2>
+    <p>SpiceButtons are Spiceworks’ version of simple, embeddable social media buttons. Just grab the code, and you’re off and running!</p>
+  </div>
+</section>
+<section>
+  <div class="section-content">
+    <h2 id="follow">
+      <%= image_tag 'documentation/follow-icon.png', alt: 'Follow Icon', class: 'header-icon' %>
+      Follow
+    </h2>
+    <p>Want to make sure IT pros stay connected to you in Spiceworks? Looking for a simple way to get more followers on your vendor page? We've got your back. You can now add our button to your social media toolbar - and show IT pros you've gone social with Spiceworks.</p>
+    <p>Use the 'Follow' button in your social media toolbar to:</p>
+    <%= image_tag 'documentation/add-to-social.png', alt: 'Spiceworks Add Follow SpiceButton', class: 'screenshot' %>
+    <ul>
+      <li>Let IT pros know they can access you in Spiceworks</li>
+      <li>Link directly to your brand's vendor page</li>
+      <li>Get new followers with just one click</li>
+    </ul>
+    <div class="instructions clearfix">
+      <p>To get started just…</p>
+      <ol>
+        <li>Choose your button type below</li>
+        <li>Insert your vendor page name</li>
+        <li>Hit the 'Get Code' button</li>
+        <li>Grab the code and put it on your website</li>
+      </ol>
+      <p>Baam! That's IT.</p>
+      <p>Questions? Email <a href="mailto:partner_support@spiceworks.com">partner_support@spiceworks.com</a> and we'll help you out!</p>
+      <form class="follow-button-code-form">
+        <div class = 'follow-choice'>
+          <input type="radio" name="follow-choice" id="swooshOnly" class="follow-radio" checked="checked">Swoosh
+          <%= image_tag 'documentation/spicebutton-20px.png', alt: 'Follow Icon', class: 'follow-icon' %>
+          <input type="radio" name="follow-choice" id="swooshAndFollow" class="follow-radio">Swoosh + Follow
+          <%= image_tag 'documentation/spicebutton-follow.png', alt: 'Follow Icon', class: 'follow-icon' %>
+        </div>
+         <input id="vendor-name" type="text" placeholder="Enter your Spiceworks vendor page name..." />
+        <button class="sui-bttn sui-bttn-primary update-follow-button-code" data-target-element="follow-button-code">
+          Get Code
+        </button>
+        <textarea id="follow-button-code" class="follow-button-code code-input"></textarea>
+        <button  class="sui-bttn copy-to-clipboard-btn" name="copy-btn" data-clipboard-target="follow-button-code">
+          Copy to Clipboard
+        </button>
+        <span class="copy-success">Copied!</span>
+        <p class="terms-of-use">
+          By obtaining and using the SpiceButtons you agree to the
+          <a href="http://www.spiceworks.com/developers/terms/">
+            SpiceButtons Terms of Use
+          </a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="section-content">
+    <h2 id="login_with_spiceworks">
+      <%= image_tag 'documentation/login-icon.png', alt: 'Login Icon', class: 'header-icon' %>
+      Login with Spiceworks
+    </h2>
+    <%= image_tag 'documentation/login.png', alt: 'Spiceworks Login SpiceButton', class: 'screenshot' %>
+    <p>Make IT easy! Let IT pros use their Spiceworks IDs on your site.</p>
+    <p>Use the 'Login with Spiceworks' button to:</p>
+    <ul>
+      <li>Enable IT pros to sign on or register on your site with their Spiceworks ID</li>
+      <li>Simplify and socialize their experience on your site</li>
+      <li>Help reduce username and password proliferation along the way</li>
+    </ul>
+    <p>Animal shelters ask for us to help control the pet population. We say help control username and password proliferation. Use Login with Spiceworks, and make IT easier (and more social) along the way.</p>
+    <p>Login with Spiceworks is a simple way for IT pros to sign-in or join your login system, with their 'IT' social profile. IT just makes sense! Use the profile they use while doing their jobs. When IT pros log into your site with their Spiceworks IDs they bring IT with them… to you.</p>
+    <div class="instructions social-buttons">
+      <div class="login-button-form">
+        <form accept-charset="UTF-8" action="https://pages.spiceworks.com/index.php/leadCapture/save" class="login-with-spiceworks-form" data-remote="true" method="post" role="form">
+          <h5 class="login-button-form_header">Get the Login with Spiceworks social button</h5>
+          <div>
+            <label class="sr-only" for="ApplicationURL">Main application URL</label>
+            <input name="ApplicationURL" type="url" placeholder="Main application URL" required>
+          </div>
+          <div>
+            <label class="sr-only" for="CallbackURL">Callback URL</label>
+            <input name="CallbackURL" type="url" placeholder="Callback URL" required>
+          </div>
+          <div>
+            <label class="sr-only" for="Email">Email Address</label>
+            <input name="Email" type="email" placeholder="Email address" required>
+          </div>
+          <input name="formid" type="hidden" value="1089">
+          <input name="munchkinId" type="hidden" value="989-NIR-811">
+          <button type="submit" class="ladda-button sui-bttn sui-bttn-primary" data-style="zoom-in">
+            <span class="ladda-label">Submit</span>
+            <span class="ladda-spinner"></span>
+          </button>
+        </form>
+        <div class="login-button-form-thank-you">
+          <h5>Thanks for your interest in making IT social!</h5>
+          <p>Your message has been received and someone from our social team will be contacting you shortly.</p>
+          <p>Have another application? <a href="#" class="show-login-button-form">Request login button »</a></p>
+          <p>Cheers!</p>
+          <p>~The Spiceworks Team</p>
+        </div>
+      </div>
+    </div>
+    <p>Phew, you're done!</p>
+    <p>Rough? Need a break? Go ahead… we'll help from here. Once we generate a token, we will send that back along with all the specs you need to have it up and running in no time.</p>
+  </div>
+</section>

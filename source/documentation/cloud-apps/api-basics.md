@@ -257,7 +257,7 @@ Spiceworks server.
 For paginated requests, you can request a specific page of results.  For some
 paginated requests, you can also specify the number of results per page.  To set
 these parameters pass them to the `request` function as keys in the final
-options argument.
+options argument. The default value for the `per_page` attribute is 30, and only integer values between 1 and 100 are allowed.
 
 For example, if you wanted the second page of currently open tickets with 50
 tickets per page you would write:

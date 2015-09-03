@@ -1,0 +1,13 @@
+title: 'Share Spiceworks'
+root: '/documentation/share'
+guides:
+  - title: 'Spice Buttons'
+    url: 'index'
+    sections:
+    - title: 'Follow Button'
+      url: '#follow'
+    - title: 'Login with Spiceworks'
+      url: '#login_with_spiceworks'
+
+  - title: 'Ratings & Reviews'
+    url: 'reviews'

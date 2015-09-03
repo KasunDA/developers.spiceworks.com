@@ -88,6 +88,7 @@ The Help Desk is one of the most used aspects of Spiceworks, so of course you pr
 **Catalog of Events for Helpdesk v2**
 Here is a complete list of events for Helpdesk v2, with arguments. You would start each event with $UI.app.pluginEventBus.on('app:helpdesk...)
 
+* __“app:helpdesk:ticket:show”__ (ticket object) — when a ticket is loaded or displayed
 * __“app:helpdesk:purchase:add”__ (purchase object) — when a purchase is added to a ticket
 * __“app:helpdesk:ticket:change:status”__ (ticket object) — when a ticket’s status is changed to open or closed
 * __“app:helpdesk:ticket:add”__ (ticket object) — when a new ticket is created

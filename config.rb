@@ -29,6 +29,9 @@ require 'pry'
 page "/documentation/plugins/*", layout: :plugins
 page "/documentation/cloud-apps/*", layout: :cloud_apps
 page "/documentation/reports/*", layout: :reports
+page "/documentation/share/*", layout: :share
+
+redirect "tax-docs/index.html", to: "../support/faq#how-do-i-get-paid"
 
 # Proxy pages (https://middlemanapp.com/advanced/dynamic_pages/)
 # proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {
@@ -44,6 +47,7 @@ page "/documentation/reports/*", layout: :reports
 # Make all links relative to support testing on
 # github.io/developers.spiceworks.com subdomain
 set :relative_links, true
+activate :directory_indexes
 
 # Add support for GFM
 set :markdown, tables: true,
@@ -74,7 +78,7 @@ helpers do
   def current_guide
     return @current_guide if @current_guide
 
-    [data.plugin_guides, data.app_guides, data.report_guides].each do |guide_list|
+    [data.plugin_guides, data.app_guides, data.report_guides, data.share_guides].each do |guide_list|
       guide_list.guides.each do |guide|
         guide_url = "#{guide_list.root}/#{guide.url}.html"
         guide_section_urls = Array(guide.sections).collect(&:url)
@@ -96,11 +100,11 @@ helpers do
   def sidebar_for(guide_list)
     buffer = "<div class='aside-wrapper'><aside><nav class='sidebar'>"
     buffer << "<h4>#{guide_list.title}</h4>"
-    buffer << "<ul classs='nav' role='tablist'>"
+    buffer << "<ul class='nav' role='tablist'>"
 
     guide_list.guides.each do |guide|
       current = (current_guide && (guide.url == current_guide.url))
-      middleman_url = guide.url.start_with?('//') ? guide.url : "#{guide_list.root}/#{guide.url}.html"
+      middleman_url = guide.url.start_with?('//', '#') ? guide.url : "#{guide_list.root}/#{guide.url}.html"
 
       buffer << "<hr />" if guide.new_section
       buffer << "<li class='#{'active' if current}'>"

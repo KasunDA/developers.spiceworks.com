@@ -18,9 +18,9 @@ Name | Type | Description
 -----|------|--------------
 `public`|`boolean`| Return reports that are marked as public or not public.
 `return_type`|`string`| Get all reports that return this type of object.  Can be either `Software`, `Device`, `User`, `Purchase`, `Ticket`, `Agreement`, `CloudService`, `MobileSoftware`, `MobileDevice`, `Peripheral`, `PeripheralInstances`, or `SQL` for custom SQL reports.
-`created_at`|`object`| Return reports created within the given range. See [(datetime range)] (/docs/CanvasAppApis.md#date-time-filtering) documentation for more information.
+`created_at`|`object`| Return reports created within the given range. See [(datetime range)] (/documentation/cloud-apps/api-basics.html#date-time-filtering) documentation for more information.
 `schedule`|`object`| Return reports based on their schedule properties (see below).
-`search`|`object`| Search fields: `summary`, `description`.  See [Searching](/docs/CanvasAppApis.md#searching) documentation for more information.
+`search`|`object`| Search fields: `summary`, `description`.  See [Searching](/documentation/cloud-apps/api-basics.html#searching) documentation for more information.
 
 ###### Schedule Options
 
@@ -29,8 +29,8 @@ The following properties can be used as filters within the `schedule` property.
 Name | Type | Description
 -----|------|--------------
 `enabled`|`boolean`| Return reports that have a currently enabled schedule.
-`start_schedule_at`|`object`(datetime range)| Return reports whose schedule begins within the given range.
-`stop_schedule_at`|`object`(datetime range)| Return reports whose schedule ends within the given range.
+`start_schedule_at`|`object`[(datetime range)] (/documentation/cloud-apps/api-basics.html#date-time-filtering)| Return reports whose schedule begins within the given range.
+`stop_schedule_at`|`object`[(datetime range)] (/documentation/cloud-apps/api-basics.html#date-time-filtering)| Return reports whose schedule ends within the given range.
 `frequency`|`string`| Return reports that are scheduled with the given frequency.  Can be either `daily`, `weekly`, `monthly`, or `end_of_month`.
 
 Note: All filters that accept a datetime range take a JSON object with at least one of the following keys:

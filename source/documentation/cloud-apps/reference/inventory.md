@@ -21,16 +21,16 @@ Name | Type | Description
 -----|------|--------------
 `id` | `array` | Returns devices whose id is contained within the array of ids.
 `scan_state`|`string`| Return devices that were in this state during the last scan. Can be either `'inventoried'`,  `'manual'`, or `'unknown'`.
-`owner`|`integer`| id corresponding to the owner of the device or asset. See [People](/docs/apis/people.md#people-service) documentation for more information.
-`offline_at`|`object`([datetime range](/docs/CanvasAppApis.md#date-time-filtering))| Return devices that were last noticed offline within the given [datetime range](/docs/CanvasAppApis.md#date-time-filtering).
-`online_at`|`object`([datetime range](/docs/CanvasAppApis.md#date-time-filtering))| Return devices that were last noticed online within the given [datetime range](/docs/CanvasAppApis.md#date-time-filtering).
+`owner`|`integer`| id corresponding to the owner of the device or asset. See [People](/documentation/cloud-apps/reference/people.html#people-service) documentation for more information.
+`offline_at`|`object`([datetime range](/documentation/cloud-apps/api-basics.html#date-time-filtering))| Return devices that were last noticed offline within the given [datetime range](/documentation/cloud-apps/api-basics.html#date-time-filtering).
+`online_at`|`object`([datetime range](/documentation/cloud-apps/api-basics.html#date-time-filtering))| Return devices that were last noticed online within the given [datetime range](/documentation/cloud-apps/api-basics.html#date-time-filtering).
 `online`|`boolean`| Return only devices that are online if `true` or offline if `false`.
-`last_scanned_at`|`object`([datetime range](/docs/CanvasAppApis.md#date-time-filtering))| Return devices that were last scanned within the given [datetime range](/docs/CanvasAppApis.md#date-time-filtering).
+`last_scanned_at`|`object`([datetime range](/documentation/cloud-apps/api-basics.html#date-time-filtering))| Return devices that were last scanned within the given [datetime range](/documentation/cloud-apps/api-basics.html#date-time-filtering).
 `operating_system`|`string`| Return devices running the operating system `operating_system`.
 `model`|`string`| Return devices with model name `model`.
 `manufacturer`|`string`| Return devices manufactured by `manufacturer`.
 `device_type`|`string`| Return only devices that match this `device_type`. Users can add custom types, but the default device types are: `Desktop`, `Laptop`, `Server`, `Fax`, `Firewall`, `Copier`, `Router`, `NetworkPrinter`, `Unknown`, `Switch`, `Hub`, `HttpDevice`, `VoipDevice`, `Wireless`, `SnmpDevice`, `NAS`, `Ilo`, `IloOA`, `Tablet`, and `Smartphone`.
-`search`|`object`| Search fields: `manufacturer`, `model`, `operating_system`, `software.name`, `software.display_name`, `software.vendor`.  See [Searching](/docs/CanvasAppApis.md#searching) documentation for more information.
+`search`|`object`| Search fields: `manufacturer`, `model`, `name`, `operating_system`, `software.name`, `software.display_name`, `software.vendor`.  See [Searching](/documentation/cloud-apps/api-basics.html#searching) documentation for more information.
 
 ##### Response
 ```json
@@ -458,7 +458,7 @@ Example response for a user-defined asset or an unknown device on the network:
 #### Create an asset or device
 
 Create an asset or device with the given attributes. A device created via API
-must be manually maintained by the IT Pro in the Inventory application.
+must be manually maintained by the IT pro in the Inventory application.
 I.e. it is not scanned from the network.
 All attributes are optional unless indicated otherwise.
 
@@ -482,7 +482,7 @@ Name | Type | Description
 `manufacturer`|`string`|Manufacturer information.
 `model`|`string`|Model information.
 `primary_owner_name`|`string`| Primary owner of the device or asset
-`owner`|`integer`| id corresponding to the owner of the device or asset. See [People](/docs/apis/people.md#people-service) documentation for more information.
+`owner`|`integer`| id corresponding to the owner of the device or asset. See [People](/documentation/cloud-apps/reference/people.html#people-service) documentation for more information.
 
 ##### Response
 
@@ -510,6 +510,22 @@ This request accepts the same [attributes](#attributes) as creating a device, [s
 ##### Response
 
 This request will return the updated device JSON, see the [single device response](#response-1).
+
+#### Delete a device
+
+```js
+card.services('inventory').request('device:destroy', id)
+```
+
+##### Parameters
+
+Name | Type | Description
+-----|------|--------------
+`id`|`integer`|The `id` of the device
+
+##### Response
+
+This request will return the deleted device JSON, see the [single device response](#response-1).
 
 ## Software
 

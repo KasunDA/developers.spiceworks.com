@@ -1,0 +1,30 @@
+<% wrap_layout :layout do %>
+  <div class="with-sidebar with-breadcrumbs">
+    <ul class="breadcrumbs">
+      <li>
+        <%= link_to 'Documentation', '/documentation/index.html' %>
+      </li>
+      <li>
+        <%= link_to 'Share Spiceworks', '/documentation/share/index.html' %>
+      </li>
+      <% if page_title %>
+        <li>
+          <%= page_title %>
+        </li>
+      <% end %>
+    </ul>
+
+    <%= sidebar_for(data.share_guides) %>
+
+    <main class="with-left-sidebar">
+      <section class="documentation-hero-header">
+        <%= image_tag 'spiceworks-o.png', alt: "Spiceworks Swoosh" %>
+        <h1>Share Spiceworks</h1>
+        <hr class="divider-shadow">
+      </section>
+      <section class="doc-content">
+        <%= yield %>
+      </section>
+    </main>
+  </div>
+<% end %>
