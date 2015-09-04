@@ -245,7 +245,7 @@ Name | Type | Description
 
 ##### Response
 
-This request will return the created ticket JSON, see the [single ticket response](#response-1).
+This request will return the created ticket, see the [single ticket response JSON](#response-1).
 
 #### Update a ticket
 
@@ -277,7 +277,7 @@ Name | Type | Description
 
 ##### Response
 
-This request will return the updated ticket JSON, see the [single ticket response](#response-1).
+This request will return the updated ticket, see the [single ticket response JSON](#response-1).
 
 #### Create a comment
 
@@ -303,8 +303,8 @@ Name | Type | Description
 
 ##### Response
 
-This request will return the same comment JSON as the `comments` array in the
-[ticket response](#response-1).  Example comment JSON:
+This request will return a comment object like those in the `comments` array in the
+[ticket response JSON](#response-1).  Example comment response:
 
 ```json
 {
@@ -330,6 +330,51 @@ This request will return the same comment JSON as the `comments` array in the
   },
   "collaborator": null,
   "body": "What a great ticket!"
+}
+```
+
+#### Add work
+
+Add work time to a ticket
+
+```js
+card.services('helpdesk').request('work:create', ticket_id, attributes)
+```
+
+##### Parameters
+
+Name | Type | Description
+-----|------|--------------
+`ticket_id`|`integer`| The `id` of the ticket where the work will be appended.
+`attributes`|`object`| See below for detailed requirements
+
+##### Attributes
+
+Name | Type | Description
+-----|------|--------------
+`time_spent`|`integer`| **Required**. Seconds of time to add.
+`user`|`integer`| IT Pro who performed the work. Must be an IT Pro `id`. Defaults to the logged in user.
+
+##### Response
+
+This request will return a work object like those in the `work` array in the
+[ticket response JSON](#response-1).  Example work response:
+
+```json
+{
+  "id": 10,
+  "time_spent": 3600,
+  "rate": 50.0,
+  "labor": 50.0,
+  "user": {
+    "id": 159,
+    "first_name": "Michael",
+    "last_name": "Gerbush",
+    "role": "admin",
+    "department": "DEV",
+    "avatar_path": null,
+    "url": "http://localhost:9675/people/159"
+  }
 }
 ```
 
