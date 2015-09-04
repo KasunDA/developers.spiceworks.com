@@ -86,8 +86,29 @@ these users, their devices, any support tickets they may have submitted, and so 
 <h4 id="list-people">List people</h4>
 
 <p>List all people (IT pros and end users) in the system:</p>
-<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'people'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'people'</span><span class="p">)</span>
+<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'people'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'people'</span><span class="p">[,</span> <span class="nx">options</span><span class="p">])</span>
 </code></pre>
+
+<h5 id="options">Options</h5>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>page</code></td>
+<td><code>integer</code></td>
+<td>The page offset.  Must be between <code>1</code> and <code>page_count</code>.  Default: <code>1</code></td>
+</tr>
+<tr>
+<td><code>per_page</code></td>
+<td><code>integer</code></td>
+<td>Number of entries per page. Must be between <code>1</code> and <code>100</code>.  Default: <code>30</code></td>
+</tr>
+</tbody></table>
 
 <h5 id="response">Response</h5>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">

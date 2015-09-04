@@ -136,8 +136,29 @@ object.</p>
 <h4 id="list-users">List users</h4>
 
 <p>List all users (IT pros) in the system:</p>
-<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'environment'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'users'</span><span class="p">)</span>
+<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'environment'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'users'</span><span class="p">[,</span> <span class="nx">options</span><span class="p">])</span>
 </code></pre>
+
+<h5 id="options">Options</h5>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>page</code></td>
+<td><code>integer</code></td>
+<td>The page offset.  Must be between <code>1</code> and <code>page_count</code>.  Default: <code>1</code></td>
+</tr>
+<tr>
+<td><code>per_page</code></td>
+<td><code>integer</code></td>
+<td>Number of entries per page. Must be between <code>1</code> and <code>100</code>.  Default: <code>30</code></td>
+</tr>
+</tbody></table>
 
 <h5 id="response">Response</h5>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
