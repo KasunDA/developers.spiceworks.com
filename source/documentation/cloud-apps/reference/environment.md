@@ -23,7 +23,7 @@ card.onActivate(function(environment){
 ```
 
 ##### Response
-```json
+```js
 {
   "app_host":
     {
@@ -81,7 +81,7 @@ Name | Type | Description
 
 ##### Response
 
-```json
+```js
 {
   "meta": {
     "total_entries": 3,
