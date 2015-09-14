@@ -102,13 +102,13 @@ item):
   "bios_date": "2013-12-05T00:00:00-08:00",
   "bios_version": "L77 Ver. 01.02",
   "page_count": null,
-  "mac_address": "E1:19:B5:F9:9C:A2",
-  "ip_address": "3.247.227.245",
-  "ip_comparable": 66577397,
-  "os_serial_number": "81386-805-2882254-33720",
-  "asset_tag": "3B71E7EF7A",
-  "serial_number": "3B71E7EF7A",
-  "uuid": "332A52FA-6EAF-86A6-3FE1-A340835369B1",
+  "mac_address": "E1:19:B5:F9:9C:A2",             // Extended Data Access required, else not returned
+  "ip_address": "3.247.227.245",                  // Extended Data Access required, else not returned
+  "ip_comparable": 66577397,                      // Extended Data Access required, else not returned
+  "os_serial_number": "81386-805-2882254-33720",  // Extended Data Access required, else not returned
+  "asset_tag": "3B71E7EF7A",                      // Extended Data Access required, else not returned
+  "serial_number": "3B71E7EF7A",                  // Extended Data Access required, else not returned
+  "uuid": "332A52FA-6EAF-86A6-3FE1-A340835369B1", // Extended Data Access required, else not returned
   "created_at": "2015-02-01T12:56:38-08:00",
   "updated_at": "2015-02-19T02:26:01-08:00",
   "scan_state": "inventoried",
@@ -139,16 +139,16 @@ item):
       "name": "NETwNs64",
       "net_connection_id": "Wireless Network Connection",
       "description": "Intel(R) Centrino(R) Advanced-N 6235",
-      "ip_address": "242.2.223.202",
-      "ip_comparable": 4060274634,
-      "gateway": "34.240.52.162",
-      "net_mask": "255.255.252.0",
-      "mac_address": "4A:4D:11:16:65:97",
-      "dns_domain": "example.com",
-      "dns_servers": "8.48.12.14 153.95.118.87 183.25.121.27",
-      "dhcp_enabled": "true",
-      "dhcp_server": "179.207.148.94",
-      "ip_addresses": [
+      "ip_address": "242.2.223.202",                           // Extended Data Access required, else not returned
+      "ip_comparable": 4060274634,                             // Extended Data Access required, else not returned
+      "gateway": "34.240.52.162",                              // Extended Data Access required, else not returned
+      "net_mask": "255.255.252.0",                             // Extended Data Access required, else not returned
+      "mac_address": "4A:4D:11:16:65:97",                      // Extended Data Access required, else not returned
+      "dns_domain": "example.com",                             // Extended Data Access required, else not returned
+      "dns_servers": "8.48.12.14 153.95.118.87 183.25.121.27", // Extended Data Access required, else not returned
+      "dhcp_enabled": "true",                                  // Extended Data Access required, else not returned
+      "dhcp_server": "179.207.148.94",                         // Extended Data Access required, else not returned
+      "ip_addresses": [                                        // Extended Data Access required, else not returned
         "10.10.48.35",
         "fe80::9c43:4df5:dc5b:1252"
       ]
@@ -180,7 +180,7 @@ item):
       "screen_width": 1920,
       "monitor_type": "Generic PnP Monitor",
       "manufacturer_date": "2014-04-28",
-      "serial_number": "14959821"
+      "serial_number": "14959821"  // Extended Data Access required, else not returned
     }
   ],
   "printers": [
@@ -260,7 +260,7 @@ item):
           "free_space": 31873052672
         }
       ],
-      "serial_number": "02394654"
+      "serial_number": "02394654"  // Extended Data Access required, else not returned
     }
   ],
   "software": [
@@ -278,7 +278,7 @@ item):
       "install_location": null,
       "uninstall_string": "MsiExec.exe /I{23170F69-40C1-2702-0920-000001000000}",
       "identity": "{23170F69-40C1-2702-0920-000001000000}",
-      "product_key": null
+      "product_key": null  // Extended Data Access required, else not returned
     }
   ]
 }
