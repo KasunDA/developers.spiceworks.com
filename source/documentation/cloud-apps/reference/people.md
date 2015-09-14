@@ -53,7 +53,7 @@ Name | Type | Description
 
 Example person (note all arrays have been reduced to a single example item):
 
-```json
+```js
 {
   "id": 13,
   "first_name": "Alexia", // Extended Data Access required, else not returned
