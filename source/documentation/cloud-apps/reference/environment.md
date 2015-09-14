@@ -42,6 +42,7 @@ card.onActivate(function(environment){
       "show_url": "/people/159",
       "first_name": "Jolly",
       "last_name": "Fellow",
+      "email":  "jfellow@gmail.com",
       "role": "admin",
       "department": "DEV",
       "avatar_path": "/images/icons/medium/person-avatar-admin.png"
@@ -114,6 +115,7 @@ Example user (note all arrays have been reduced to a single example item)
   "id": 2,
   "first_name": "Lucy",
   "last_name": "Chipotle",
+  "email": "lchipotle@gmail.com",
   "role": "admin",
   "department": "IT",
   "avatar_path": "/images/icons/medium/person-avatar-admin.png",
