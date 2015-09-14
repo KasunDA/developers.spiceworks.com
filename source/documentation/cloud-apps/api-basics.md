@@ -275,7 +275,7 @@ request documentation for more information on the `per_page` defaults.
 When a paginated request is returned, it will always have a top-level `meta`
 attribute containing pagination information.  For example:
 
-```json
+```js
 "meta": {
   "total_entries": 205, // total number of items, across all pages
   "page_count": 7, // total number of pages

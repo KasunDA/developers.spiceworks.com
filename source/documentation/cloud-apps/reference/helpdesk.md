@@ -33,7 +33,7 @@ Name | Type | Description
 `search`|`object`| Search fields: `summary`, `description`.  See [Searching](/documentation/cloud-apps/api-basics.html#searching) documentation for more information.
 
 ##### Response
-```json
+```js
 {
   "meta": {
     "total_entries": 9,

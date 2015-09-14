@@ -41,7 +41,7 @@ Name | Type | Description
 `before` (optional)|`string`| Match all objects whose datetime field is `<=` the timestamp, provided in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
 
 ##### Response
-```json
+```js
 {
   "meta": {
     "total_entries": 9,

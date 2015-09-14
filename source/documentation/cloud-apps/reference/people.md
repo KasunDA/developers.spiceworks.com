@@ -25,7 +25,7 @@ Name | Type | Description
 `per_page`|`integer`| Number of entries per page. Must be between `1` and `100`.  Default: `30`
 
 ##### Response
-```json
+```js
 {
   "meta": {
     "total_entries": 166,

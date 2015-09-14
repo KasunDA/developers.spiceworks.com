@@ -33,7 +33,7 @@ Name | Type | Description
 `search`|`object`| Search fields: `manufacturer`, `model`, `name`, `operating_system`, `software.name`, `software.display_name`, `software.vendor`.  See [Searching](/documentation/cloud-apps/api-basics.html#searching) documentation for more information.
 
 ##### Response
-```json
+```js
 {
   "meta": {
     "total_entries": 166,
@@ -547,7 +547,7 @@ Name | Type | Description
 
 
 ##### Response
-```json
+```js
 {
   "meta": {
     "total_entries": 3096,
