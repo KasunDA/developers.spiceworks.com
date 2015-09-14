@@ -62,7 +62,7 @@ Name | Type | Description
 Example computer (note all arrays have been reduced to a single example
 item):
 
-```json
+```js
 {
   "id": 2,
   "show_url": "/inventory/groups/devices/2",
