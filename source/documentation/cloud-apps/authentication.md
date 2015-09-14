@@ -1,7 +1,7 @@
 > **Note:** Currently, if you want to allow seamless authentication to your App
 using the Spiceworks Login API described below, you must apply to receive an App
 UID and secret. [Apply here
-now](http://www.surveygizmo.com/s3/2206835/Challenge-Post-Access-Token-Request).
+now][access_token_request_link].
 
 # Authentication
 
@@ -92,7 +92,7 @@ identified with a different pair of values to each of your two cloud apps.
 
 > **Note:** Currently, to use this API you must apply to receive an App UID
 (`appUid`) and secret. [Apply here
-now](http://www.surveygizmo.com/s3/2206835/Challenge-Post-Access-Token-Request).
+now][access_token_request_link].
 
 An OAuth2 access token is like a temporary password granted to your cloud app
 on behalf of the Spiceworks user without the Spiceworks user having to
@@ -170,7 +170,7 @@ document.getElementById('login-form').submit();
 
 > **Note:** Currently, to use this API you must apply to receive an App UID and
 secret (`app_secret`). [Apply here
-now](http://www.surveygizmo.com/s3/2206835/Challenge-Post-Access-Token-Request).
+now][access_token_request_link].
 
 Recall that an OAuth2 access token is like a temporary password granted
 to your cloud app. Even if it were the real user's password, you would
@@ -275,3 +275,5 @@ rights with the other users of the same Spiceworks host application.
 * [Spiceworks App API Basics](/documentation/cloud-apps/api-basics.html)
 * [Spiceworks Environment API Reference](/documentation/cloud-apps/reference/environment.html)
 * [OAuth 2.0](http://oauth.net/2/)
+
+[access_token_request_link]: http://www.surveygizmo.com/s3/2206835/Spiceworks-App-Center-Access-Token-Request
