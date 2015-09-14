@@ -56,11 +56,11 @@ Example person (note all arrays have been reduced to a single example item):
 ```json
 {
   "id": 13,
-  "first_name": "Alexia",
-  "last_name": "Rocoto",
+  "first_name": "Alexia", // Extended Data Access required, else not returned
+  "last_name": "Rocoto",  // Extended Data Access required, else not returned
   "role": "end_user",
   "department": "Finance",
-  "avatar_path": "/images/icons/medium/person-avatar-restricted.png",
+  "avatar_path": "/images/icons/medium/person-avatar-restricted.png", // Extended Data Access required, else not returned
   "show_url": "/people/13",
   "title": "",
   "location": "",
