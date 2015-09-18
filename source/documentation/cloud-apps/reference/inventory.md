@@ -577,7 +577,7 @@ Name | Type | Description
 Example software application (note all arrays have been reduced to a single example
 item):
 
-```json
+```js
 {
   "id": 8,
   "show_url": "/inventory/software/applications/8",
