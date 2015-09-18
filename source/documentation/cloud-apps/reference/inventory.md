@@ -260,7 +260,7 @@ item):
           "free_space": 31873052672
         }
       ],
-      "serial_number": "02394654"  // Extended Data Access required, else not returned
+      "serial_number": "02394654" // Extended Data Access required, else not returned
     }
   ],
   "software": [
@@ -278,7 +278,7 @@ item):
       "install_location": null,
       "uninstall_string": "MsiExec.exe /I{23170F69-40C1-2702-0920-000001000000}",
       "identity": "{23170F69-40C1-2702-0920-000001000000}",
-      "product_key": null           // Extended Data Access required, else not returned
+      "product_key": null  // Extended Data Access required, else not returned
     }
   ]
 }
