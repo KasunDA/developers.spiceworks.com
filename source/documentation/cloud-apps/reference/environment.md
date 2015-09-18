@@ -23,7 +23,7 @@ card.onActivate(function(environment){
 ```
 
 ##### Response
-```json
+```js
 {
   "app_host":
     {
@@ -42,7 +42,7 @@ card.onActivate(function(environment){
       "show_url": "/people/159",
       "first_name": "Jolly",
       "last_name": "Fellow",
-      "email":  "jfellow@gmail.com",
+      "email":  "jfellow@company.com", // Extended Data Access required, else null
       "role": "admin",
       "department": "DEV",
       "avatar_path": "/images/icons/medium/person-avatar-admin.png"
@@ -81,7 +81,7 @@ Name | Type | Description
 
 ##### Response
 
-```json
+```js
 {
   "meta": {
     "total_entries": 3,
@@ -110,12 +110,12 @@ Name | Type | Description
 
 Example user (note all arrays have been reduced to a single example item)
 
-```json
+```js
 {
   "id": 2,
   "first_name": "Lucy",
   "last_name": "Chipotle",
-  "email": "lchipotle@gmail.com",
+  "email": "lchipotle@company.com", // Extended Data Access required, else null
   "role": "admin",
   "department": "IT",
   "avatar_path": "/images/icons/medium/person-avatar-admin.png",

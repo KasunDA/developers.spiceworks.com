@@ -33,7 +33,7 @@ Name | Type | Description
 `search`|`object`| Search fields: `summary`, `description`.  See [Searching](/documentation/cloud-apps/api-basics.html#searching) documentation for more information.
 
 ##### Response
-```json
+```js
 {
   "meta": {
     "total_entries": 9,
@@ -62,7 +62,7 @@ Name | Type | Description
 
 Example ticket (note all arrays have been reduced to a single example item):
 
-```json
+```js
 {
   "id": 53,
   "show_url": "/tickets/list/single_ticket/53",
@@ -114,7 +114,7 @@ Example ticket (note all arrays have been reduced to a single example item):
       "show_url": "/people/2"
     }
   ],
-  "comments": [
+  "comments": [  // Extended Data Access required, else not returned
     {
       "attachment_content_type": null,
       "attachment_name": null,
