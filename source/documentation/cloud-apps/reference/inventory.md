@@ -67,7 +67,7 @@ item):
   "id": 2,
   "show_url": "/inventory/groups/devices/2",
   "type": "Computer",
-  "primary_owner_name": "Harry Houdini",
+  "primary_owner_name": "Harry Houdini", // Extended Data Access (People) required
   "server_name": "jolly-capybara.example.com",
   "name": "jolly-capybara",
   "domain": "example.com",
@@ -278,7 +278,7 @@ item):
       "install_location": null,
       "uninstall_string": "MsiExec.exe /I{23170F69-40C1-2702-0920-000001000000}",
       "identity": "{23170F69-40C1-2702-0920-000001000000}",
-      "product_key": null  // Extended Data Access required, else not returned
+      "product_key": null           // Extended Data Access required, else not returned
     }
   ]
 }
@@ -289,7 +289,7 @@ item):
 Example switch (note all arrays have been reduced to a single example
 item):
 
-```json
+```js
 {
   "id": 475,
   "type": "SnmpDevice",
@@ -319,13 +319,13 @@ item):
   "bios_date": null,
   "bios_version": null,
   "page_count": null,
-  "mac_address": null,
-  "ip_address": "48.188.254.146",
-  "ip_comparable": 817692306,
-  "os_serial_number": null,
-  "asset_tag": null,
-  "serial_number": "48.188.254.146",
-  "uuid": null,
+  "mac_address": null,                // Extended Data Access required, else not returned
+  "ip_address": "48.188.254.146",     // Extended Data Access required, else not returned
+  "ip_comparable": 817692306,         // Extended Data Access required, else not returned
+  "os_serial_number": null,           // Extended Data Access required, else not returned
+  "asset_tag": null,                  // Extended Data Access required, else not returned
+  "serial_number": "48.188.254.146",  // Extended Data Access required, else not returned
+  "uuid": null,                       // Extended Data Access required, else not returned
   "created_at": "2015-02-04T16:25:35-06:00",
   "updated_at": "2015-02-05T14:52:38-06:00",
   "scan_state": "inventoried",
@@ -349,7 +349,7 @@ item):
       "ports": [
         {
           "name": "TenGigabitEthernet2/0/1",
-          "neighbors": [
+          "neighbors": [    // Extended Data Access required, else not returned
             {
               "ip_address": null,
               "mac_address": "02:21:16:08:9C:B7",
@@ -368,9 +368,9 @@ item):
       "if_index": "1",
       "admin_status": "down",
       "op_status": "down",
-      "ip_address": null,
-      "net_mask": null,
-      "mac_address": "D4:A4:38:0C:1D:A0"
+      "ip_address": null,                 // Extended Data Access required, else not returned
+      "net_mask": null,                   // Extended Data Access required, else not returned
+      "mac_address": "D4:A4:38:0C:1D:A0"  // Extended Data Access required, else not returned
     }
   ]
 }
@@ -380,7 +380,7 @@ item):
 
 Example response for a user-defined asset or an unknown device on the network:
 
-```json
+```js
 {
   "id": 665,
   "show_url": "/inventory/groups/devices/665",
@@ -420,13 +420,13 @@ Example response for a user-defined asset or an unknown device on the network:
   "bios_date": null,
   "bios_version": null,
   "page_count": null,
-  "mac_address": null,
-  "ip_address": null,
-  "ip_comparable": 0,
-  "os_serial_number": null,
-  "asset_tag": null,
-  "serial_number": "948384-83347",
-  "uuid": null,
+  "mac_address": null,              // Extended Data Access required, else not returned
+  "ip_address": null,               // Extended Data Access required, else not returned
+  "ip_comparable": 0,               // Extended Data Access required, else not returned
+  "os_serial_number": null,         // Extended Data Access required, else not returned
+  "asset_tag": null,                // Extended Data Access required, else not returned
+  "serial_number": "948384-83347",  // Extended Data Access required, else not returned
+  "uuid": null,                     // Extended Data Access required, else not returned
   "created_at": "2015-02-04T12:56:38-08:00",
   "updated_at": "2015-02-19T02:26:01-08:00",
   "scan_state": "offline",
@@ -607,7 +607,7 @@ item):
       "install_location": null,
       "uninstall_string": "MsiExec.exe /I{23170F69-40C1-2702-0920-000001000000}",
       "identity": "{23170F69-40C1-2702-0920-000001000000}",
-      "product_key": null
+      "product_key": null  // Extended Data Access required, else not returned
     }
   ]
 }
