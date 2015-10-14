@@ -188,6 +188,7 @@ along the way (or, "it's dangerous to go alone..." joke):
 * [Spiceworks Inventory API Reference](/documentation/cloud-apps/reference/inventory.html)
 * [Spiceworks People API Reference](/documentation/cloud-apps/reference/people.html)
 * [Spiceworks Reporting API Reference](/documentation/cloud-apps/reference/reporting.html)
+* [Spiceworks Alert API Reference](/documentation/cloud-apps/reference/alert.html)
 
 [Download DE]: /downloads.html "Download Spiceworks Developer Edition"
 [Cloud App API Basics]: /documentation/cloud-apps/api-basics.html "Spiceworks App API Basics"
