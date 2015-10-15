@@ -53,3 +53,5 @@ guides:
         url: 'reference/people'
       - title: 'Reporting'
         url: 'reference/reporting'
+      - title: 'Alert'
+        url: 'reference/alert'

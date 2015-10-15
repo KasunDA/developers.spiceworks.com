@@ -19,18 +19,18 @@ card.services('alert').request('alerts'[, options])
 Name | Type | Description
 -----|------|----------------
 `active` | `boolean` | Return alerts that are currently active or inactive.
-`ticket_id` | `integer` | Return alerts that are associated with the specified `ticket_id`
+`priority` | `string` | Return alerts that are of the specified priority. Can be either `high`, `med`, or `low`.
 `created_at` | `object` | Return alerts created within the given range. See [(datetime range)] (/documentation/cloud-apps/api-basics.html#date-time-filtering) documentation for more information.
-`device` | `object` | Return alerts based on their device properties (see below).
+`alert_item` | `object` | Return alerts based on their associated item properties (see below).
 
-###### Device Options
+###### Alert Item Options
+
+An alert item is the object associated with the given alert. Both an `id` and `type` must be present.
 
 Name | Type | Description
 -----|------|----------------
-`id` | `integer` | Return alerts that are associated with the specified device `id`.
-`name` | `string` | Return alerts that are associated with the specified device `name`.
-`manufacturer` | `string` | Return alerts that are associated with the specified device `manufacturer`.
-`model` | `string` | Return alerts that are associated with the specified device `model`.
+`id` | `integer` or `string` | Return alerts that are associated with the specified alert item `id` or `none` to get all alerts linked to the specified `type`.
+`type` | `string` | Return alerts that are associated with the specified alert item `type`. Can be one of the following: `anti_virus_product`, `device`, `disk`, `physical_disk`, `software_installation`, `interface`, `mobile_device`, `mobile_software_installation`, `network_adapter`, `service_installation`, `hotfix_installation`, `network_user`, `battery_backup`, `battery_backup_event`, `printer_supply`, `event`, `agreement`, `ticket`, `office365_mailbox`, `rackspace_mailbox`, `google_apps_mailbox`, `warranty`, `web_domain`, `cloud_service`, `cloud_service_detection`, `webroot_entry`
 
 ##### Response
 ```js
