@@ -19,7 +19,6 @@ card.services('alert').request('alerts'[, options])
 Name | Type | Description
 -----|------|----------------
 `active` | `boolean` | Return alerts that are currently active or inactive.
-`priority` | `string` | Return alerts that are of the specified priority. Can be either `high`, `med`, or `low`.
 `created_at` | `object` | Return alerts created within the given range. See [(datetime range)] (/documentation/cloud-apps/api-basics.html#date-time-filtering) documentation for more information.
 `alert_item` | `object` | Return alerts based on their associated item properties (see below).
 
@@ -69,12 +68,9 @@ Example alert (note all arrays have been reduced to a single example item):
   "active": true,
   "created_at": "2015-02-21T00:47:04-06:00",
   "updated_at": "2015-02-27T03:12:36-06:00",
-  "ticket_id": null,
-  "device": {
+  "alert_item": {
     "id": 479,
-    "name": "My Device",
-    "manufacturer": "Hewlitt-Packard",
-    "model": "ProBook 6460b"
+    "type": "device"
   }
 }
 ```
