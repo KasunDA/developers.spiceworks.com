@@ -81,10 +81,10 @@ Name|Type|Description
 `user.first_name`|`string`|The user's first name
 `user.last_name`|`string`|The user's last name
 
-Both `auid` and `user_auid` are application-unique identifiers. This means they
+Both `app_host.auid` and `user.user_auid` are application-unique identifiers. This means they
 are unique to your cloud app alone. If the same real-life user installs your
 cloud app into a different installation of Spiceworks, you will see
-a different `auid` but the same `user_auid`. Also, if you build more than one
+a different `app_host.auid` but the same `user.user_auid`. Also, if you build more than one
 cloud app, the same real-life user from the same install of Spiceworks will be
 identified with a different pair of values to each of your two cloud apps.
 
@@ -144,7 +144,7 @@ the combination of `environment.app_host.auid` and
 
 ```js
 $.post('https://your-server/sign_in', {
-    auid: environment.app_host.auid,
+    host_auid: environment.app_host.auid,
     user_auid: environment.user.user_auid,
     access_token: access_token
   });
@@ -154,13 +154,13 @@ $.post('https://your-server/sign_in', {
 
 ```html
 <form id="login-form" action="https://your-server/sign_in" method="post">
-  <input type="hidden" id="login-auid" name="auid">
+  <input type="hidden" id="login-host_auid" name="host_auid">
   <input type="hidden" id="login-user_auid" name="user_auid">
   <input type="hidden" id="login-access_token" name="access_token">
 </form>
 ```
 ```js
-document.getElementById('login-auid').value = environment.app_host.auid;
+document.getElementById('login-host_auid').value = environment.app_host.auid;
 document.getElementById('login-user_auid').value = environment.user.user_auid;
 document.getElementById('login-access_token').value = access_token;
 document.getElementById('login-form').submit();
@@ -221,13 +221,29 @@ If the user is not authorized you will receive an `HTTP 403 Forbidden` result wi
 ##### Example with cURL
 
 ```bash
-$ curl -G -X GET -H "Accept: application/json" -d "access_token=814bd50cb926cfaebea353dd8b5f704def9e04b77372eed01f0d26f1d602e108" -d "app_secret=bfda03b8c726a62309fe624f0ba4228b6a2e0cd8c5c4d518ded4758e43ac21c3" -d "host_auid=92a450d9a3e596d7bef9ed9853b6a454" https://frontend.spiceworks.com/appcenter/api/app_user_authorization
+$ curl -G -X GET -H "Accept: application/json" \
+-d "access_token=814bd50cb926cfaebea353dd8b5f704def9e04b77372eed01f0d26f1d602e108" \
+-d "app_secret=bfda03b8c726a62309fe624f0ba4228b6a2e0cd8c5c4d518ded4758e43ac21c3" \
+-d "host_auid=92a450d9a3e596d7bef9ed9853b6a454" \
+-d "user_auid=e34e59c92f43b49f9725a29f86632c12" \
+https://frontend.spiceworks.com/appcenter/api/app_user_authorization
 ```
 
 ##### Example with Ruby
 
 ```ruby
-JSON.parse Net::HTTP.get(URI.parse('https://frontend.spiceworks.com/appcenter/api/app_user_authorization.json?' + {access_token: '814bd50cb926cfaebea353dd8b5f704def9e04b77372eed01f0d26f1d602e108', app_secret: 'bfda03b8c726a62309fe624f0ba4228b6a2e0cd8c5c4d518ded4758e43ac21c3', host_auid: '92a450d9a3e596d7bef9ed9853b6a454'}.to_query))
+require 'net/http'
+require 'json'
+
+uri = URI('https://frontend.spiceworks.com/appcenter/api/app_user_authorization.json')
+uri.query = URI.encode_www_form({
+  access_token: '814bd50cb926cfaebea353dd8b5f704def9e04b77372eed01f0d26f1d602e108',
+  app_secret: 'bfda03b8c726a62309fe624f0ba4228b6a2e0cd8c5c4d518ded4758e43ac21c3',
+  host_auid: '92a450d9a3e596d7bef9ed9853b6a454',
+  user_auid: 'e34e59c92f43b49f9725a29f86632c12'
+})
+
+JSON.parse Net::HTTP.get(uri)
 ```
 
 ### Best practices
