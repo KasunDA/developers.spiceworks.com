@@ -376,7 +376,58 @@ This request will return a work object like those in the `work` array in the
     "role": "admin",
     "department": "DEV",
     "avatar_path": null,
-    "url": "http://localhost:9675/people/159"
+    "show_url":, "/people/159"
+  }
+}
+```
+
+#### Update work
+
+Updates a previous work time entry on a ticket. 
+
+**Note:** Using this API rewrites the history of work done for a ticket and therefore 
+should be reserved only to fix previous, erroneous work entries. New work should
+be added with the [add work](#add-work) API.
+
+```js
+card.services('helpdesk').request('work:update', id, attributes)
+```
+
+##### Parameters
+
+Name | Type | Description
+-----|------|--------------
+`id`|`integer`| The `id` of the **work object** from the ticket `work` array.
+`attributes`|`object`| See below for detailed requirements
+
+##### Attributes
+
+Unless specified otherwise below, attributes not present will remain unchanged.
+
+Name | Type | Description
+-----|------|--------------
+`time_spent`|`integer`| Seconds of work time spent.
+`rate`|`double`| Billing rate (per hour) for the work entry.
+
+##### Response
+
+This request will return the updated work object like those in the `work` array in the
+[ticket response JSON](#response-1).  Example work response:
+
+```json
+{
+  "id": 10,
+  "time_spent": 3600,
+  "rate": 50.0,
+  "labor": 50.0,
+  "user": {
+    "id": 159,
+    "first_name": "Michael",
+    "last_name": "Gerbush",
+    "role": "admin",
+    "department": "DEV",
+    "avatar_path": null,
+    "show_url":, "/people/159"
   }
 }
 ```
