@@ -190,9 +190,9 @@ Example ticket (note all arrays have been reduced to a single example item):
   "work": [
     {
       "id": 1,
-      "time_spent": 3600,
+      "time_spent": 7200,
       "rate": 50.0,
-      "labor": 50.0,
+      "labor": 100.0,
       "user": {
         "id": 159,
         "first_name": "Michael",
@@ -368,9 +368,9 @@ This request will return a work object like those in the `work` array in the
 ```json
 {
   "id": 10,
-  "time_spent": 3600,
+  "time_spent": 7200,
   "rate": 50.0,
-  "labor": 50.0,
+  "labor": 100.0,
   "user": {
     "id": 159,
     "first_name": "Michael",
@@ -420,9 +420,9 @@ This request will return the updated work object like those in the `work` array 
 ```json
 {
   "id": 10,
-  "time_spent": 3600,
+  "time_spent": 7200,
   "rate": 50.0,
-  "labor": 50.0,
+  "labor": 100.0,
   "user": {
     "id": 159,
     "first_name": "Michael",
