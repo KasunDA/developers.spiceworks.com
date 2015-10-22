@@ -392,14 +392,13 @@ should be reserved only to fix previous, erroneous work entries. New work should
 be added with the [add work](#add-work) API.
 
 ```js
-card.services('helpdesk').request('work:update', ticket_id, id, attributes)
+card.services('helpdesk').request('work:update', id, attributes)
 ```
 
 ##### Parameters
 
 Name | Type | Description
 -----|------|--------------
-`ticket_id`|`integer`| The `id` of the **ticket** for which work will be updated.
 `id`|`integer`| The `id` of the **work object** from the ticket `work` array.
 `attributes`|`object`| See below for detailed requirements
 
