@@ -200,7 +200,7 @@ Example ticket (note all arrays have been reduced to a single example item):
         "role": "admin",
         "department": "DEV",
         "avatar_path": null,
-        "url": "http://localhost:9675/people/159"
+        "show_url":, "/people/159"
       }
     }
   ],
@@ -266,14 +266,16 @@ Name | Type | Description
 
 ##### Attributes
 
+Unless specified otherwise below, attributes not present will remain unchanged.
+
 Name | Type | Description
 -----|------|--------------
 `summary`|`string`| A short description of the request.
 `description`|`string`| Full description of the request.
-`assignee`|`integer`| The IT pro the ticket is assigned to.  Must be an IT pro `id` or `null` to unassign the ticket.
-`priority`|`string`| The priority of the request. Must be `low`, `med`, or `high`.  Default: `med`.
+`assignee`|`integer`| The IT pro the ticket is assigned to. Must be an IT pro `id` or `null` to unassign the ticket.
+`priority`|`string`| The priority of the request. Must be `low`, `med`, or `high`.
 `due_at`|`string`| Due date of the request.  Must be a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-`status`|`string`| The current status of the request. Must be `open` or `closed`.  Default: `open`.
+`status`|`string`| The current status of the request. Must be `open` or `closed`.
 `billing_rate`|`double`| Default billing rate (per hour) for ticket work. 
 `inventory_items`|`array`| A list of items from inventory related to the ticket.  Must be an array of objects containing an `id` and a `type` property for a valid inventory item.
 
