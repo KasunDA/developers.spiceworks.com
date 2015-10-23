@@ -81,6 +81,7 @@ Example ticket (note all arrays have been reduced to a single example item):
   "master_ticket_id": null,
   "time_spent_duration": "0m",
   "shared": false,
+  "billing_rate": null,
   "creator": {
     "id": 11,
     "first_name": "Chris",
@@ -189,9 +190,9 @@ Example ticket (note all arrays have been reduced to a single example item):
   "work": [
     {
       "id": 1,
-      "time_spent": 3600,
+      "time_spent": 7200,
       "rate": 50.0,
-      "labor": 50.0,
+      "labor": 100.0,
       "user": {
         "id": 159,
         "first_name": "Michael",
@@ -199,7 +200,7 @@ Example ticket (note all arrays have been reduced to a single example item):
         "role": "admin",
         "department": "DEV",
         "avatar_path": null,
-        "url": "http://localhost:9675/people/159"
+        "show_url":, "/people/159"
       }
     }
   ],
@@ -241,6 +242,7 @@ Name | Type | Description
 `priority`|`string`| The priority of the request. Must be `low`, `med`, or `high`.  Default: `med`.
 `due_at`|`string`| Due date of the request.  Must be a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
 `status`|`string`| The current status of the request. Must be `open` or `closed`.  Default: `open`.
+`billing_rate`|`double`| Default billing rate (per hour) for ticket work. Default: `null`, defaults to each IT Pro's billing rate. 
 `inventory_items`|`array`| A list of items from inventory related to the ticket.  Must be an array of objects containing an `id` and a `type` property for a valid inventory item.
 
 ##### Response
@@ -264,14 +266,17 @@ Name | Type | Description
 
 ##### Attributes
 
+Unless specified otherwise below, attributes not present will remain unchanged.
+
 Name | Type | Description
 -----|------|--------------
 `summary`|`string`| A short description of the request.
 `description`|`string`| Full description of the request.
-`assignee`|`integer`| The IT pro the ticket is assigned to.  Must be an IT pro `id` or `null` to unassign the ticket.
-`priority`|`string`| The priority of the request. Must be `low`, `med`, or `high`.  Default: `med`.
+`assignee`|`integer`| The IT pro the ticket is assigned to. Must be an IT pro `id` or `null` to unassign the ticket.
+`priority`|`string`| The priority of the request. Must be `low`, `med`, or `high`.
 `due_at`|`string`| Due date of the request.  Must be a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
-`status`|`string`| The current status of the request. Must be `open` or `closed`.  Default: `open`.
+`status`|`string`| The current status of the request. Must be `open` or `closed`.
+`billing_rate`|`double`| Default billing rate (per hour) for ticket work. 
 `inventory_items`|`array`| A list of items from inventory related to the ticket.  Must be an array of objects containing an `id` and a `type` property for a valid inventory item.
 
 
@@ -363,9 +368,9 @@ This request will return a work object like those in the `work` array in the
 ```json
 {
   "id": 10,
-  "time_spent": 3600,
+  "time_spent": 7200,
   "rate": 50.0,
-  "labor": 50.0,
+  "labor": 100.0,
   "user": {
     "id": 159,
     "first_name": "Michael",
@@ -373,7 +378,58 @@ This request will return a work object like those in the `work` array in the
     "role": "admin",
     "department": "DEV",
     "avatar_path": null,
-    "url": "http://localhost:9675/people/159"
+    "show_url":, "/people/159"
+  }
+}
+```
+
+#### Update work
+
+Updates a previous work time entry on a ticket. 
+
+**Note:** Using this API rewrites the history of work done for a ticket and therefore 
+should be reserved only to fix previous, erroneous work entries. New work should
+be added with the [add work](#add-work) API.
+
+```js
+card.services('helpdesk').request('work:update', id, attributes)
+```
+
+##### Parameters
+
+Name | Type | Description
+-----|------|--------------
+`id`|`integer`| The `id` of the **work object** from the ticket `work` array.
+`attributes`|`object`| See below for detailed requirements
+
+##### Attributes
+
+Unless specified otherwise below, attributes not present will remain unchanged.
+
+Name | Type | Description
+-----|------|--------------
+`time_spent`|`integer`| Seconds of work time spent.
+`rate`|`double`| Billing rate (per hour) for the work entry.
+
+##### Response
+
+This request will return the updated work object like those in the `work` array in the
+[ticket response JSON](#response-1).  Example work response:
+
+```json
+{
+  "id": 10,
+  "time_spent": 7200,
+  "rate": 50.0,
+  "labor": 100.0,
+  "user": {
+    "id": 159,
+    "first_name": "Michael",
+    "last_name": "Gerbush",
+    "role": "admin",
+    "department": "DEV",
+    "avatar_path": null,
+    "show_url":, "/people/159"
   }
 }
 ```
