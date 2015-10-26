@@ -19,17 +19,18 @@ card.services('alert').request('alerts'[, options])
 Name | Type | Description
 -----|------|----------------
 `active` | `boolean` | Return alerts that are currently active or inactive.
+`type` | `string` | Corresponds to what triggered the alert and will return alerts of the specified type. Can be one of the following: `App`, `External`, `Integration`, `Monitor`, `Scan`, `System`.
 `created_at` | `object` | Return alerts created within the given range. See [(datetime range)] (/documentation/cloud-apps/api-basics.html#date-time-filtering) documentation for more information.
 `alert_item` | `object` | Return alerts based on their associated item properties (see below).
 
 ###### Alert Item Options
 
-An alert item is the object associated with the given alert. Both an `id` and `type` must be present.
+An alert item is the object associated with the given alert, provided one exists. Both an `id` and `type` must be present.
 
 Name | Type | Description
 -----|------|----------------
 `id` | `integer` or `string` | Return alerts that are associated with the specified alert item `id` or `none` to get all alerts linked to the specified `type`.
-`type` | `string` | Return alerts that are associated with the specified alert item `type`. Can be one of the following: `anti_virus_product`, `device`, `disk`, `physical_disk`, `software_installation`, `interface`, `mobile_device`, `mobile_software_installation`, `network_adapter`, `service_installation`, `hotfix_installation`, `network_user`, `battery_backup`, `battery_backup_event`, `printer_supply`, `event`, `agreement`, `ticket`, `office365_mailbox`, `rackspace_mailbox`, `google_apps_mailbox`, `warranty`, `web_domain`, `cloud_service`, `cloud_service_detection`, `webroot_entry`
+`type` | `string` | Return alerts that are associated with the specified alert item `type`. Can be one of the following: `Device`, `Software`, or `Ticket`.
 
 ##### Response
 ```js
@@ -62,15 +63,16 @@ Example alert (note all arrays have been reduced to a single example item):
 
 ```js
 {
-  "id": 13,
-  "title": "Waste Toner",
+  "id": 344,
+  "title": "Ticket #52",
   "message": "",
   "active": true,
+  "type": "Monitor",
   "created_at": "2015-02-21T00:47:04-06:00",
   "updated_at": "2015-02-27T03:12:36-06:00",
   "alert_item": {
-    "id": 479,
-    "type": "device"
+    "id": 52,
+    "type": "Ticket"
   }
 }
 ```
