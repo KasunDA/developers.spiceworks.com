@@ -172,16 +172,16 @@
 </tbody></table>
 
 <h5 id="response">Response</h5>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"total_entries"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"tickets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">see</span><span class="w"> </span><span class="err">below</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">ticket</span><span class="w"> </span><span class="err">json</span><span class="w"> </span><span class="err">example</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"meta"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"total_entries"</span><span class="err">:</span> <span class="mi">9</span><span class="p">,</span>
+    <span class="s2">"page_count"</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"per_page"</span><span class="err">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">"current_page"</span><span class="err">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">"tickets"</span><span class="err">:</span> <span class="p">[...]</span> <span class="c1">// see below for ticket json example</span>
+<span class="p">}</span>
+</code></pre>
 
 <h4 id="get-a-single-ticket">Get a single ticket</h4>
 <pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'ticket'</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>
@@ -206,165 +206,165 @@
 <h5 id="response">Response</h5>
 
 <p>Example ticket (note all arrays have been reduced to a single example item):</p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/tickets/list/single_ticket/53"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keyboard issue"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My keyboard is growing mold on it, ned new one."</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"due_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-08T22:48:46-08:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-18T22:48:46-08:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-17T22:48:46-08:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"viewed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"reopened"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"muted"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"master_ticket_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"time_spent_duration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0m"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"shared"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chris"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Habanero"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"end_user"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/people/11"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"assignee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mark"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jalapeno"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IT"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/people/2"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"site"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Central Server"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"collector"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mark"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jalapeno"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IT"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/people/2"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"attachment_content_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"attachment_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"comment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"response"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-18T22:48:46-08:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-18T22:48:46-08:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"is_inventory"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"is_labor"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"is_public"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"is_purchase"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"remote_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mark"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jalapeno"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IT"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/people/2"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"collaborator"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ticket closed."</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"c_alert_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orange"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"custom_attrs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c_alert_level"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alert Level"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orange"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enum"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"alerts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5052</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Due 4 days ago"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"inventory_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">642</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"show_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/inventory/groups/devices/642"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"embarrassed-dugong"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Device"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"product_info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"//h10003.www1.hp.com/digmedialib/prodimg/lowres/c03889640.jpg"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"model_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ProBook 650 G1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"vendor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hewlett-Packard"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"avg_rating"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"rating_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"can_troubleshoot"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"recent_tickets"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"tickets_this_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"purchases"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Crucial 128MB Module"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"purchased"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">74.99</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"product_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://webobjects2.cdw.com/is/image/CDW/225027"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"part_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"308878-001-CT"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"work"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"time_spent"</span><span class="p">:</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"labor"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">159</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Michael"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gerbush"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEV"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9675/people/159"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"collaborations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-07T18:06:47-06:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-07T18:06:47-06:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"collaborator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"public_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spicerex"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9675/people/2"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spice"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rex"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"collaborator"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"id"</span><span class="err">:</span> <span class="mi">53</span><span class="p">,</span>
+  <span class="s2">"show_url"</span><span class="err">:</span> <span class="s2">"/tickets/list/single_ticket/53"</span><span class="p">,</span>
+  <span class="s2">"summary"</span><span class="err">:</span> <span class="s2">"Keyboard issue"</span><span class="p">,</span>
+  <span class="s2">"status"</span><span class="err">:</span> <span class="s2">"closed"</span><span class="p">,</span>
+  <span class="s2">"priority"</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"description"</span><span class="err">:</span> <span class="s2">"My keyboard is growing mold on it, ned new one."</span><span class="p">,</span>
+  <span class="s2">"due_at"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">"created_at"</span><span class="err">:</span> <span class="s2">"2015-02-08T22:48:46-08:00"</span><span class="p">,</span>
+  <span class="s2">"updated_at"</span><span class="err">:</span> <span class="s2">"2015-02-18T22:48:46-08:00"</span><span class="p">,</span>
+  <span class="s2">"closed_at"</span><span class="err">:</span> <span class="s2">"2015-02-17T22:48:46-08:00"</span><span class="p">,</span>
+  <span class="s2">"viewed_at"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">"reopened"</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"muted"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">"category"</span><span class="err">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="s2">"master_ticket_id"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">"time_spent_duration"</span><span class="err">:</span> <span class="s2">"0m"</span><span class="p">,</span>
+  <span class="s2">"shared"</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"creator"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="err">:</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="err">:</span> <span class="s2">"Chris"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="err">:</span> <span class="s2">"Habanero"</span><span class="p">,</span>
+    <span class="s2">"role"</span><span class="err">:</span> <span class="s2">"end_user"</span><span class="p">,</span>
+    <span class="s2">"department"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"avatar_path"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"show_url"</span><span class="err">:</span> <span class="s2">"/people/11"</span>
+  <span class="p">},</span>
+  <span class="s2">"assignee"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="err">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="err">:</span> <span class="s2">"Mark"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="err">:</span> <span class="s2">"Jalapeno"</span><span class="p">,</span>
+    <span class="s2">"role"</span><span class="err">:</span> <span class="s2">"admin"</span><span class="p">,</span>
+    <span class="s2">"department"</span><span class="err">:</span> <span class="s2">"IT"</span><span class="p">,</span>
+    <span class="s2">"avatar_path"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"show_url"</span><span class="err">:</span> <span class="s2">"/people/2"</span>
+  <span class="p">},</span>
+  <span class="s2">"site"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"name"</span><span class="err">:</span> <span class="s2">"Central Server"</span><span class="p">,</span>
+    <span class="s2">"collector"</span><span class="err">:</span> <span class="kc">null</span>
+  <span class="p">},</span>
+  <span class="s2">"users"</span><span class="err">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">"first_name"</span><span class="p">:</span> <span class="s2">"Mark"</span><span class="p">,</span>
+      <span class="s2">"last_name"</span><span class="p">:</span> <span class="s2">"Jalapeno"</span><span class="p">,</span>
+      <span class="s2">"role"</span><span class="p">:</span> <span class="s2">"admin"</span><span class="p">,</span>
+      <span class="s2">"department"</span><span class="p">:</span> <span class="s2">"IT"</span><span class="p">,</span>
+      <span class="s2">"avatar_path"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"show_url"</span><span class="p">:</span> <span class="s2">"/people/2"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"comments"</span><span class="err">:</span> <span class="p">[</span>  <span class="c1">// Extended Data Access required, else not returned</span>
+    <span class="p">{</span>
+      <span class="s2">"attachment_content_type"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"attachment_name"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"comment_type"</span><span class="p">:</span> <span class="s2">"response"</span><span class="p">,</span>
+      <span class="s2">"created_at"</span><span class="p">:</span> <span class="s2">"2015-02-18T22:48:46-08:00"</span><span class="p">,</span>
+      <span class="s2">"updated_at"</span><span class="p">:</span> <span class="s2">"2015-02-18T22:48:46-08:00"</span><span class="p">,</span>
+      <span class="s2">"id"</span><span class="p">:</span> <span class="mi">70</span><span class="p">,</span>
+      <span class="s2">"is_inventory"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="s2">"is_labor"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"is_public"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"is_purchase"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="s2">"remote_id"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"creator"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"first_name"</span><span class="p">:</span> <span class="s2">"Mark"</span><span class="p">,</span>
+        <span class="s2">"last_name"</span><span class="p">:</span> <span class="s2">"Jalapeno"</span><span class="p">,</span>
+        <span class="s2">"role"</span><span class="p">:</span> <span class="s2">"admin"</span><span class="p">,</span>
+        <span class="s2">"department"</span><span class="p">:</span> <span class="s2">"IT"</span><span class="p">,</span>
+        <span class="s2">"avatar_path"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="s2">"show_url"</span><span class="p">:</span> <span class="s2">"/people/2"</span>
+      <span class="p">},</span>
+      <span class="s2">"collaborator"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"body"</span><span class="err">:</span> <span class="s2">"Ticket closed."</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"c_alert_level"</span><span class="err">:</span> <span class="s2">"orange"</span><span class="p">,</span>
+  <span class="s2">"custom_attrs"</span><span class="err">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"c_alert_level"</span><span class="p">,</span>
+      <span class="s2">"label"</span><span class="p">:</span> <span class="s2">"Alert Level"</span><span class="p">,</span>
+      <span class="s2">"value"</span><span class="p">:</span> <span class="s2">"Orange"</span><span class="p">,</span>
+      <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"enum"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"alerts"</span><span class="err">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="p">:</span> <span class="mi">5052</span><span class="p">,</span>
+      <span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Due 4 days ago"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"inventory_items"</span><span class="err">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="p">:</span> <span class="mi">642</span><span class="p">,</span>
+      <span class="s2">"show_url"</span><span class="p">:</span> <span class="s2">"/inventory/groups/devices/642"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"embarrassed-dugong"</span><span class="p">,</span>
+      <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"Device"</span><span class="p">,</span>
+      <span class="s2">"product_info"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="s2">"image_url"</span><span class="p">:</span> <span class="s2">"//h10003.www1.hp.com/digmedialib/prodimg/lowres/c03889640.jpg"</span><span class="p">,</span>
+        <span class="s2">"model_name"</span><span class="p">:</span> <span class="s2">"ProBook 650 G1"</span><span class="p">,</span>
+        <span class="s2">"vendor_name"</span><span class="p">:</span> <span class="s2">"Hewlett-Packard"</span><span class="p">,</span>
+        <span class="s2">"avg_rating"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="s2">"rating_count"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="s2">"category"</span><span class="p">:</span> <span class="kc">null</span>
+      <span class="p">},</span>
+      <span class="s2">"can_troubleshoot"</span><span class="err">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"recent_tickets"</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">"tickets_this_year"</span><span class="err">:</span> <span class="mi">1</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"purchases"</span><span class="err">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Crucial 128MB Module"</span><span class="p">,</span>
+      <span class="s2">"purchased"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="s2">"price"</span><span class="p">:</span> <span class="mf">74.99</span><span class="p">,</span>
+      <span class="s2">"product_image"</span><span class="p">:</span> <span class="s2">"http://webobjects2.cdw.com/is/image/CDW/225027"</span><span class="p">,</span>
+      <span class="s2">"part_number"</span><span class="p">:</span> <span class="s2">"308878-001-CT"</span><span class="p">,</span>
+      <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"work"</span><span class="err">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">"time_spent"</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+      <span class="s2">"rate"</span><span class="p">:</span> <span class="mf">50.0</span><span class="p">,</span>
+      <span class="s2">"labor"</span><span class="p">:</span> <span class="mf">50.0</span><span class="p">,</span>
+      <span class="s2">"user"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">159</span><span class="p">,</span>
+        <span class="s2">"first_name"</span><span class="p">:</span> <span class="s2">"Michael"</span><span class="p">,</span>
+        <span class="s2">"last_name"</span><span class="p">:</span> <span class="s2">"Gerbush"</span><span class="p">,</span>
+        <span class="s2">"role"</span><span class="p">:</span> <span class="s2">"admin"</span><span class="p">,</span>
+        <span class="s2">"department"</span><span class="p">:</span> <span class="s2">"DEV"</span><span class="p">,</span>
+        <span class="s2">"avatar_path"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"http://localhost:9675/people/159"</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"collaborations"</span><span class="err">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"Pending"</span><span class="p">,</span>
+      <span class="s2">"created_at"</span><span class="p">:</span> <span class="s2">"2014-11-07T18:06:47-06:00"</span><span class="p">,</span>
+      <span class="s2">"updated_at"</span><span class="p">:</span> <span class="s2">"2014-11-07T18:06:47-06:00"</span><span class="p">,</span>
+      <span class="s2">"collaborator"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">"public_name"</span><span class="p">:</span> <span class="s2">"spicerex"</span><span class="p">,</span>
+        <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"http://localhost:9675/people/2"</span><span class="p">,</span>
+        <span class="s2">"first_name"</span><span class="p">:</span> <span class="s2">"Spice"</span><span class="p">,</span>
+        <span class="s2">"last_name"</span><span class="p">:</span> <span class="s2">"Rex"</span><span class="p">,</span>
+        <span class="s2">"avatar_path"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="s2">"role"</span><span class="p">:</span> <span class="s2">"collaborator"</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
 
 <h4 id="create-a-ticket">Create a ticket</h4>
 

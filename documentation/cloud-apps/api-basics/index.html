@@ -99,7 +99,7 @@ the <code>onActivate</code> method:</p>
 
 <p>Your callback function will receive a single argument that is an object
 containing data about the environment in which your Card was loaded.
-See <a href="https://github.com/spiceworks/spiceworks-js-sdk/blob/master/docs/apis/environment.md">Environment
+See <a href="/documentation/cloud-apps/reference/environment/">Environment
 Service</a>
 for more detail.</p>
 
@@ -118,7 +118,7 @@ of the service you want, e.g.:</p>
 </code></pre>
 
 <p>The <code>services</code> method will then return a <code>CardService</code> object that responds to
-requests.  For a full list of the available services see <a href="https://github.com/spiceworks/spiceworks-js-sdk/blob/master/docs/apis/helpdesk.md">Canvas App
+requests.  For a full list of the available services see <a href="/documentation/cloud-apps/reference/helpdesk/">Canvas App
 Services</a>.</p>
 
 <h2 id="requests">Requests</h2>
@@ -169,7 +169,7 @@ currently open tickets, you could write the following:</p>
   <span class="p">});</span>
 </code></pre>
 
-<p>For a full list of the supported requests for a service visit the <a href="https://github.com/spiceworks/spiceworks-js-sdk/blob/master/docs/apis/helpdesk.md">service
+<p>For a full list of the supported requests for a service visit the <a href="/documentation/cloud-apps/reference/helpdesk/">service
 documentation
 page</a>.</p>
 
@@ -363,13 +363,13 @@ request documentation for more information on the <code>per_page</code> defaults
 
 <p>When a paginated request is returned, it will always have a top-level <code>meta</code>
 attribute containing pagination information.  For example:</p>
-<pre class="highlight json"><code><span class="s2">"meta"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nt">"total_entries"</span><span class="p">:</span><span class="w"> </span><span class="mi">205</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">items,</span><span class="w"> </span><span class="err">across</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">pages</span><span class="w">
-  </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">pages</span><span class="w">
-  </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">items</span><span class="w"> </span><span class="err">per</span><span class="w"> </span><span class="err">page</span><span class="w">
-  </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">number</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="s2">"meta"</span><span class="err">:</span> <span class="p">{</span>
+  <span class="s2">"total_entries"</span><span class="err">:</span> <span class="mi">205</span><span class="p">,</span> <span class="c1">// total number of items, across all pages</span>
+  <span class="s2">"page_count"</span><span class="err">:</span> <span class="mi">7</span><span class="p">,</span> <span class="c1">// total number of pages</span>
+  <span class="s2">"per_page"</span><span class="err">:</span> <span class="mi">30</span><span class="p">,</span> <span class="c1">// number of items per page</span>
+  <span class="s2">"current_page"</span><span class="err">:</span> <span class="mi">2</span> <span class="c1">// the current page number</span>
+<span class="p">}</span>
+</code></pre>
 
 <h2 id="events">Events</h2>
 

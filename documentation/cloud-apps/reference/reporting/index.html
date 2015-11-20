@@ -176,16 +176,16 @@
 </tbody></table>
 
 <h5 id="response">Response</h5>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"total_entries"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"reports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">see</span><span class="w"> </span><span class="err">below</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">report</span><span class="w"> </span><span class="err">json</span><span class="w"> </span><span class="err">example</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"meta"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"total_entries"</span><span class="err">:</span> <span class="mi">9</span><span class="p">,</span>
+    <span class="s2">"page_count"</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"per_page"</span><span class="err">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">"current_page"</span><span class="err">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">"reports"</span><span class="err">:</span> <span class="p">[...]</span> <span class="c1">// see below for report json example</span>
+<span class="p">}</span>
+</code></pre>
 
 <h4 id="get-a-single-report">Get a single report</h4>
 <pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'reporting'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'report'</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>

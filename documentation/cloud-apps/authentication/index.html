@@ -180,10 +180,10 @@ application and/or the Spiceworks user of your cloud app.</p>
 </tr>
 </tbody></table>
 
-<p>Both <code>auid</code> and <code>user_auid</code> are application-unique identifiers. This means they
+<p>Both <code>app_host.auid</code> and <code>user.user_auid</code> are application-unique identifiers. This means they
 are unique to your cloud app alone. If the same real-life user installs your
 cloud app into a different installation of Spiceworks, you will see
-a different <code>auid</code> but the same <code>user_auid</code>. Also, if you build more than one
+a different <code>app_host.auid</code> but the same <code>user.user_auid</code>. Also, if you build more than one
 cloud app, the same real-life user from the same install of Spiceworks will be
 identified with a different pair of values to each of your two cloud apps.</p>
 
@@ -253,7 +253,7 @@ the combination of <code>environment.app_host.auid</code> and
 
 <h5 id="example-with-jquery-ajax">Example with jQuery AJAX</h5>
 <pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'https://your-server/sign_in'</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">auid</span><span class="p">:</span> <span class="nx">environment</span><span class="p">.</span><span class="nx">app_host</span><span class="p">.</span><span class="nx">auid</span><span class="p">,</span>
+    <span class="na">host_auid</span><span class="p">:</span> <span class="nx">environment</span><span class="p">.</span><span class="nx">app_host</span><span class="p">.</span><span class="nx">auid</span><span class="p">,</span>
     <span class="na">user_auid</span><span class="p">:</span> <span class="nx">environment</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">user_auid</span><span class="p">,</span>
     <span class="na">access_token</span><span class="p">:</span> <span class="nx">access_token</span>
   <span class="p">});</span>
@@ -261,12 +261,12 @@ the combination of <code>environment.app_host.auid</code> and
 
 <h5 id="example-with-javascript-and-an-html-form">Example with JavaScript and an HTML FORM</h5>
 <pre class="highlight html"><code><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"login-form"</span> <span class="na">action=</span><span class="s">"https://your-server/sign_in"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"login-auid"</span> <span class="na">name=</span><span class="s">"auid"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"login-host_auid"</span> <span class="na">name=</span><span class="s">"host_auid"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"login-user_auid"</span> <span class="na">name=</span><span class="s">"user_auid"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"login-access_token"</span> <span class="na">name=</span><span class="s">"access_token"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/form&gt;</span>
 </code></pre>
-<pre class="highlight javascript"><code><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'login-auid'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">environment</span><span class="p">.</span><span class="nx">app_host</span><span class="p">.</span><span class="nx">auid</span><span class="p">;</span>
+<pre class="highlight javascript"><code><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'login-host_auid'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">environment</span><span class="p">.</span><span class="nx">app_host</span><span class="p">.</span><span class="nx">auid</span><span class="p">;</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'login-user_auid'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">environment</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">user_auid</span><span class="p">;</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'login-access_token'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">access_token</span><span class="p">;</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'login-form'</span><span class="p">).</span><span class="nx">submit</span><span class="p">();</span>
@@ -341,11 +341,27 @@ authenticate your application&#39;s identity to Spiceworks, and only over HTTPS/
 </span></code></pre>
 
 <h5 id="example-with-curl">Example with cURL</h5>
-<pre class="highlight shell"><code><span class="gp">$ </span>curl -G -X GET -H <span class="s2">"Accept: application/json"</span> -d <span class="s2">"access_token=814bd50cb926cfaebea353dd8b5f704def9e04b77372eed01f0d26f1d602e108"</span> -d <span class="s2">"app_secret=bfda03b8c726a62309fe624f0ba4228b6a2e0cd8c5c4d518ded4758e43ac21c3"</span> -d <span class="s2">"host_auid=92a450d9a3e596d7bef9ed9853b6a454"</span> https://frontend.spiceworks.com/appcenter/api/app_user_authorization
+<pre class="highlight shell"><code><span class="gp">$ </span>curl -G -X GET -H <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+-d <span class="s2">"access_token=814bd50cb926cfaebea353dd8b5f704def9e04b77372eed01f0d26f1d602e108"</span> <span class="se">\</span>
+-d <span class="s2">"app_secret=bfda03b8c726a62309fe624f0ba4228b6a2e0cd8c5c4d518ded4758e43ac21c3"</span> <span class="se">\</span>
+-d <span class="s2">"host_auid=92a450d9a3e596d7bef9ed9853b6a454"</span> <span class="se">\</span>
+-d <span class="s2">"user_auid=e34e59c92f43b49f9725a29f86632c12"</span> <span class="se">\</span>
+https://frontend.spiceworks.com/appcenter/api/app_user_authorization
 </code></pre>
 
 <h5 id="example-with-ruby">Example with Ruby</h5>
-<pre class="highlight ruby"><code><span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s1">'https://frontend.spiceworks.com/appcenter/api/app_user_authorization.json?'</span> <span class="o">+</span> <span class="p">{</span><span class="ss">access_token: </span><span class="s1">'814bd50cb926cfaebea353dd8b5f704def9e04b77372eed01f0d26f1d602e108'</span><span class="p">,</span> <span class="ss">app_secret: </span><span class="s1">'bfda03b8c726a62309fe624f0ba4228b6a2e0cd8c5c4d518ded4758e43ac21c3'</span><span class="p">,</span> <span class="ss">host_auid: </span><span class="s1">'92a450d9a3e596d7bef9ed9853b6a454'</span><span class="p">}.</span><span class="nf">to_query</span><span class="p">))</span>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'json'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s1">'https://frontend.spiceworks.com/appcenter/api/app_user_authorization.json'</span><span class="p">)</span>
+<span class="n">uri</span><span class="p">.</span><span class="nf">query</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">encode_www_form</span><span class="p">({</span>
+  <span class="ss">access_token: </span><span class="s1">'814bd50cb926cfaebea353dd8b5f704def9e04b77372eed01f0d26f1d602e108'</span><span class="p">,</span>
+  <span class="ss">app_secret: </span><span class="s1">'bfda03b8c726a62309fe624f0ba4228b6a2e0cd8c5c4d518ded4758e43ac21c3'</span><span class="p">,</span>
+  <span class="ss">host_auid: </span><span class="s1">'92a450d9a3e596d7bef9ed9853b6a454'</span><span class="p">,</span>
+  <span class="ss">user_auid: </span><span class="s1">'e34e59c92f43b49f9725a29f86632c12'</span>
+<span class="p">})</span>
+
+<span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
 </code></pre>
 
 <h3 id="best-practices">Best practices</h3>

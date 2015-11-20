@@ -160,16 +160,16 @@ managed within Spiceworks. Inventory includes <a href="#devices">Devices</a> and
 </tbody></table>
 
 <h5 id="response">Response</h5>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"total_entries"</span><span class="p">:</span><span class="w"> </span><span class="mi">166</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"devices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">see</span><span class="w"> </span><span class="err">below</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">device</span><span class="w"> </span><span class="err">json</span><span class="w"> </span><span class="err">example</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"meta"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"total_entries"</span><span class="err">:</span> <span class="mi">166</span><span class="p">,</span>
+    <span class="s2">"page_count"</span><span class="err">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="s2">"per_page"</span><span class="err">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">"current_page"</span><span class="err">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">"devices"</span><span class="err">:</span> <span class="p">[...]</span> <span class="c1">// see below for device json example</span>
+<span class="p">}</span>
+</code></pre>
 
 <h4 id="get-a-single-device">Get a single device</h4>
 <pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'inventory'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'device'</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>
@@ -758,16 +758,16 @@ All attributes are optional unless indicated otherwise.</p>
 </tbody></table>
 
 <h5 id="response">Response</h5>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"total_entries"</span><span class="p">:</span><span class="w"> </span><span class="mi">3096</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">104</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"software"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">see</span><span class="w"> </span><span class="err">below</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">single</span><span class="w"> </span><span class="err">software</span><span class="w"> </span><span class="err">application</span><span class="w"> </span><span class="err">JSON</span><span class="w"> </span><span class="err">example</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"meta"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"total_entries"</span><span class="err">:</span> <span class="mi">3096</span><span class="p">,</span>
+    <span class="s2">"page_count"</span><span class="err">:</span> <span class="mi">104</span><span class="p">,</span>
+    <span class="s2">"per_page"</span><span class="err">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">"current_page"</span><span class="err">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">"software"</span><span class="err">:</span> <span class="p">[...]</span> <span class="c1">// see below for a single software application JSON example</span>
+<span class="p">}</span>
+</code></pre>
 
 <h4 id="get-a-single-software-application">Get a single software application</h4>
 <pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'inventory'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'software'</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>
