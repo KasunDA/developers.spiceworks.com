@@ -28,8 +28,7 @@ card.onActivate(function(envData){
 
 Your callback function will receive a single argument that is an object
 containing data about the environment in which your Card was loaded.
-See [Environment
-Service](/documentation/cloud-apps/reference/environment/)
+See [Environment Service](/documentation/cloud-apps/reference/environment.html)
 for more detail.
 
 ## Card Services
@@ -49,8 +48,8 @@ card.services('helpdesk');
 ```
 
 The `services` method will then return a `CardService` object that responds to
-requests.  For a full list of the available services see [Canvas App
-Services](/documentation/cloud-apps/reference/helpdesk/).
+requests.  For a full list of the available services see
+[Canvas App Services](/documentation/cloud-apps/reference/environment.html).
 
 ## Requests
 
@@ -106,9 +105,8 @@ card.services('helpdesk').request('tickets', { status: 'open' })
   });
 ```
 
-For a full list of the supported requests for a service visit the [service
-documentation
-page](/documentation/cloud-apps/reference/helpdesk/).
+For a full list of the supported requests for a service visit the
+[service documentation page](/documentation/cloud-apps/reference/environment.html).
 
 ### Date Time Filtering
 
