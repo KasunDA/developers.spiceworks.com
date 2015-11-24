@@ -224,6 +224,7 @@
   <span class="s2">"master_ticket_id"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
   <span class="s2">"time_spent_duration"</span><span class="err">:</span> <span class="s2">"0m"</span><span class="p">,</span>
   <span class="s2">"shared"</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">"billing_rate"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
   <span class="s2">"creator"</span><span class="err">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="err">:</span> <span class="mi">11</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="err">:</span> <span class="s2">"Chris"</span><span class="p">,</span>
@@ -332,9 +333,9 @@
   <span class="s2">"work"</span><span class="err">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="s2">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s2">"time_spent"</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+      <span class="s2">"time_spent"</span><span class="p">:</span> <span class="mi">7200</span><span class="p">,</span>
       <span class="s2">"rate"</span><span class="p">:</span> <span class="mf">50.0</span><span class="p">,</span>
-      <span class="s2">"labor"</span><span class="p">:</span> <span class="mf">50.0</span><span class="p">,</span>
+      <span class="s2">"labor"</span><span class="p">:</span> <span class="mf">100.0</span><span class="p">,</span>
       <span class="s2">"user"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"id"</span><span class="p">:</span> <span class="mi">159</span><span class="p">,</span>
         <span class="s2">"first_name"</span><span class="p">:</span> <span class="s2">"Michael"</span><span class="p">,</span>
@@ -342,7 +343,7 @@
         <span class="s2">"role"</span><span class="p">:</span> <span class="s2">"admin"</span><span class="p">,</span>
         <span class="s2">"department"</span><span class="p">:</span> <span class="s2">"DEV"</span><span class="p">,</span>
         <span class="s2">"avatar_path"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-        <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"http://localhost:9675/people/159"</span>
+        <span class="s2">"show_url"</span><span class="p">:,</span> <span class="s2">"/people/159"</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">],</span>
@@ -412,6 +413,11 @@
 <td>The current status of the request. Must be <code>open</code> or <code>closed</code>.  Default: <code>open</code>.</td>
 </tr>
 <tr>
+<td><code>billing_rate</code></td>
+<td><code>double</code></td>
+<td>Default billing rate (per hour) for ticket work. Default: <code>null</code>, defaults to each IT Pro&#39;s billing rate.</td>
+</tr>
+<tr>
 <td><code>inventory_items</code></td>
 <td><code>array</code></td>
 <td>A list of items from inventory related to the ticket.  Must be an array of objects containing an <code>id</code> and a <code>type</code> property for a valid inventory item.</td>
@@ -451,6 +457,8 @@
 
 <h5 id="attributes">Attributes</h5>
 
+<p>Unless specified otherwise below, attributes not present will remain unchanged.</p>
+
 <table><thead>
 <tr>
 <th>Name</th>
@@ -471,12 +479,12 @@
 <tr>
 <td><code>assignee</code></td>
 <td><code>integer</code></td>
-<td>The IT pro the ticket is assigned to.  Must be an IT pro <code>id</code> or <code>null</code> to unassign the ticket.</td>
+<td>The IT pro the ticket is assigned to. Must be an IT pro <code>id</code> or <code>null</code> to unassign the ticket.</td>
 </tr>
 <tr>
 <td><code>priority</code></td>
 <td><code>string</code></td>
-<td>The priority of the request. Must be <code>low</code>, <code>med</code>, or <code>high</code>.  Default: <code>med</code>.</td>
+<td>The priority of the request. Must be <code>low</code>, <code>med</code>, or <code>high</code>.</td>
 </tr>
 <tr>
 <td><code>due_at</code></td>
@@ -486,7 +494,12 @@
 <tr>
 <td><code>status</code></td>
 <td><code>string</code></td>
-<td>The current status of the request. Must be <code>open</code> or <code>closed</code>.  Default: <code>open</code>.</td>
+<td>The current status of the request. Must be <code>open</code> or <code>closed</code>.</td>
+</tr>
+<tr>
+<td><code>billing_rate</code></td>
+<td><code>double</code></td>
+<td>Default billing rate (per hour) for ticket work.</td>
 </tr>
 <tr>
 <td><code>inventory_items</code></td>
@@ -631,9 +644,9 @@
 <a href="#response-1">ticket response JSON</a>.  Example work response:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"time_spent"</span><span class="p">:</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"time_spent"</span><span class="p">:</span><span class="w"> </span><span class="mi">7200</span><span class="p">,</span><span class="w">
   </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"labor"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"labor"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
   </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">159</span><span class="p">,</span><span class="w">
     </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Michael"</span><span class="p">,</span><span class="w">
@@ -641,8 +654,83 @@
     </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEV"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:9675/people/159"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+    </span><span class="nt">"show_url"</span><span class="p">:,</span><span class="w"> </span><span class="nt">"/people/159"</span><span class="w">
+  </span><span class="err">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="update-work">Update work</h4>
+
+<p>Updates a previous work time entry on a ticket. </p>
+
+<p><strong>Note:</strong> Using this API rewrites the history of work done for a ticket and therefore 
+should be reserved only to fix previous, erroneous work entries. New work should
+be added with the <a href="#add-work">add work</a> API.</p>
+<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'work:update'</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">attributes</span><span class="p">)</span>
+</code></pre>
+
+<h5 id="parameters">Parameters</h5>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>integer</code></td>
+<td>The <code>id</code> of the <strong>work object</strong> from the ticket <code>work</code> array.</td>
+</tr>
+<tr>
+<td><code>attributes</code></td>
+<td><code>object</code></td>
+<td>See below for detailed requirements</td>
+</tr>
+</tbody></table>
+
+<h5 id="attributes">Attributes</h5>
+
+<p>Unless specified otherwise below, attributes not present will remain unchanged.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>time_spent</code></td>
+<td><code>integer</code></td>
+<td>Seconds of work time spent.</td>
+</tr>
+<tr>
+<td><code>rate</code></td>
+<td><code>double</code></td>
+<td>Billing rate (per hour) for the work entry.</td>
+</tr>
+</tbody></table>
+
+<h5 id="response">Response</h5>
+
+<p>This request will return the updated work object like those in the <code>work</code> array in the
+<a href="#response-1">ticket response JSON</a>.  Example work response:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"time_spent"</span><span class="p">:</span><span class="w"> </span><span class="mi">7200</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"labor"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">159</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Michael"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gerbush"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEV"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"avatar_path"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"show_url"</span><span class="p">:,</span><span class="w"> </span><span class="nt">"/people/159"</span><span class="w">
+  </span><span class="err">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
