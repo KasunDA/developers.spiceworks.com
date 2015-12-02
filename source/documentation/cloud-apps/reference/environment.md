@@ -31,10 +31,11 @@ card.onActivate(function(environment){
       "auid": "92a450d9a3e596d7bef9ed9853b6a454", // see (1) below
       "version": "7.4.00000"
     },
-  "placement": {  // see (3)
-    "location": "device",
-    "data": { "id": 123 }
-  }
+  "placement":  // see (3) below
+    {
+      "location": "device",
+      "data": { "id": 123 }
+    },
   "user":
     {
       "id": 159,
