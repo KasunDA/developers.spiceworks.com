@@ -47,7 +47,7 @@ var card = new SW.Card();
 card.services('environment').request('environment').then(
   function(environment){
     /* details below */
-  ));
+  });
 ```
 
 ```json
