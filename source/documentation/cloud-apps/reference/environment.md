@@ -271,7 +271,7 @@ Example user (note all arrays have been reduced to a single example item)
 ```
 
 #### Resize the Canvas App iframe
-When your app receives the onActivate() event, the app can check the `placement.location` and make a `resize` request to adjust the height, if desired.  For example, the desired height for footer or portal app placements may be significantly smaller than the default height given to those placements.
+When your app receives the onActivate() event, the app can check the `placement.location` and make a `resize` request to adjust the height, if desired.  For example, when the placement location is `footer`, you want the height to be 120 pixels rather than the default of 400 pixels.
 
 ```js
 card.services('environment').request('resize', {height: 120})
