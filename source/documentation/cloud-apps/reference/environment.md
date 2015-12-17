@@ -60,10 +60,10 @@ of Spiceworks using your app. This identifier is unique to your cloud app, and w
 consistent for the Spiceworks user across multiple and/or different Spiceworks applications.
 
 (3) The `placement` is the location within the Spiceworks application where your
-app is being activated. The `location` of the placement will always be provided, and
-other information relevant to the location will be provided in the `data`
-object.  The `data` field may not be present for placements such as fullpage.  The location
-will be one of the following values: 'fullpage', 'footer', 'device', 'ticket', 'dashboard' .
+app is being activated. The `location` of the placement will always be provided 
+and will be one of the following values: `fullpage`, `footer`, `device`, 
+`ticket`, or `dashboard`.  Other information relevant to the location will be 
+provided in the `data` object, e.g. the current ticket or device ID.
 
 #### List users
 
