@@ -29,11 +29,12 @@ card.onActivate(function(environment){
     {
       "app_name": "desktop",
       "auid": "92a450d9a3e596d7bef9ed9853b6a454", // see (1) below
-      "version": "7.4.00000",
-      "placement": {  // see (3)
-        "name": "device",
-        "current_device_id": 123
-      }
+      "version": "7.4.00000"
+    },
+  "placement":  // see (3) below
+    {
+      "location": "device",
+      "data": { "id": 123 }
     },
   "user":
     {
@@ -60,9 +61,10 @@ of Spiceworks using your app. This identifier is unique to your cloud app, and w
 consistent for the Spiceworks user across multiple and/or different Spiceworks applications.
 
 (3) The `placement` is the location within the Spiceworks application where your
-app is being activated. The `name` of the placement will always be provided, and
-other information relevant to the location will be provided in the `placement`
-object.
+app is being activated. The `location` of the placement will always be provided 
+and will be one of the following values: `fullpage`, `footer`, `device`, 
+`ticket`, or `dashboard`.  Other information relevant to the location will be 
+provided in the `data` object, e.g. the current ticket or device ID.
 
 #### List users
 
