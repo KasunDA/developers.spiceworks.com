@@ -99,11 +99,12 @@ cloud app is installed:</p>
     <span class="p">{</span>
       <span class="s2">"app_name"</span><span class="err">:</span> <span class="s2">"desktop"</span><span class="p">,</span>
       <span class="s2">"auid"</span><span class="err">:</span> <span class="s2">"92a450d9a3e596d7bef9ed9853b6a454"</span><span class="p">,</span> <span class="c1">// see (1) below</span>
-      <span class="s2">"version"</span><span class="err">:</span> <span class="s2">"7.4.00000"</span><span class="p">,</span>
-      <span class="s2">"placement"</span><span class="err">:</span> <span class="p">{</span>  <span class="c1">// see (3)</span>
-        <span class="s2">"name"</span><span class="err">:</span> <span class="s2">"device"</span><span class="p">,</span>
-        <span class="s2">"current_device_id"</span><span class="err">:</span> <span class="mi">123</span>
-      <span class="p">}</span>
+      <span class="s2">"version"</span><span class="err">:</span> <span class="s2">"7.4.00000"</span>
+    <span class="p">},</span>
+  <span class="s2">"placement"</span><span class="err">:</span>  <span class="c1">// see (3) below</span>
+    <span class="p">{</span>
+      <span class="s2">"location"</span><span class="err">:</span> <span class="s2">"device"</span><span class="p">,</span>
+      <span class="s2">"data"</span><span class="err">:</span> <span class="p">{</span> <span class="s2">"id"</span><span class="err">:</span> <span class="mi">123</span> <span class="p">}</span>
     <span class="p">},</span>
   <span class="s2">"user"</span><span class="err">:</span>
     <span class="p">{</span>
@@ -130,9 +131,10 @@ of Spiceworks using your app. This identifier is unique to your cloud app, and w
 consistent for the Spiceworks user across multiple and/or different Spiceworks applications.</p>
 
 <p>(3) The <code>placement</code> is the location within the Spiceworks application where your
-app is being activated. The <code>name</code> of the placement will always be provided, and
-other information relevant to the location will be provided in the <code>placement</code>
-object.</p>
+app is being activated. The <code>location</code> of the placement will always be provided 
+and will be one of the following values: <code>fullpage</code>, <code>footer</code>, <code>device</code>, 
+<code>ticket</code>, or <code>dashboard</code>.  Other information relevant to the location will be 
+provided in the <code>data</code> object, e.g. the current ticket or device ID.</p>
 
 <h4 id="list-users">List users</h4>
 
@@ -350,6 +352,36 @@ object.</p>
       <span class="s2">"primary"</span><span class="err">:</span> <span class="kc">true</span>
     <span class="p">}</span>
   <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+<h4 id="resize-the-canvas-app-iframe">Resize the Canvas App iframe</h4>
+
+<p>When your app receives the onActivate() event, the app can check the <code>placement.location</code> and make a <code>resize</code> request to adjust the height, if desired.  For example, when the placement location is <code>footer</code>, you want the height to be 120 pixels rather than the default of 400 pixels.</p>
+<pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'environment'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'resize'</span><span class="p">,</span> <span class="p">{</span><span class="na">height</span><span class="p">:</span> <span class="mi">120</span><span class="p">})</span>
+</code></pre>
+
+<h5 id="parameters">Parameters</h5>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>height</code></td>
+<td><code>integer</code></td>
+<td>The <code>height</code> of the iframe in pixels.</td>
+</tr>
+</tbody></table>
+
+<h5 id="response">Response</h5>
+
+<p>Height used.</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"height"</span><span class="err">:</span> <span class="mi">120</span><span class="p">,</span>
 <span class="p">}</span>
 </code></pre>
 
