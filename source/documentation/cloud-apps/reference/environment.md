@@ -270,6 +270,30 @@ Example user (note all arrays have been reduced to a single example item)
 }
 ```
 
+#### Resize the Canvas App iframe
+When your app receives the onActivate() event, the app can check the `placement.location` and make a `resize` request to adjust the height, if desired.  For example, when the placement location is `footer`, you want the height to be 120 pixels rather than the default of 400 pixels.
+
+```js
+card.services('environment').request('resize', {height: 120})
+```
+
+##### Parameters
+
+Name | Type | Description
+-----|------|--------------
+`height`|`integer`| The `height` of the iframe in pixels.
+
+
+##### Response
+
+Height used.
+
+```js
+{
+  "height": 120,
+}
+```
+
 ### Events
 
 #### Navigate the host environment
