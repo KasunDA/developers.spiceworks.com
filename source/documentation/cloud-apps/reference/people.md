@@ -29,13 +29,21 @@ Name | Type | Description
 {
   "meta": {
     "total_entries": 166,
-    "page_count": 6,
+    "page_count": 6,              // see (1) below
     "per_page": 30,
-    "current_page": 1
+    "current_page": 1,
+    "admin_defined_attrs": [...]  // see (2) below
   },
   "people": [...] // see below for person JSON example
 }
 ```
+
+Notes:
+
+(1) See [Paging][paging_link] for more details on pagination.
+
+(2) See [Admin-Defined Attributes][admin_defined_attributes_link] for more details
+on administrator-defined attributes.
 
 #### Get a single person
 
@@ -68,6 +76,7 @@ Example person (note all arrays have been reduced to a single example item):
   "created_at": "2015-02-26T00:46:54-06:00",
   "updated_at": "2015-03-04T00:10:41-06:00",
   "supervisor": null,
+  "admin_defined_attrs": {},
   "tickets": {
     "creator": {
       "meta": {
@@ -183,3 +192,6 @@ Example person (note all arrays have been reduced to a single example item):
   ]
 }
 ```
+
+[paging_link]: /documentation/cloud-apps/api-basics/#response-paging
+[admin_defined_attributes_link]: /documentation/cloud-apps/api-basics/#admin-defined-attributes

@@ -37,13 +37,21 @@ Name | Type | Description
 {
   "meta": {
     "total_entries": 166,
-    "page_count": 6,
+    "page_count": 6,              // see (1) below
     "per_page": 30,
-    "current_page": 1
+    "current_page": 1,
+    "admin_defined_attrs": [...]  // see (2) below
   },
   "devices": [...] // see below for device json example
 }
 ```
+
+Notes:
+
+(1) See [Paging][paging_link] for more details on pagination.
+
+(2) See [Admin-Defined Attributes][admin_defined_attributes_link] for more details
+on administrator-defined attributes.
 
 #### Get a single device
 
@@ -120,6 +128,7 @@ item):
   "offline_at": "2015-02-02T01:21:31-08:00",
   "online_at": "2015-02-04T13:50:48-08:00",
   "online": true,
+  "admin_defined_attrs": {},
   "up_time": null,
   "owner": {
     "avatar_path": "/images/icons/medium/person-avatar-admin.png",
@@ -337,6 +346,7 @@ item):
   "offline_at": null,
   "online_at": "2015-02-04T17:18:18-06:00",
   "online": true,
+  "admin_defined_attrs": {},
   "up_time": null,
   "owner": null,
   "site": {
@@ -438,6 +448,7 @@ Example response for a user-defined asset or an unknown device on the network:
   "offline_at": null,
   "online_at": null,
   "online": true,
+  "admin_defined_attrs": {},
   "up_time": null,
   "owner": {
     "avatar_path": "/images/icons/medium/person-avatar-admin.png",
@@ -551,7 +562,7 @@ Name | Type | Description
 {
   "meta": {
     "total_entries": 3096,
-    "page_count": 104,
+    "page_count": 104, // See (1) below
     "per_page": 30,
     "current_page": 1
   },
@@ -559,6 +570,9 @@ Name | Type | Description
 }
 ```
 
+Notes:
+
+(1) See [Paging][paging_link] for more details on pagination.
 
 #### Get a single software application
 
@@ -612,3 +626,6 @@ item):
   ]
 }
 ```
+
+[paging_link]: /documentation/cloud-apps/api-basics/#response-paging
+[admin_defined_attributes_link]: /documentation/cloud-apps/api-basics/#admin-defined-attributes

@@ -87,13 +87,21 @@ Name | Type | Description
 {
   "meta": {
     "total_entries": 3,
-    "page_count": 1,
+    "page_count": 1,              // see (1) below
     "per_page": 30,
-    "current_page": 1
+    "current_page": 1,
+    "admin_defined_attrs": [...]  // see (2) below
   },
   "users": [...] // see below for user JSON example
 }
 ```
+
+Notes:
+
+(1) See [Paging][paging_link] for more details on pagination.
+
+(2) See [Admin-Defined Attributes][admin_defined_attributes_link] for more details
+on administrator-defined attributes.
 
 #### Get a single user
 
@@ -141,6 +149,7 @@ Example user (note all arrays have been reduced to a single example item)
     "avatar_path": "/images/icons/medium/person-avatar-admin.png",
     "show_url": "/people/3"
   },
+  "admin_defined_attrs": {},
   "notifications": {
     "alert": false,
     "helpdesk": false,
@@ -310,3 +319,6 @@ card.services('environment').trigger('navigate', path)
 Name | Type | Description
 -----|------|--------------
 `path`|`string`| The relative path for the host application to visit
+
+[paging_link]: /documentation/cloud-apps/api-basics/#response-paging
+[admin_defined_attributes_link]: /documentation/cloud-apps/api-basics/#admin-defined-attributes

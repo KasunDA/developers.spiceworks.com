@@ -37,13 +37,21 @@ Name | Type | Description
 {
   "meta": {
     "total_entries": 9,
-    "page_count": 1,
+    "page_count": 1,              // see (1) below
     "per_page": 30,
-    "current_page": 1
+    "current_page": 1,
+    "admin_defined_attrs": [...]  // see (2) below
   },
   "tickets": [...] // see below for ticket json example
 }
 ```
+
+Notes:
+
+(1) See [Paging][paging_link] for more details on pagination.
+
+(2) See [Admin-Defined Attributes][admin_defined_attributes_link] for more details
+on administrator-defined attributes.
 
 
 #### Get a single ticket
@@ -82,6 +90,7 @@ Example ticket (note all arrays have been reduced to a single example item):
   "time_spent_duration": "0m",
   "shared": false,
   "billing_rate": null,
+  "admin_defined_attrs": {}
   "creator": {
     "id": 11,
     "first_name": "Chris",
@@ -139,15 +148,6 @@ Example ticket (note all arrays have been reduced to a single example item):
       },
       "collaborator": null,
       "body": "Ticket closed."
-    }
-  ],
-  "c_alert_level": "orange",
-  "custom_attrs": [
-    {
-      "name": "c_alert_level",
-      "label": "Alert Level",
-      "value": "Orange",
-      "type": "enum"
     }
   ],
   "alerts": [
@@ -449,3 +449,6 @@ card.services('helpdesk').on('showTicket', handler)
 Name | Type | Description
 -----|------|--------------
 `id`|`integer`| The id of the ticket that was rendered.
+
+[paging_link]: /documentation/cloud-apps/api-basics/#response-paging
+[admin_defined_attributes_link]: /documentation/cloud-apps/api-basics/#admin-defined-attributes
