@@ -83,6 +83,8 @@ item):
   "device_type": "Laptop",
   "description": "AT/AT COMPATIBLE",
   "location": null,
+  "purchase_date": "2014-01-13T00:00:00-06:00",
+  "purchase_price": 1000,
   "product_info": {
     "description": null,
     "image_url": "//h10003.www1.hp.com/digmedialib/prodimg/lowres/c03889640.jpg",
@@ -310,6 +312,8 @@ item):
   "device_type": "Switch",
   "description": "Cisco IOS Version: 12.2(58)SE2 Model: WS-C2960S-48FPD-L",
   "location": null,
+  "purchase_date": "2014-01-13T00:00:00-06:00",
+  "purchase_price": 5000,
   "manufacturer": "Cisco",
   "model": "WS-C2960S-48FPD-L",
   "memory": 0,
@@ -403,6 +407,8 @@ Example response for a user-defined asset or an unknown device on the network:
   "device_type": "Printer",
   "description": null,
   "location": null,
+  "purchase_date": "2014-01-13T00:00:00-06:00",
+  "purchase_price": 100,
   "product_info": {
     "description": null,
     "image_url": null,
