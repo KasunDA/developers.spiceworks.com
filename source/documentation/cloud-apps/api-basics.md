@@ -325,6 +325,63 @@ Name | Type | Description
 `per_page`|`integer`| Number of objects per page
 `current_page`|`integer`| The current page number
 
+### <a name="admin-defined-attributes"></a> Admin-Defined Attributes
+
+All resources within Spiceworks have a core set of attributes maintained by the Spiceworks
+user and/or the Spiceworks system. For example, `Description` is a core attribute of a
+Ticket managed within Spiceworks. Some resources (e.g. Tickets, Devices, some others)
+can have additional, custom attributes defined by the Spiceworks administrator. For example,
+`Service Level` could be defined by an administrator as custom attribute of Tickets.
+
+When resources have administrator-defined attributes, descriptions of these attributes
+are returned in the service response `meta` object with the `admin_defined_attrs` field.
+For example:
+
+```js
+{
+  "meta": {
+    "admin_defined_attrs": [
+      {
+        "name": "c_service_level",
+        "label": "Service Level",
+        "type": "enum",
+        "default": "Low",
+        "options": ["Low", "High"]
+      }
+    ]
+  }
+}
+```
+
+Name | Type | Description
+-----|------|--------------
+`name`|`string`| Attribute name, i.e. as it would appear in the response object.
+`label`|`string`| Attribute label, e.g. as it should be presented to the user in a form.     
+`type`|`string`| Type of attribute. Values are `string`,`int`,`date`,`enum`,`text`, and `float`.
+`default`|varies| Default value. Can be `null`.
+`options`|array| For `enum` attributes, this is the list of valid values.
+
+Also, values for the administrator-defined attributes are returned in the response
+objects. For example:
+
+```js
+{
+  "tickets": [
+    {
+      // ...
+      "admin_defined_attrs": {
+        "c_service_level": "Low"
+      }
+      // ...
+    }
+  ]
+}
+```
+
+> **Note:** As the name implies, administrator-defined attributes can be added and removed
+at will by the administrator of Spiceworks. App developers should be careful when depending
+on the presence of any administrator-defined attributes.
+
 ## Events
 
 In addition to responding to requests, every API service will keep your App up to date on
