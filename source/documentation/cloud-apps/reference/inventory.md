@@ -500,6 +500,7 @@ Name | Type | Description
 `model`|`string`|Model information.
 `primary_owner_name`|`string`| Primary owner of the device or asset
 `owner`|`integer`| id corresponding to the owner of the device or asset. See [People](/documentation/cloud-apps/reference/people.html#people-service) documentation for more information.
+`admin_defined_attrs`|`object`| Object whose keys are [admin-defined attribute][admin_defined_attributes_link] names, along with their corresponding values.   
 
 ##### Response
 
@@ -523,6 +524,9 @@ Name | Type | Description
 ##### Attributes
 
 This request accepts the same [attributes](#attributes) as creating a device, [see the list above](#attributes).
+
+
+For `admin_defined_attrs`, using a literal string value `"null"` will reset the named attribute to its default value.
 
 ##### Response
 

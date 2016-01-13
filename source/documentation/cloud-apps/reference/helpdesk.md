@@ -244,6 +244,7 @@ Name | Type | Description
 `status`|`string`| The current status of the request. Must be `open` or `closed`.  Default: `open`.
 `billing_rate`|`double`| Default billing rate (per hour) for ticket work. Default: `null`, defaults to each IT Pro's billing rate. 
 `inventory_items`|`array`| A list of items from inventory related to the ticket.  Must be an array of objects containing an `id` and a `type` property for a valid inventory item.
+`admin_defined_attrs`|`object`| Object whose keys are [admin-defined attribute][admin_defined_attributes_link] names, along with their corresponding values.   
 
 ##### Response
 
@@ -278,7 +279,7 @@ Name | Type | Description
 `status`|`string`| The current status of the request. Must be `open` or `closed`.
 `billing_rate`|`double`| Default billing rate (per hour) for ticket work. 
 `inventory_items`|`array`| A list of items from inventory related to the ticket.  Must be an array of objects containing an `id` and a `type` property for a valid inventory item.
-
+`admin_defined_attrs`|`object`| Object whose keys are [admin-defined attribute][admin_defined_attributes_link] names, along with their corresponding values or literal strings `"null"` to reset to default values.   
 
 ##### Response
 
