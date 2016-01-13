@@ -74,7 +74,7 @@ card.services('helpdesk').request('tickets').then(function(data){
 ```
 
 Requests will always return a response from the service.  Services will respond
-asynchronously with a promise object that responds to a method `then`, as
+asynchronously via a promise object that responds to a method `then`, as
 defined by the [Promises/A+](http://promises-aplus.github.com/promises-spec/)
 specification.
 
