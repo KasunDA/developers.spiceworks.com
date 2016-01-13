@@ -359,7 +359,7 @@ Name | Type | Description
 `label`|`string`| Attribute label, e.g. as it should be presented to the user in a form.     
 `type`|`string`| Type of attribute. Values are `string`,`int`,`date`,`enum`,`text`, and `float`.
 `default`|varies| Default value. Can be `null`.
-`options`|array| For `enum` attributes, this is the list of valid values.
+`options`|`array`| For `enum` attributes, this is the list of valid values.
 
 Also, values for the administrator-defined attributes are returned in the response
 objects. For example:
