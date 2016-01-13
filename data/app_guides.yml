@@ -20,6 +20,7 @@ guides:
       - title: 'Card Lifecycle'
       - title: 'Card Services'
       - title: 'Requests'
+      - title: 'Responses'
       - title: 'Events'
       - title: 'Error Handling'
 

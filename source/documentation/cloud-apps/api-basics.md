@@ -271,16 +271,59 @@ default `per_page` value and may have different limits.  See the specific
 request documentation for more information on the `per_page` defaults.
 
 When a paginated request is returned, it will always have a top-level `meta`
-attribute containing pagination information.  For example:
+attribute containing pagination information.  See [Response Paging](#response-paging)
+for details.
+
+## Responses
+
+The service `request` method always returns a promise object which is used to
+deliver the API request asynchronously. The promise responds to a method `then`, as
+defined by the [Promises/A+](http://promises-aplus.github.com/promises-spec/) specification.
+The promise is resolved with the javascript object requested, as defined by the APIs,
+or the promise is rejected and given error details.
+
+For example:
 
 ```js
-"meta": {
-  "total_entries": 205, // total number of items, across all pages
-  "page_count": 7, // total number of pages
-  "per_page": 30, // number of items per page
-  "current_page": 2 // the current page number
+var card = new SW.Card();
+card.services('helpdesk').request('tickets').then(function(data){
+  console.log(data);
+});
+
+/* prints to the console:
+ * {
+ *   meta: {...},
+ *   tickets: [...]
+ * }
+ */
+```
+
+### <a name="response-paging"></a> Paging
+
+Some service requests respond with a collection of objects. Collections are paged
+in order to improve performance and responsiveness of the application and server.
+When this happens, the response object includes a `meta` field and values
+containing pagination information.
+
+For example, the `tickets` request above could contain a `meta` object like: 
+
+```js
+{
+  "meta": {
+    "total_entries": 205,
+    "page_count": 7,
+    "per_page": 30,
+    "current_page": 2
+  }
 }
 ```
+
+Name | Type | Description
+-----|------|--------------
+`total_entries`|`integer`| Total number of objects, across all pages
+`page_count`|`integer`| Total number of pages (last page contain less than `per_page` objects)     
+`per_page`|`integer`| Number of objects per page
+`current_page`|`integer`| The current page number
 
 ## Events
 
