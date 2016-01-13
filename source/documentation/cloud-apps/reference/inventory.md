@@ -525,6 +525,7 @@ Name | Type | Description
 
 This request accepts the same [attributes](#attributes) as creating a device, [see the list above](#attributes).
 
+For `owner`, the literal string value `"null"` will unassign the device ownership.
 
 For `admin_defined_attrs`, using a literal string value `"null"` will reset the named attribute to its default value.
 
