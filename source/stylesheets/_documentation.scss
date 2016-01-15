@@ -182,7 +182,7 @@ body.documentation_index {
     margin-right: 6px;
     vertical-align: top;
   }
-  
+
   .terms-of-use {
     margin-bottom: 0;
   }
@@ -202,4 +202,55 @@ body.documentation_index {
     float: left;
     margin: 5px 20px 5px 0;
   }
+}
+
+ul.example-app-cards {
+  @extend .row;
+  padding-left: 0;
+  margin-bottom: 0;
+  margin-top: 30px;
+}
+
+.documentation_cloud-apps_examples .example-app-card-list-item {
+  @extend .col-md-4;
+  list-style: none;
+  margin-bottom: 40px;
+}
+
+.example-app-card {
+  text-align: center;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+}
+
+.example-app-card_body,
+.example-app-card_footer {
+  padding: 15px;
+}
+
+.example-app-card_footer {
+  background-color: $sui-blue;
+}
+
+.example-app-card_footer-links {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.example-app-card_footer-link {
+  display: table-cell;
+  padding: 0 15px;
+
+  a {
+    color: $sui-white;
+  }
+
+  + .example-app-card_footer-link {
+    border-left: 1px solid $sui-white;
+  }
+}
+
+.example-app-card_icon {
+  @include border-radius;
+  width: 40px;
 }

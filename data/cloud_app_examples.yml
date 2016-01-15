@@ -1,0 +1,35 @@
+examples:
+  - title: CheckIT
+    logo: //static.spiceworks.com/shared/extension/0000/0035/checkit-logo_large.png
+    description: A simple todo list app written in Meteor.  Includes
+      authentication, and ticket and device placements.
+    source_url: https://github.com/msgerbush/checkit
+    app_url: https://community.spiceworks.com/appcenter/app/extension_35
+  - title: CheckIT
+    logo: 'documentation/examples/checkit-logo.png'
+    description: Tasks and to-dos…groan. They’re never-ending, but don’t have to
+      be a chore. Keep track of simple task lists inside of Spiceworks to help
+      curb your own to-do chaos or share to help keep in sync with your teammates.
+    source_url: https://github.com/msgerbush/checkit
+    app_url: https://community.spiceworks.com/appcenter/app/extension_35
+  - title: CheckIT
+    logo: 'documentation/examples/checkit-logo.png'
+    description: Tasks and to-dos…groan. They’re never-ending, but don’t have to
+      be a chore. Keep track of simple task lists inside of Spiceworks to help
+      curb your own to-do chaos or share to help keep in sync with your teammates.
+    source_url: https://github.com/msgerbush/checkit
+    app_url: https://community.spiceworks.com/appcenter/app/extension_35
+  - title: CheckIT
+    logo: 'documentation/examples/checkit-logo.png'
+    description: Tasks and to-dos…groan. They’re never-ending, but don’t have to
+      be a chore. Keep track of simple task lists inside of Spiceworks to help
+      curb your own to-do chaos or share to help keep in sync with your teammates.
+    source_url: https://github.com/msgerbush/checkit
+    app_url: https://community.spiceworks.com/appcenter/app/extension_35
+  - title: CheckIT
+    logo: 'documentation/examples/checkit-logo.png'
+    description: Tasks and to-dos…groan. They’re never-ending, but don’t have to
+      be a chore. Keep track of simple task lists inside of Spiceworks to help
+      curb your own to-do chaos or share to help keep in sync with your teammates.
+    source_url: https://github.com/msgerbush/checkit
+    app_url: https://community.spiceworks.com/appcenter/app/extension_35

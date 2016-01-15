@@ -1,0 +1,29 @@
+<h1>Examples</h1>
+
+<p>Checkout some examples of great apps built for Spiceworks.</p>
+
+<ul class="example-app-cards">
+  <% data.cloud_app_examples.examples.each do |ex| %>
+    <li class="example-app-card-list-item">
+      <div class="example-app-card">
+        <div class="example-app-card_body">
+          <%= image_tag ex.logo, class: 'example-app-card_icon' %>
+          <h3 class="example-app-card_title"><%= ex.title %></h3>
+          <p class="example-app-card_description">
+            <%= ex.description %>
+          </p>
+        </div>
+        <div class="example-app-card_footer">
+          <div class="example-app-card_footer-links">
+            <div class="example-app-card_footer-link">
+              <%= link_to 'View App', ex.app_url %>
+            </div>
+            <div class="example-app-card_footer-link">
+              <%= link_to 'Source', ex.source_url %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
