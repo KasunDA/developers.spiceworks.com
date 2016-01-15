@@ -37,13 +37,21 @@ Name | Type | Description
 {
   "meta": {
     "total_entries": 9,
-    "page_count": 1,
+    "page_count": 1,              // see (1) below
     "per_page": 30,
-    "current_page": 1
+    "current_page": 1,
+    "admin_defined_attrs": [...]  // see (2) below
   },
   "tickets": [...] // see below for ticket json example
 }
 ```
+
+Notes:
+
+(1) See [Paging][paging_link] for more details on pagination.
+
+(2) See [Admin-Defined Attributes][admin_defined_attributes_link] for more details
+on administrator-defined attributes.
 
 
 #### Get a single ticket
@@ -82,6 +90,7 @@ Example ticket (note all arrays have been reduced to a single example item):
   "time_spent_duration": "0m",
   "shared": false,
   "billing_rate": null,
+  "admin_defined_attrs": {}
   "creator": {
     "id": 11,
     "first_name": "Chris",
@@ -139,15 +148,6 @@ Example ticket (note all arrays have been reduced to a single example item):
       },
       "collaborator": null,
       "body": "Ticket closed."
-    }
-  ],
-  "c_alert_level": "orange",
-  "custom_attrs": [
-    {
-      "name": "c_alert_level",
-      "label": "Alert Level",
-      "value": "Orange",
-      "type": "enum"
     }
   ],
   "alerts": [
@@ -244,6 +244,7 @@ Name | Type | Description
 `status`|`string`| The current status of the request. Must be `open` or `closed`.  Default: `open`.
 `billing_rate`|`double`| Default billing rate (per hour) for ticket work. Default: `null`, defaults to each IT Pro's billing rate. 
 `inventory_items`|`array`| A list of items from inventory related to the ticket.  Must be an array of objects containing an `id` and a `type` property for a valid inventory item.
+`admin_defined_attrs`|`object`| Object whose keys are [admin-defined attribute][admin_defined_attributes_link] names, along with their corresponding values.   
 
 ##### Response
 
@@ -272,13 +273,13 @@ Name | Type | Description
 -----|------|--------------
 `summary`|`string`| A short description of the request.
 `description`|`string`| Full description of the request.
-`assignee`|`integer`| The IT pro the ticket is assigned to. Must be an IT pro `id` or `null` to unassign the ticket.
+`assignee`|`integer`| The IT pro the ticket is assigned to. Must be an IT pro `id` or string literal `"null"` to unassign the ticket.
 `priority`|`string`| The priority of the request. Must be `low`, `med`, or `high`.
 `due_at`|`string`| Due date of the request.  Must be a timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`.
 `status`|`string`| The current status of the request. Must be `open` or `closed`.
 `billing_rate`|`double`| Default billing rate (per hour) for ticket work. 
 `inventory_items`|`array`| A list of items from inventory related to the ticket.  Must be an array of objects containing an `id` and a `type` property for a valid inventory item.
-
+`admin_defined_attrs`|`object`| Object whose keys are [admin-defined attribute][admin_defined_attributes_link] names, along with their corresponding values or literal strings `"null"` to reset to default values.   
 
 ##### Response
 
@@ -449,3 +450,6 @@ card.services('helpdesk').on('showTicket', handler)
 Name | Type | Description
 -----|------|--------------
 `id`|`integer`| The id of the ticket that was rendered.
+
+[paging_link]: /documentation/cloud-apps/api-basics/#response-paging
+[admin_defined_attributes_link]: /documentation/cloud-apps/api-basics/#admin-defined-attributes

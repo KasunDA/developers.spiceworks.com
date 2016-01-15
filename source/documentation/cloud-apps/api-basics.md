@@ -74,7 +74,7 @@ card.services('helpdesk').request('tickets').then(function(data){
 ```
 
 Requests will always return a response from the service.  Services will respond
-asynchronously with a promise object that responds to a method `then`, as
+asynchronously via a promise object that responds to a method `then`, as
 defined by the [Promises/A+](http://promises-aplus.github.com/promises-spec/)
 specification.
 
@@ -271,16 +271,116 @@ default `per_page` value and may have different limits.  See the specific
 request documentation for more information on the `per_page` defaults.
 
 When a paginated request is returned, it will always have a top-level `meta`
-attribute containing pagination information.  For example:
+attribute containing pagination information.  See [Response Paging](#response-paging)
+for details.
+
+## Responses
+
+The service `request` method always returns a promise object which is used to
+deliver the API request asynchronously. The promise responds to a method `then`, as
+defined by the [Promises/A+](http://promises-aplus.github.com/promises-spec/) specification.
+The promise is resolved with the javascript object requested, as defined by the APIs,
+or the promise is rejected and given error details.
+
+For example:
 
 ```js
-"meta": {
-  "total_entries": 205, // total number of items, across all pages
-  "page_count": 7, // total number of pages
-  "per_page": 30, // number of items per page
-  "current_page": 2 // the current page number
+var card = new SW.Card();
+card.services('helpdesk').request('tickets').then(function(data){
+  console.log(data);
+});
+
+/* prints to the console:
+ * {
+ *   meta: {...},
+ *   tickets: [...]
+ * }
+ */
+```
+
+### <a name="response-paging"></a> Paging
+
+Some service requests respond with a collection of objects. Collections are paged
+in order to improve performance and responsiveness of the application and server.
+When this happens, the response object includes a `meta` field and values
+containing pagination information.
+
+For example, the `tickets` request above could contain a `meta` object like: 
+
+```js
+{
+  "meta": {
+    "total_entries": 205,
+    "page_count": 7,
+    "per_page": 30,
+    "current_page": 2
+  }
 }
 ```
+
+Name | Type | Description
+-----|------|--------------
+`total_entries`|`integer`| Total number of objects, across all pages
+`page_count`|`integer`| Total number of pages (last page contain less than `per_page` objects)     
+`per_page`|`integer`| Number of objects per page
+`current_page`|`integer`| The current page number
+
+### <a name="admin-defined-attributes"></a> Admin-Defined Attributes
+
+All resources within Spiceworks have a core set of attributes maintained by the Spiceworks
+user and/or the Spiceworks system. For example, `Description` is a core attribute of a
+Ticket managed within Spiceworks. Some resources (e.g. Tickets, Devices, some others)
+can have additional, custom attributes defined by the Spiceworks administrator. For example,
+`Service Level` could be defined by an administrator as custom attribute of Tickets.
+
+When resources have administrator-defined attributes, descriptions of these attributes
+are returned in the service response `meta` object with the `admin_defined_attrs` field.
+For example:
+
+```js
+{
+  "meta": {
+    "admin_defined_attrs": [
+      {
+        "name": "c_service_level",
+        "label": "Service Level",
+        "type": "enum",
+        "default": "Low",
+        "options": ["Low", "High"]
+      }
+    ]
+  }
+}
+```
+
+Name | Type | Description
+-----|------|--------------
+`name`|`string`| Attribute name, i.e. as it would appear in the response object.
+`label`|`string`| Attribute label, e.g. as it should be presented to the user in a form.     
+`type`|`string`| Type of attribute. Values are `string`,`int`,`date`,`enum`,`text`, and `float`.
+`default`|varies| Default value. Can be `null`.
+`options`|`array`| For `enum` attributes, this is the list of valid values.
+
+Also, values for the administrator-defined attributes are returned in the response
+objects. For example:
+
+```js
+{
+  "tickets": [
+    {
+      // ...
+      "admin_defined_attrs": {
+        "c_service_level": "Low"
+      }
+      // ...
+    }
+  ]
+}
+```
+
+> **Note:** As the name implies, administrator-defined attributes can be added and removed
+at will by the administrator of Spiceworks. App developers should be careful when depending
+on the presence of any administrator-defined attributes.
 
 ## Events
 

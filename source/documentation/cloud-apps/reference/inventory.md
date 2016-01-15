@@ -37,13 +37,21 @@ Name | Type | Description
 {
   "meta": {
     "total_entries": 166,
-    "page_count": 6,
+    "page_count": 6,              // see (1) below
     "per_page": 30,
-    "current_page": 1
+    "current_page": 1,
+    "admin_defined_attrs": [...]  // see (2) below
   },
   "devices": [...] // see below for device json example
 }
 ```
+
+Notes:
+
+(1) See [Paging][paging_link] for more details on pagination.
+
+(2) See [Admin-Defined Attributes][admin_defined_attributes_link] for more details
+on administrator-defined attributes.
 
 #### Get a single device
 
@@ -75,6 +83,8 @@ item):
   "device_type": "Laptop",
   "description": "AT/AT COMPATIBLE",
   "location": null,
+  "purchase_date": "2014-01-13T00:00:00-06:00",
+  "purchase_price": 1000,
   "product_info": {
     "description": null,
     "image_url": "//h10003.www1.hp.com/digmedialib/prodimg/lowres/c03889640.jpg",
@@ -120,6 +130,7 @@ item):
   "offline_at": "2015-02-02T01:21:31-08:00",
   "online_at": "2015-02-04T13:50:48-08:00",
   "online": true,
+  "admin_defined_attrs": {},
   "up_time": null,
   "owner": {
     "avatar_path": "/images/icons/medium/person-avatar-admin.png",
@@ -301,6 +312,8 @@ item):
   "device_type": "Switch",
   "description": "Cisco IOS Version: 12.2(58)SE2 Model: WS-C2960S-48FPD-L",
   "location": null,
+  "purchase_date": "2014-01-13T00:00:00-06:00",
+  "purchase_price": 5000,
   "manufacturer": "Cisco",
   "model": "WS-C2960S-48FPD-L",
   "memory": 0,
@@ -337,6 +350,7 @@ item):
   "offline_at": null,
   "online_at": "2015-02-04T17:18:18-06:00",
   "online": true,
+  "admin_defined_attrs": {},
   "up_time": null,
   "owner": null,
   "site": {
@@ -393,6 +407,8 @@ Example response for a user-defined asset or an unknown device on the network:
   "device_type": "Printer",
   "description": null,
   "location": null,
+  "purchase_date": "2014-01-13T00:00:00-06:00",
+  "purchase_price": 100,
   "product_info": {
     "description": null,
     "image_url": null,
@@ -438,6 +454,7 @@ Example response for a user-defined asset or an unknown device on the network:
   "offline_at": null,
   "online_at": null,
   "online": true,
+  "admin_defined_attrs": {},
   "up_time": null,
   "owner": {
     "avatar_path": "/images/icons/medium/person-avatar-admin.png",
@@ -483,6 +500,7 @@ Name | Type | Description
 `model`|`string`|Model information.
 `primary_owner_name`|`string`| Primary owner of the device or asset
 `owner`|`integer`| id corresponding to the owner of the device or asset. See [People](/documentation/cloud-apps/reference/people.html#people-service) documentation for more information.
+`admin_defined_attrs`|`object`| Object whose keys are [admin-defined attribute][admin_defined_attributes_link] names, along with their corresponding values.   
 
 ##### Response
 
@@ -506,6 +524,10 @@ Name | Type | Description
 ##### Attributes
 
 This request accepts the same [attributes](#attributes) as creating a device, [see the list above](#attributes).
+
+For `owner`, the literal string value `"null"` will unassign the device ownership.
+
+For `admin_defined_attrs`, using a literal string value `"null"` will reset the named attribute to its default value.
 
 ##### Response
 
@@ -551,7 +573,7 @@ Name | Type | Description
 {
   "meta": {
     "total_entries": 3096,
-    "page_count": 104,
+    "page_count": 104, // See (1) below
     "per_page": 30,
     "current_page": 1
   },
@@ -559,6 +581,9 @@ Name | Type | Description
 }
 ```
 
+Notes:
+
+(1) See [Paging][paging_link] for more details on pagination.
 
 #### Get a single software application
 
@@ -612,3 +637,6 @@ item):
   ]
 }
 ```
+
+[paging_link]: /documentation/cloud-apps/api-basics/#response-paging
+[admin_defined_attributes_link]: /documentation/cloud-apps/api-basics/#admin-defined-attributes
