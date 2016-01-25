@@ -64,7 +64,7 @@
       </li>
     </ul>
 
-    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Build Cloud Apps</h4><ul class='nav' role='tablist'><li class=''><a href="../">Getting Started</a><nav class='submenu'><ul class='nav'><li class=''><a href="#installing-spiceworks">Installing Spiceworks</a></li><li class=''><a href="#create-a-place-for-your-app-to-live">Create a Place for Your App</a></li><li class=''><a href="#create-&amp;-register-your-web-app-with-spiceworks">Register Your App with Spiceworks</a></li><li class=''><a href="#add-javascript-to-your-application-to-get-data-from-spiceworks">Spiceworks JS API Client</a></li><li class=''><a href="#resources">Resources</a></li></ul></nav></li><li class='active'><a href="./">API Basics</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-card">Creating a Card</a></li><li class=''><a href="#card-lifecycle">Card Lifecycle</a></li><li class=''><a href="#card-services">Card Services</a></li><li class=''><a href="#requests">Requests</a></li><li class=''><a href="#events">Events</a></li><li class=''><a href="#error-handling">Error Handling</a></li></ul></nav></li><li class=''><a href="../authentication/">App Authentication</a><nav class='submenu'><ul class='nav'><li class=''><a href="#background">Background</a></li><li class=''><a href="#step-1:-obtain-the-current-user-identifier">Step 1: The current user</a></li><li class=''><a href="#step-2:-obtain-an-oauth2-access-token">Step 2: Get an access token</a></li><li class=''><a href="#step-3:-use-the-oauth2-token-to-authenticate-the-user">Step 3: Verify the access token</a></li><li class=''><a href="#best-practices">Best practices</a></li><li class=''><a href="#further-reading">Further reading</a></li></ul></nav></li><hr /><li class=''><a href="//github.com/spiceworks/spiceworks-js-sdk/tree/master/examples">Examples</a></li><li class=''><a href="../reference/environment/">API Reference</a><nav class='submenu'><ul class='nav'><li class=''><a href="../reference/environment/">Environment</a></li><li class=''><a href="../reference/helpdesk/">Help Desk</a></li><li class=''><a href="../reference/inventory/">Inventory</a></li><li class=''><a href="../reference/people/">People</a></li><li class=''><a href="../reference/reporting/">Reporting</a></li></ul></nav></li></ul></nav></aside></div>
+    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Build Cloud Apps</h4><ul class='nav' role='tablist'><li class=''><a href="../">Getting Started</a><nav class='submenu'><ul class='nav'><li class=''><a href="#installing-spiceworks">Installing Spiceworks</a></li><li class=''><a href="#create-a-place-for-your-app-to-live">Create a Place for Your App</a></li><li class=''><a href="#create-&amp;-register-your-web-app-with-spiceworks">Register Your App with Spiceworks</a></li><li class=''><a href="#add-javascript-to-your-application-to-get-data-from-spiceworks">Spiceworks JS API Client</a></li><li class=''><a href="#resources">Resources</a></li></ul></nav></li><li class='active'><a href="./">API Basics</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-card">Creating a Card</a></li><li class=''><a href="#card-lifecycle">Card Lifecycle</a></li><li class=''><a href="#card-services">Card Services</a></li><li class=''><a href="#requests">Requests</a></li><li class=''><a href="#responses">Responses</a></li><li class=''><a href="#events">Events</a></li><li class=''><a href="#error-handling">Error Handling</a></li></ul></nav></li><li class=''><a href="../authentication/">App Authentication</a><nav class='submenu'><ul class='nav'><li class=''><a href="#background">Background</a></li><li class=''><a href="#step-1:-obtain-the-current-user-identifier">Step 1: The current user</a></li><li class=''><a href="#step-2:-obtain-an-oauth2-access-token">Step 2: Get an access token</a></li><li class=''><a href="#step-3:-use-the-oauth2-token-to-authenticate-the-user">Step 3: Verify the access token</a></li><li class=''><a href="#best-practices">Best practices</a></li><li class=''><a href="#further-reading">Further reading</a></li></ul></nav></li><hr /><li class=''><a href="//github.com/spiceworks/spiceworks-js-sdk/tree/master/examples">Examples</a></li><li class=''><a href="../reference/environment/">API Reference</a><nav class='submenu'><ul class='nav'><li class=''><a href="../reference/environment/">Environment</a></li><li class=''><a href="../reference/helpdesk/">Help Desk</a></li><li class=''><a href="../reference/inventory/">Inventory</a></li><li class=''><a href="../reference/people/">People</a></li><li class=''><a href="../reference/reporting/">Reporting</a></li></ul></nav></li></ul></nav></aside></div>
 
     <main class="with-left-sidebar">
       <section class="documentation-hero-header">
@@ -141,7 +141,7 @@ you wanted to get the list of tickets for the current user, you simply request
 </code></pre>
 
 <p>Requests will always return a response from the service.  Services will respond
-asynchronously with a promise object that responds to a method <code>then</code>, as
+asynchronously via a promise object that responds to a method <code>then</code>, as
 defined by the <a href="http://promises-aplus.github.com/promises-spec/">Promises/A+</a>
 specification.</p>
 
@@ -360,14 +360,158 @@ default <code>per_page</code> value and may have different limits.  See the spec
 request documentation for more information on the <code>per_page</code> defaults.</p>
 
 <p>When a paginated request is returned, it will always have a top-level <code>meta</code>
-attribute containing pagination information.  For example:</p>
-<pre class="highlight javascript"><code><span class="s2">"meta"</span><span class="err">:</span> <span class="p">{</span>
-  <span class="s2">"total_entries"</span><span class="err">:</span> <span class="mi">205</span><span class="p">,</span> <span class="c1">// total number of items, across all pages</span>
-  <span class="s2">"page_count"</span><span class="err">:</span> <span class="mi">7</span><span class="p">,</span> <span class="c1">// total number of pages</span>
-  <span class="s2">"per_page"</span><span class="err">:</span> <span class="mi">30</span><span class="p">,</span> <span class="c1">// number of items per page</span>
-  <span class="s2">"current_page"</span><span class="err">:</span> <span class="mi">2</span> <span class="c1">// the current page number</span>
+attribute containing pagination information.  See <a href="#response-paging">Response Paging</a>
+for details.</p>
+
+<h2 id="responses">Responses</h2>
+
+<p>The service <code>request</code> method always returns a promise object which is used to
+deliver the API request asynchronously. The promise responds to a method <code>then</code>, as
+defined by the <a href="http://promises-aplus.github.com/promises-spec/">Promises/A+</a> specification.
+The promise is resolved with the javascript object requested, as defined by the APIs,
+or the promise is rejected and given error details.</p>
+
+<p>For example:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SW</span><span class="p">.</span><span class="nx">Card</span><span class="p">();</span>
+<span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'tickets'</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="cm">/* prints to the console:
+ * {
+ *   meta: {...},
+ *   tickets: [...]
+ * }
+ */</span>
+</code></pre>
+
+<h3 id="paging"><a name="response-paging"></a> Paging</h3>
+
+<p>Some service requests respond with a collection of objects. Collections are paged
+in order to improve performance and responsiveness of the application and server.
+When this happens, the response object includes a <code>meta</code> field and values
+containing pagination information.</p>
+
+<p>For example, the <code>tickets</code> request above could contain a <code>meta</code> object like: </p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"meta"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"total_entries"</span><span class="err">:</span> <span class="mi">205</span><span class="p">,</span>
+    <span class="s2">"page_count"</span><span class="err">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">"per_page"</span><span class="err">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">"current_page"</span><span class="err">:</span> <span class="mi">2</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>total_entries</code></td>
+<td><code>integer</code></td>
+<td>Total number of objects, across all pages</td>
+</tr>
+<tr>
+<td><code>page_count</code></td>
+<td><code>integer</code></td>
+<td>Total number of pages (last page contain less than <code>per_page</code> objects)</td>
+</tr>
+<tr>
+<td><code>per_page</code></td>
+<td><code>integer</code></td>
+<td>Number of objects per page</td>
+</tr>
+<tr>
+<td><code>current_page</code></td>
+<td><code>integer</code></td>
+<td>The current page number</td>
+</tr>
+</tbody></table>
+
+<h3 id="admin-defined-attributes"><a name="admin-defined-attributes"></a> Admin-Defined Attributes</h3>
+
+<p>All resources within Spiceworks have a core set of attributes maintained by the Spiceworks
+user and/or the Spiceworks system. For example, <code>Description</code> is a core attribute of a
+Ticket managed within Spiceworks. Some resources (e.g. Tickets, Devices, some others)
+can have additional, custom attributes defined by the Spiceworks administrator. For example,
+<code>Service Level</code> could be defined by an administrator as custom attribute of Tickets.</p>
+
+<p>When resources have administrator-defined attributes, descriptions of these attributes
+are returned in the service response <code>meta</code> object with the <code>admin_defined_attrs</code> field.
+For example:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"meta"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="s2">"admin_defined_attrs"</span><span class="err">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"c_service_level"</span><span class="p">,</span>
+        <span class="s2">"label"</span><span class="p">:</span> <span class="s2">"Service Level"</span><span class="p">,</span>
+        <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"enum"</span><span class="p">,</span>
+        <span class="s2">"default"</span><span class="p">:</span> <span class="s2">"Low"</span><span class="p">,</span>
+        <span class="s2">"options"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Low"</span><span class="p">,</span> <span class="s2">"High"</span><span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Attribute name, i.e. as it would appear in the response object.</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td><code>string</code></td>
+<td>Attribute label, e.g. as it should be presented to the user in a form.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Type of attribute. Values are <code>string</code>,<code>int</code>,<code>date</code>,<code>enum</code>,<code>text</code>, and <code>float</code>.</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>varies</td>
+<td>Default value. Can be <code>null</code>.</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td><code>array</code></td>
+<td>For <code>enum</code> attributes, this is the list of valid values.</td>
+</tr>
+</tbody></table>
+
+<p>Also, values for the administrator-defined attributes are returned in the response
+objects. For example:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="s2">"tickets"</span><span class="err">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="c1">// ...</span>
+      <span class="s2">"admin_defined_attrs"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"c_service_level"</span><span class="p">:</span> <span class="s2">"Low"</span>
+      <span class="p">}</span>
+      <span class="c1">// ...</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+<blockquote>
+<p><strong>Note:</strong> As the name implies, administrator-defined attributes can be added and removed
+at will by the administrator of Spiceworks. App developers should be careful when depending
+on the presence of any administrator-defined attributes.</p>
+</blockquote>
 
 <h2 id="events">Events</h2>
 

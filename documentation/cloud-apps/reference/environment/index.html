@@ -64,7 +64,7 @@
       </li>
     </ul>
 
-    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Build Cloud Apps</h4><ul class='nav' role='tablist'><li class=''><a href="../../">Getting Started</a><nav class='submenu'><ul class='nav'><li class=''><a href="#installing-spiceworks">Installing Spiceworks</a></li><li class=''><a href="#create-a-place-for-your-app-to-live">Create a Place for Your App</a></li><li class=''><a href="#create-&amp;-register-your-web-app-with-spiceworks">Register Your App with Spiceworks</a></li><li class=''><a href="#add-javascript-to-your-application-to-get-data-from-spiceworks">Spiceworks JS API Client</a></li><li class=''><a href="#resources">Resources</a></li></ul></nav></li><li class=''><a href="../../api-basics/">API Basics</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-card">Creating a Card</a></li><li class=''><a href="#card-lifecycle">Card Lifecycle</a></li><li class=''><a href="#card-services">Card Services</a></li><li class=''><a href="#requests">Requests</a></li><li class=''><a href="#events">Events</a></li><li class=''><a href="#error-handling">Error Handling</a></li></ul></nav></li><li class=''><a href="../../authentication/">App Authentication</a><nav class='submenu'><ul class='nav'><li class=''><a href="#background">Background</a></li><li class=''><a href="#step-1:-obtain-the-current-user-identifier">Step 1: The current user</a></li><li class=''><a href="#step-2:-obtain-an-oauth2-access-token">Step 2: Get an access token</a></li><li class=''><a href="#step-3:-use-the-oauth2-token-to-authenticate-the-user">Step 3: Verify the access token</a></li><li class=''><a href="#best-practices">Best practices</a></li><li class=''><a href="#further-reading">Further reading</a></li></ul></nav></li><hr /><li class=''><a href="//github.com/spiceworks/spiceworks-js-sdk/tree/master/examples">Examples</a></li><li class='active'><a href="./">API Reference</a><nav class='submenu'><ul class='nav'><li class='active'><a href="./">Environment</a></li><li class=''><a href="../helpdesk/">Help Desk</a></li><li class=''><a href="../inventory/">Inventory</a></li><li class=''><a href="../people/">People</a></li><li class=''><a href="../reporting/">Reporting</a></li></ul></nav></li></ul></nav></aside></div>
+    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Build Cloud Apps</h4><ul class='nav' role='tablist'><li class=''><a href="../../">Getting Started</a><nav class='submenu'><ul class='nav'><li class=''><a href="#installing-spiceworks">Installing Spiceworks</a></li><li class=''><a href="#create-a-place-for-your-app-to-live">Create a Place for Your App</a></li><li class=''><a href="#create-&amp;-register-your-web-app-with-spiceworks">Register Your App with Spiceworks</a></li><li class=''><a href="#add-javascript-to-your-application-to-get-data-from-spiceworks">Spiceworks JS API Client</a></li><li class=''><a href="#resources">Resources</a></li></ul></nav></li><li class=''><a href="../../api-basics/">API Basics</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-card">Creating a Card</a></li><li class=''><a href="#card-lifecycle">Card Lifecycle</a></li><li class=''><a href="#card-services">Card Services</a></li><li class=''><a href="#requests">Requests</a></li><li class=''><a href="#responses">Responses</a></li><li class=''><a href="#events">Events</a></li><li class=''><a href="#error-handling">Error Handling</a></li></ul></nav></li><li class=''><a href="../../authentication/">App Authentication</a><nav class='submenu'><ul class='nav'><li class=''><a href="#background">Background</a></li><li class=''><a href="#step-1:-obtain-the-current-user-identifier">Step 1: The current user</a></li><li class=''><a href="#step-2:-obtain-an-oauth2-access-token">Step 2: Get an access token</a></li><li class=''><a href="#step-3:-use-the-oauth2-token-to-authenticate-the-user">Step 3: Verify the access token</a></li><li class=''><a href="#best-practices">Best practices</a></li><li class=''><a href="#further-reading">Further reading</a></li></ul></nav></li><hr /><li class=''><a href="//github.com/spiceworks/spiceworks-js-sdk/tree/master/examples">Examples</a></li><li class='active'><a href="./">API Reference</a><nav class='submenu'><ul class='nav'><li class='active'><a href="./">Environment</a></li><li class=''><a href="../helpdesk/">Help Desk</a></li><li class=''><a href="../inventory/">Inventory</a></li><li class=''><a href="../people/">People</a></li><li class=''><a href="../reporting/">Reporting</a></li></ul></nav></li></ul></nav></aside></div>
 
     <main class="with-left-sidebar">
       <section class="documentation-hero-header">
@@ -167,13 +167,21 @@ provided in the <code>data</code> object, e.g. the current ticket or device ID.<
 <pre class="highlight javascript"><code><span class="p">{</span>
   <span class="s2">"meta"</span><span class="err">:</span> <span class="p">{</span>
     <span class="s2">"total_entries"</span><span class="err">:</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="s2">"page_count"</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"page_count"</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>              <span class="c1">// see (1) below</span>
     <span class="s2">"per_page"</span><span class="err">:</span> <span class="mi">30</span><span class="p">,</span>
-    <span class="s2">"current_page"</span><span class="err">:</span> <span class="mi">1</span>
+    <span class="s2">"current_page"</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"admin_defined_attrs"</span><span class="err">:</span> <span class="p">[...]</span>  <span class="c1">// see (2) below</span>
   <span class="p">},</span>
   <span class="s2">"users"</span><span class="err">:</span> <span class="p">[...]</span> <span class="c1">// see below for user JSON example</span>
 <span class="p">}</span>
 </code></pre>
+
+<p>Notes:</p>
+
+<p>(1) See <a href="/documentation/cloud-apps/api-basics/#response-paging">Paging</a> for more details on pagination.</p>
+
+<p>(2) See <a href="/documentation/cloud-apps/api-basics/#admin-defined-attributes">Admin-Defined Attributes</a> for more details
+on administrator-defined attributes.</p>
 
 <h4 id="get-a-single-user">Get a single user</h4>
 <pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'environment'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'user'</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>
@@ -226,6 +234,7 @@ provided in the <code>data</code> object, e.g. the current ticket or device ID.<
     <span class="s2">"avatar_path"</span><span class="err">:</span> <span class="s2">"/images/icons/medium/person-avatar-admin.png"</span><span class="p">,</span>
     <span class="s2">"show_url"</span><span class="err">:</span> <span class="s2">"/people/3"</span>
   <span class="p">},</span>
+  <span class="s2">"admin_defined_attrs"</span><span class="err">:</span> <span class="p">{},</span>
   <span class="s2">"notifications"</span><span class="err">:</span> <span class="p">{</span>
     <span class="s2">"alert"</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"helpdesk"</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>

@@ -64,7 +64,7 @@
       </li>
     </ul>
 
-    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Build Cloud Apps</h4><ul class='nav' role='tablist'><li class=''><a href="../../">Getting Started</a><nav class='submenu'><ul class='nav'><li class=''><a href="#installing-spiceworks">Installing Spiceworks</a></li><li class=''><a href="#create-a-place-for-your-app-to-live">Create a Place for Your App</a></li><li class=''><a href="#create-&amp;-register-your-web-app-with-spiceworks">Register Your App with Spiceworks</a></li><li class=''><a href="#add-javascript-to-your-application-to-get-data-from-spiceworks">Spiceworks JS API Client</a></li><li class=''><a href="#resources">Resources</a></li></ul></nav></li><li class=''><a href="../../api-basics/">API Basics</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-card">Creating a Card</a></li><li class=''><a href="#card-lifecycle">Card Lifecycle</a></li><li class=''><a href="#card-services">Card Services</a></li><li class=''><a href="#requests">Requests</a></li><li class=''><a href="#events">Events</a></li><li class=''><a href="#error-handling">Error Handling</a></li></ul></nav></li><li class=''><a href="../../authentication/">App Authentication</a><nav class='submenu'><ul class='nav'><li class=''><a href="#background">Background</a></li><li class=''><a href="#step-1:-obtain-the-current-user-identifier">Step 1: The current user</a></li><li class=''><a href="#step-2:-obtain-an-oauth2-access-token">Step 2: Get an access token</a></li><li class=''><a href="#step-3:-use-the-oauth2-token-to-authenticate-the-user">Step 3: Verify the access token</a></li><li class=''><a href="#best-practices">Best practices</a></li><li class=''><a href="#further-reading">Further reading</a></li></ul></nav></li><hr /><li class=''><a href="//github.com/spiceworks/spiceworks-js-sdk/tree/master/examples">Examples</a></li><li class='active'><a href="../environment/">API Reference</a><nav class='submenu'><ul class='nav'><li class=''><a href="../environment/">Environment</a></li><li class='active'><a href="./">Help Desk</a></li><li class=''><a href="../inventory/">Inventory</a></li><li class=''><a href="../people/">People</a></li><li class=''><a href="../reporting/">Reporting</a></li></ul></nav></li></ul></nav></aside></div>
+    <div class='aside-wrapper'><aside><nav class='sidebar'><h4>Build Cloud Apps</h4><ul class='nav' role='tablist'><li class=''><a href="../../">Getting Started</a><nav class='submenu'><ul class='nav'><li class=''><a href="#installing-spiceworks">Installing Spiceworks</a></li><li class=''><a href="#create-a-place-for-your-app-to-live">Create a Place for Your App</a></li><li class=''><a href="#create-&amp;-register-your-web-app-with-spiceworks">Register Your App with Spiceworks</a></li><li class=''><a href="#add-javascript-to-your-application-to-get-data-from-spiceworks">Spiceworks JS API Client</a></li><li class=''><a href="#resources">Resources</a></li></ul></nav></li><li class=''><a href="../../api-basics/">API Basics</a><nav class='submenu'><ul class='nav'><li class=''><a href="#creating-a-card">Creating a Card</a></li><li class=''><a href="#card-lifecycle">Card Lifecycle</a></li><li class=''><a href="#card-services">Card Services</a></li><li class=''><a href="#requests">Requests</a></li><li class=''><a href="#responses">Responses</a></li><li class=''><a href="#events">Events</a></li><li class=''><a href="#error-handling">Error Handling</a></li></ul></nav></li><li class=''><a href="../../authentication/">App Authentication</a><nav class='submenu'><ul class='nav'><li class=''><a href="#background">Background</a></li><li class=''><a href="#step-1:-obtain-the-current-user-identifier">Step 1: The current user</a></li><li class=''><a href="#step-2:-obtain-an-oauth2-access-token">Step 2: Get an access token</a></li><li class=''><a href="#step-3:-use-the-oauth2-token-to-authenticate-the-user">Step 3: Verify the access token</a></li><li class=''><a href="#best-practices">Best practices</a></li><li class=''><a href="#further-reading">Further reading</a></li></ul></nav></li><hr /><li class=''><a href="//github.com/spiceworks/spiceworks-js-sdk/tree/master/examples">Examples</a></li><li class='active'><a href="../environment/">API Reference</a><nav class='submenu'><ul class='nav'><li class=''><a href="../environment/">Environment</a></li><li class='active'><a href="./">Help Desk</a></li><li class=''><a href="../inventory/">Inventory</a></li><li class=''><a href="../people/">People</a></li><li class=''><a href="../reporting/">Reporting</a></li></ul></nav></li></ul></nav></aside></div>
 
     <main class="with-left-sidebar">
       <section class="documentation-hero-header">
@@ -175,13 +175,21 @@
 <pre class="highlight javascript"><code><span class="p">{</span>
   <span class="s2">"meta"</span><span class="err">:</span> <span class="p">{</span>
     <span class="s2">"total_entries"</span><span class="err">:</span> <span class="mi">9</span><span class="p">,</span>
-    <span class="s2">"page_count"</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"page_count"</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>              <span class="c1">// see (1) below</span>
     <span class="s2">"per_page"</span><span class="err">:</span> <span class="mi">30</span><span class="p">,</span>
-    <span class="s2">"current_page"</span><span class="err">:</span> <span class="mi">1</span>
+    <span class="s2">"current_page"</span><span class="err">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"admin_defined_attrs"</span><span class="err">:</span> <span class="p">[...]</span>  <span class="c1">// see (2) below</span>
   <span class="p">},</span>
   <span class="s2">"tickets"</span><span class="err">:</span> <span class="p">[...]</span> <span class="c1">// see below for ticket json example</span>
 <span class="p">}</span>
 </code></pre>
+
+<p>Notes:</p>
+
+<p>(1) See <a href="/documentation/cloud-apps/api-basics/#response-paging">Paging</a> for more details on pagination.</p>
+
+<p>(2) See <a href="/documentation/cloud-apps/api-basics/#admin-defined-attributes">Admin-Defined Attributes</a> for more details
+on administrator-defined attributes.</p>
 
 <h4 id="get-a-single-ticket">Get a single ticket</h4>
 <pre class="highlight javascript"><code><span class="nx">card</span><span class="p">.</span><span class="nx">services</span><span class="p">(</span><span class="s1">'helpdesk'</span><span class="p">).</span><span class="nx">request</span><span class="p">(</span><span class="s1">'ticket'</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>
@@ -225,6 +233,7 @@
   <span class="s2">"time_spent_duration"</span><span class="err">:</span> <span class="s2">"0m"</span><span class="p">,</span>
   <span class="s2">"shared"</span><span class="err">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="s2">"billing_rate"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">"admin_defined_attrs"</span><span class="err">:</span> <span class="p">{}</span>
   <span class="s2">"creator"</span><span class="err">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="err">:</span> <span class="mi">11</span><span class="p">,</span>
     <span class="s2">"first_name"</span><span class="err">:</span> <span class="s2">"Chris"</span><span class="p">,</span>
@@ -282,15 +291,6 @@
       <span class="p">},</span>
       <span class="s2">"collaborator"</span><span class="err">:</span> <span class="kc">null</span><span class="p">,</span>
       <span class="s2">"body"</span><span class="err">:</span> <span class="s2">"Ticket closed."</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="s2">"c_alert_level"</span><span class="err">:</span> <span class="s2">"orange"</span><span class="p">,</span>
-  <span class="s2">"custom_attrs"</span><span class="err">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"c_alert_level"</span><span class="p">,</span>
-      <span class="s2">"label"</span><span class="p">:</span> <span class="s2">"Alert Level"</span><span class="p">,</span>
-      <span class="s2">"value"</span><span class="p">:</span> <span class="s2">"Orange"</span><span class="p">,</span>
-      <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"enum"</span>
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="s2">"alerts"</span><span class="err">:</span> <span class="p">[</span>
@@ -422,6 +422,11 @@
 <td><code>array</code></td>
 <td>A list of items from inventory related to the ticket.  Must be an array of objects containing an <code>id</code> and a <code>type</code> property for a valid inventory item.</td>
 </tr>
+<tr>
+<td><code>admin_defined_attrs</code></td>
+<td><code>object</code></td>
+<td>Object whose keys are <a href="/documentation/cloud-apps/api-basics/#admin-defined-attributes">admin-defined attribute</a> names, along with their corresponding values.</td>
+</tr>
 </tbody></table>
 
 <h5 id="response">Response</h5>
@@ -479,7 +484,7 @@
 <tr>
 <td><code>assignee</code></td>
 <td><code>integer</code></td>
-<td>The IT pro the ticket is assigned to. Must be an IT pro <code>id</code> or <code>null</code> to unassign the ticket.</td>
+<td>The IT pro the ticket is assigned to. Must be an IT pro <code>id</code> or string literal <code>&quot;null&quot;</code> to unassign the ticket.</td>
 </tr>
 <tr>
 <td><code>priority</code></td>
@@ -505,6 +510,11 @@
 <td><code>inventory_items</code></td>
 <td><code>array</code></td>
 <td>A list of items from inventory related to the ticket.  Must be an array of objects containing an <code>id</code> and a <code>type</code> property for a valid inventory item.</td>
+</tr>
+<tr>
+<td><code>admin_defined_attrs</code></td>
+<td><code>object</code></td>
+<td>Object whose keys are <a href="/documentation/cloud-apps/api-basics/#admin-defined-attributes">admin-defined attribute</a> names, along with their corresponding values or literal strings <code>&quot;null&quot;</code> to reset to default values.</td>
 </tr>
 </tbody></table>
 
